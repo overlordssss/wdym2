@@ -1,4 +1,7 @@
 require('dotenv').config();
+const auth = require('./auth')
+const game = require('./game')
+const socket = require('./sockets');
 const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
@@ -23,6 +26,9 @@ app.use(
         saveUninitialized: false
     })
 )
+app.use('/api/auth', auth)
+app.use('/api/game', game)
+app.use('/api/socket', socket)
 
 // server listening here SERVER_PORT=4004;
 app.listen(SERVER_PORT, () => console.log(`Docked at port: ${SERVER_PORT}`));

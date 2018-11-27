@@ -7,8 +7,8 @@ const bycrypt = require('bcrypt')
 const router = express.Router();
 
 // register a new user
-router.post('/auth/register');
+router.post('/register');
 // logs in a user
-router.get('/auth/login');
+router.get('/login');
 // logs out a user
-router.post('auth/logout');
+router.post('/logout');
