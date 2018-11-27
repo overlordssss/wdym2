@@ -1,6 +1,6 @@
 // this is the file for all things authentication
 
-const express = require(express);
+const express = require('express');
 const bycrypt = require('bcrypt')
 
 // express router instead of contoller files to keep things shorter and cleaner.
@@ -12,3 +12,5 @@ router.post('/register');
 router.get('/login');
 // logs out a user
 router.post('/logout');
+
+module.exports = router;

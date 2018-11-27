@@ -6,10 +6,12 @@ const express = require('express');
 const router = express.Router();
 
 // allows user to upload custom images
-router.post('/uploadimg');
+router.post('/uploading');
 // gets user data to display upon logging in
 router.get('/userdata');
 // will pull images cloudinary for database storage
 router.get('/images');
 // allows users to save thier custom memes
 router.post('/memes')
+
+module.exports = router;
