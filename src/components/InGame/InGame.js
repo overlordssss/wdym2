@@ -1,36 +1,41 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 
-class InGame extends Component{
-    constructor(){
+class InGame extends Component {
+    constructor() {
         super();
 
         this.state = {
             player_index: 0,
-            username: ''
+            username: '',
+            winner: false
         }
     }
-    componentDidMount () {
+    componentDidMount() {
         //get user info, change username in state 
         //missing endpoint
-        this.setState({username: res.data.username})
+        this.setState({ username: res.data.username })
         //find user in players array and change index
         this.props.players.map((user, i) => {
-            if (user.username === this.state.username) {this.setState({player_index: i}) }
+            if (user.username === this.state.username) { this.setState({ player_index: i }) }
+        })
+        //check if anyone has won(compared with reducer rounds to win)
+        this.props.players.map(player => {
+            if (player.rounds_won === this.props.roundsToWin) {
+                this.setState({ winner: true })
+            }
         })
     }
-    render(){
-
-        //conditional rendering depending on role
-        if(player_index === this.props.judgeIndex) {
-            <Judge />
+    render() {
+        if (this.state.winner === true) {
+           return <Winner />
         } else {
-            <Player />
+            //conditional rendering depending on role
+            if (player_index === this.props.judgeIndex) {
+                return <Judge />
+            } else {
+                return <Player />
+            }
         }
-        return(
-            <div>
-
-            </div>
-        )
     }
 }
