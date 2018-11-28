@@ -1,6 +1,10 @@
 // this is the file for all things authentication
 
+<<<<<<< HEAD
 const express = require('express');
+=======
+const express = require("express");
+>>>>>>> master
 const bcrypt = require('bcrypt')
 
 // express router instead of contoller files to keep things shorter and cleaner.

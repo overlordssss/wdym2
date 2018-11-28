@@ -8,4 +8,8 @@ const router = express.Router();
 // helps with creating socket rooms
 router.post('/socket')
 
+<<<<<<< HEAD
 module.exports = router
+=======
+module.exports = router;
+>>>>>>> master
