@@ -11,3 +11,5 @@ CREATE TABLE user (
     played int, 
     won int
 );
+-- Need to have a table for sockets 
+-- Need to have a game room table; will delete entry when socket is closed
