@@ -5,7 +5,8 @@ const initialState = {
     customImages: "",
     judgeIndex: 0,
     //players array will consist of objects containing username, rounds_won, input_top, input_bottom and role(judge/player)
-    players: []
+    players: [],
+    blankMemes: []
 }
 
 export default function reducer(state = initialState, action){

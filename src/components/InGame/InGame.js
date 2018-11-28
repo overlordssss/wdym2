@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import Judge from '../Judge/Judge';
+import Player from '../Player/Player';
+import Winner from '../Winner/Winner';
+import RoundWinner from '../RoundWinner/RoundWinner';
+import JudgePlayerWaiting from '../JudgePlayerWaiting/JudgePlayerWaiting';
 
 class InGame extends Component {
     constructor() {
