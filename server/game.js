@@ -13,3 +13,5 @@ router.get('/userdata');
 router.get('/images');
 // allows users to save thier custom memes
 router.post('/memes')
+
+module.exports = router
