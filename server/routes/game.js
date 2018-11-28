@@ -14,8 +14,4 @@ router.get('/images');
 // allows users to save thier custom memes
 router.post('/memes')
 
-<<<<<<< HEAD:server/routes/game.js
-module.exports = router;
-=======
 module.exports = router
->>>>>>> master:server/game.js
