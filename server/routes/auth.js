@@ -1,7 +1,7 @@
 // this is the file for all things authentication
 
 const express = require('express');
-const bycrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 // express router instead of contoller files to keep things shorter and cleaner.
 const router = express.Router();

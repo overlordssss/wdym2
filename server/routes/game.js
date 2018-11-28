@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 // allows user to upload custom images
-router.post('/uploading');
+router.post('/uploadimg');
 // gets user data to display upon logging in
 router.get('/userdata');
 // will pull images cloudinary for database storage
