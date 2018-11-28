@@ -7,3 +7,5 @@ const router = express.Router();
 
 // helps with creating socket rooms
 router.post('/socket')
+
+module.exports = router
