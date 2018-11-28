@@ -1,13 +1,14 @@
 require('dotenv').config();
-const auth = require('./auth')
-const game = require('./game')
-const socket = require('./sockets');
+const auth = require('./routes/auth')
+const game = require('./routes/game')
+const socket = require('./routes/sockets');
 const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
 const helmet = require('helmet');
 
 const app = express();
+
 const { SERVER_PORT, CONNECTION_STRING, SECRET } = process.env;
 
 // connecting to the database here
