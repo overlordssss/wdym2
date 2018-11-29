@@ -27,9 +27,8 @@ app.use(
         saveUninitialized: false
     })
 )
-app.use('/api/auth', auth)
-app.use('/api/game', game)
-app.use('/api/socket', socket)
+app.use('/auth', auth)
+app.use('/game', game)
 
 // server listening here SERVER_PORT=4004;
 app.listen(SERVER_PORT, () => console.log(`Docked at port: ${SERVER_PORT}`));

@@ -12,6 +12,11 @@ class Register extends Component {
             confirmpass: ''
         }
     }
+    // skeleton register endpoint here to register a new user. Some logic here should check that the username doesn't exist and that the password and confirm passwords actually match.
+    register = (e) => {
+
+    }
+    // basic method to handle any user inputs.
     handleInputs = (e) => {
         this.setState({
             [e.target.name]: e.target.value

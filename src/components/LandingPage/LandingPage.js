@@ -12,9 +12,11 @@ class LandingPage extends Component {
             guestUsername: ''
         }
     }
+    // skeleton method for loging out. will just route the user to the login page and destroy the session
     logout = () => {
 
     }
+    // basic method for handling any user inputs on this view
     handleInputs = (e) => {
         this.setState({
             [e.target.name]: e.target.value

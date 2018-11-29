@@ -12,9 +12,12 @@ class Login extends Component {
             password: ''
         }
     }
+    // the skeleton login method. Functionality will include an axios call to the server endpoint for authentication.
+    // maybe also adding some logic for checking if there is a password and username.
     login = () => {
 
     }
+    // just a method for the input boxes
     handleInputs = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -32,7 +35,7 @@ class Login extends Component {
                         placeholder="Username"
                         onChange={this.handleInputs}
                     />
-
+                    {/* password input on the login card */}
                     <input
                         type="password"
                         value={this.state.password}
