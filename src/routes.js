@@ -9,11 +9,12 @@ import Player from './components/Player/Player';
 import Judge from './components/Judge/Judge';
 import Winner from './components/Winner/Winner';
 import JudgePlayerWaiting from './components/JudgePlayerWaiting/JudgePlayerWaiting';
+import InGame from './components/InGame/InGame';
 
 export default (
     <Switch>
-        <Route exact path='/' component={LandingPage}/>
-        <Route path='/login' component={Login}/>
+        <Route path='/landing-page' component={LandingPage}/>
+        <Route exact path='/' component={Login}/>
         <Route path='/register' component={Register}/>
         <Route path='/create-game' component={CreateGame}/>
         <Route path='/game-loading' component={GameLoading}/>
@@ -21,5 +22,6 @@ export default (
         <Route path='/judge' component={Judge}/>
         <Route path='/winner' component={Winner}/>
         <Route path='/waiting-room' component={JudgePlayerWaiting}/>
+        <Route path='/in-game' component={InGame}/>
     </Switch>
 )

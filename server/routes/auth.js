@@ -1,16 +1,16 @@
 // this is the file for all things authentication
 
 const express = require('express');
-const bcrypt = require('bcrypt')
+const authController = require('../controllers/authController');
 
-// express router instead of contoller files to keep things shorter and cleaner.
-const router = express.Router();
+// using express router to route these to the auth controller file
+const AuthRouter = express.Router();
 
-// register a new user
-router.post('/register');
 // logs in a user
-router.get('/login');
+AuthRouter.get('/login', authController.login);
+// register a new user
+AuthRouter.post('/register', authController.register);
 // logs out a user
-router.post('/logout');
+AuthRouter.post('/logout', authController.logout);
 
-module.exports = router
+module.exports = AuthRouter;

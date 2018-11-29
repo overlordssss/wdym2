@@ -1,0 +1,23 @@
+.login_container{
+    background-image: url('https://wallpapercave.com/wp/wp3298162.jpg');
+    /* background-repeat: no-repeat; */
+    height: 100vh;
+    /* width: 100vw; */
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+}
+.login_card{
+    align-self: center;
+    z-index: 0;
+    background-color: #f2f2f2CC;
+    width: 500px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    box-shadow: 10px 10px 30px black;
+}
+.login{
+    
+}

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {roundsToWin, players} from '../../dux/reducer'
 
 class CreateGame extends Component {
@@ -51,4 +51,9 @@ const mapStateToProps = state => {
     
 }
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, {roundsToWin})(CreateGame)
+=======
+
+export default connect()(CreateGame)
+>>>>>>> master

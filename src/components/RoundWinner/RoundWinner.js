@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function RoundWinner(){
+function RoundWinner(){
     return (
         <div>
             <h1>
@@ -13,3 +14,5 @@ export default function RoundWinner(){
         </div>
     )
 }
+
+export default connect()(RoundWinner)

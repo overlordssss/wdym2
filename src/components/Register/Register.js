@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import './Register.css';
 
 class Register extends Component {
     constructor() {
@@ -10,6 +12,11 @@ class Register extends Component {
             confirmpass: ''
         }
     }
+    // skeleton register endpoint here to register a new user. Some logic here should check that the username doesn't exist and that the password and confirm passwords actually match.
+    register = (e) => {
+
+    }
+    // basic method to handle any user inputs.
     handleInputs = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -17,8 +24,9 @@ class Register extends Component {
     }
     render() {
         return (
-            <div>
-                <div className='login_card'>
+            <div className='register_container'>
+                <div className='register_card'>
+                    <h1>Register</h1>
                     <input
                         type="text"
                         value={this.state.username}
@@ -38,10 +46,10 @@ class Register extends Component {
                         placeholder="Password"
                         onChange={this.handleInputs}
                     />
-                    <button
+                    <Link to='/'><button
                         className="login_button"
-                        onClick={this.login.bind(this)}
-                    >Register!</button>
+                        // onClick={this.login.bind(this)}
+                    >Register!</button></Link>
                 </div>
             </div>
         )

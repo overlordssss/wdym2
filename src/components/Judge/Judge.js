@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class Judge extends Component{
     constructor(){
@@ -18,7 +19,7 @@ class Judge extends Component{
             <div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 <p>{this.props.players[this.state.meme_index].input_top}</p>
-                <img src ={} />
+                {/* <img src ={} /> */}
                 <p>{this.props.players[this.state.meme_index].input_bottom}</p>
                 <button>Select</button> 
             </div>
@@ -29,4 +30,4 @@ class Judge extends Component{
 
 
 
-export default Judge
+export default connect()(Judge)
