@@ -11,26 +11,6 @@ const initialState = {
  
  const USERNAME = 'USERNAME' 
 
-<<<<<<< HEAD
-const ROUNDSTOWIN = 'ROUNDSTOWIN'
-const PLAYERS = 'PLAYERS'
-
-export default function reducer(state = initialState, action){
-    switch(action.type){
-        
-        case ROUNDSTOWIN:
-        return Object.assign({}, state, {roundsToWin: action.payload})
-
-        case PLAYERS:
-        return Object.assign({}, state, {players:action.payload})
-        
-        default:
-        return state;
-    }
-}
-
-export function roundsToWin(val) {
-=======
 
 
  const ROUNDSTOWIN = 'ROUNDSTOWIN'
@@ -54,26 +34,15 @@ export function roundsToWin(val) {
  }
  
  export function roundsToWin(val) {
->>>>>>> master
     return{
         type: ROUNDSTOWIN,
         payload: val
     }
-<<<<<<< HEAD
-}
-
-export function players(val) {
-=======
  }
  
  export function players(val) {
->>>>>>> master
     return {
         type: PLAYERS,
         payload: val
     }
-<<<<<<< HEAD
-}
-=======
  }
->>>>>>> master
