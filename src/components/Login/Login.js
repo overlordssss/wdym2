@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { linkSync } from 'fs';
 
 class Login extends Component {
     constructor() {

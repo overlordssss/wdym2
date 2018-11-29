@@ -23,7 +23,7 @@ class Register extends Component {
     render() {
         return (
             <div>
-                <div className='login_card'>
+                <div className='register_card'>
                     {/* inputs for the user to create a username and password for thier account. */}
                     <input
                         type="text"
@@ -48,7 +48,7 @@ class Register extends Component {
 
                     <button
                         className="login_button"
-                        onClick={this.login.bind(this)}
+                        onClick={this.register.bind(this)}
                     >Register!</button>
                 </div>
             </div>
