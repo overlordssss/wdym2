@@ -2,20 +2,14 @@
 
 const express = require('express');
 
-// express router instead of contoller files to keep things shorter and cleaner.
-const router = express.Router();
+// using express router to route these to the game controller file
+const GameRouter = express.Router();
 
 // allows user to upload custom images
-router.post('/uploadimg');
+GameRouter.post('/uploadimg');
 // gets user data to display upon logging in
-router.get('/userdata');
+GameRouter.get('/userdata');
 // will pull images cloudinary for database storage
-router.get('/images');
-// allows users to save thier custom memes
-router.post('/memes')
+GameRouter.get('/images');
 
-<<<<<<< HEAD:server/routes/game.js
-module.exports = router;
-=======
-module.exports = router
->>>>>>> master:server/game.js
+module.exports = GameRouter
