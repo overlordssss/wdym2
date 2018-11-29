@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import './Register.css';
 
 class Register extends Component {
     constructor() {
@@ -22,9 +24,9 @@ class Register extends Component {
     }
     render() {
         return (
-            <div>
-                <div className='login_card'>
-                    {/* inputs for the user to create a username and password for thier account. */}
+            <div className='register_container'>
+                <div className='register_card'>
+                    <h1>Register</h1>
                     <input
                         type="text"
                         value={this.state.username}
@@ -44,12 +46,10 @@ class Register extends Component {
                         placeholder="Password"
                         onChange={this.handleInputs}
                     />
-
-
-                    <button
+                    <Link to='/'><button
                         className="login_button"
-                        onClick={this.login.bind(this)}
-                    >Register!</button>
+                        // onClick={this.login.bind(this)}
+                    >Register!</button></Link>
                 </div>
             </div>
         )

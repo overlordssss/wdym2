@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class CreateGame extends Component{
     constructor(){
@@ -20,4 +21,4 @@ class CreateGame extends Component{
 
 
 
-export default CreateGame
+export default connect()(CreateGame)

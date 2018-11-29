@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { linkSync } from 'fs';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import './Login.css';
 
 class Login extends Component {
     constructor() {
@@ -24,10 +25,10 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='login_container'>
                 <div className='login_card'>
-                    <h1>Login</h1>
-                    {/* username input on the login card */}
+                    <h1 className='login'>Login</h1>
+
                     <input
                         type="text"
                         value={this.state.username}
@@ -41,29 +42,25 @@ class Login extends Component {
                         placeholder="Password"
                         onChange={this.handleInputs}
                     />
-                    {/* button for loggin in */}
-                    <button
+
+                    <Link to='/landing-page'><button
                         className="login_button"
                         onClick={this.login.bind(this)}
-                    >GO!</button>
-
-                    {/* button that will route to the register page */}
-                    <Link>
-                        <button
-                            className='login_register_button'
-                            onClick={this.login.bind(this)}
-                        >Register!</button>
-                    </Link>
-
-                    {/* this will route a player to the landing page bypassing the login but they will have a more limited experience */}
-                    <h6><Link>Play</Link> as Guest</h6>
+                    >GO!</button></Link>
+                    <Link to='/register'><button
+                        className='login_register_button'
+                        onClick={this.login.bind(this)}
+                    >Register!</button></Link>
+                    <Link to='/landing-page'><h6>Play as Guest</h6></Link>
                 </div>
             </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+
+}
 
 
-
-export default Login
+export default connect(mapStateToProps)(Login)
