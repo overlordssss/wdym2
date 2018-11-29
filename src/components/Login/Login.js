@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import './Login.css';
 
 class Login extends Component {
     constructor() {
@@ -19,9 +22,9 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='login_container'>
                 <div className='login_card'>
-                    <h1>Login</h1>
+                    <h1 className='login'>Login</h1>
 
                     <input
                         type="text"
@@ -37,22 +40,24 @@ class Login extends Component {
                         onChange={this.handleInputs}
                     />
 
-                    <button
+                    <Link to='/landing-page'><button
                         className="login_button"
                         onClick={this.login.bind(this)}
-                    >GO!</button>
-                    <button
+                    >GO!</button></Link>
+                    <Link to='/register'><button
                         className='login_register_button'
                         onClick={this.login.bind(this)}
-                    >Register!</button>
-                    <h6>Play as Guest</h6>
+                    >Register!</button></Link>
+                    <Link to='/landing-page'><h6>Play as Guest</h6></Link>
                 </div>
             </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+
+}
 
 
-
-export default Login
+export default connect(mapStateToProps)(Login)

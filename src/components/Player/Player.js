@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Player extends Component{
     constructor(){
@@ -6,6 +8,7 @@ class Player extends Component{
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
 
         this.state = {
+        
         }
     }
     topInput = (e) => {
@@ -22,10 +25,10 @@ class Player extends Component{
         return(
             <div>
                 <div>
-                    <img src = {}/>
+                    {/* <img src = {}/> */}
                     <p>Text at Top: </p><input placeholder="Enter text here"/>
                     <p>Text at Bottom: </p><input placeholder="Enter text here"/>
-                    <button>Submit Meme</button>
+                    <Link to='/waiting-room'><button>Submit Meme</button></Link>
                 </div>
             </div>
         )
@@ -35,4 +38,4 @@ class Player extends Component{
 
 
 
-export default Player
+export default connect()(Player)

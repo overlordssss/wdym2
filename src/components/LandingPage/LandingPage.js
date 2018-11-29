@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class LandingPage extends Component {
     constructor() {
@@ -21,14 +22,18 @@ class LandingPage extends Component {
     }
 
     render() {
+        let {
+            username,
+            guest
+        } = this.props
         return (
             <div>
-                userType ?
+                {this.state.userType ?
                 <h1>Welcome {username}! </h1>
-                : <h1>Welcome {guest}</h1>
-                <button
-                    onClick={}
-                >Create new game</button>
+                : <h1>Welcome {guest}! </h1>}
+                <Link to='/create-game'><button
+                    // onClick={}
+                >Create new game</button></Link>
                 <h3>Enter Room code to join an existing game</h3>
                 <input
                     type='text'
@@ -36,14 +41,9 @@ class LandingPage extends Component {
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
-                <input
-                    type='text'
-                    value={this.state.guestUsername}
-                    placeholder='Room Code'
-                    onChange={this.handleInputs}
-                />
+                <Link to='/game-loading'><button>Join</button></Link>
                 <div>
-                    <Link to='/login'>Logout</Link>
+                    <Link to='/'>Logout</Link>
                     <Link to='/register'>Create an account</Link>
                 </div>
             </div>
@@ -51,7 +51,12 @@ class LandingPage extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return{
+        username: state.username,
+        guest: state.guestUsername
+    }
+}
 
 
-
-export default LandingPage
+export default connect(mapStateToProps)(LandingPage)

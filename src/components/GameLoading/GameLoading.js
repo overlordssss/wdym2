@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
  class GameLoading extends Component{
      constructor(){
@@ -30,11 +32,11 @@ import React, {Component} from 'react';
                 </ul>
             </div>
             {/* basic start button passing the socket players connected to the room to the game */}
-            <button>START</button>
+            <Link to='/in-game'><button>START</button></Link>
         </div>
     )
   }
 }
 
 
-export default GameLoading
+export default connect()(GameLoading)
