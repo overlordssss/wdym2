@@ -7,6 +7,7 @@ const initialState = {
     //players array will consist of objects containing username, rounds_won, input_top, input_bottom and role(judge/player)
     players: [],
     blankMemes: [],
+    rooms: [],
     numberOfPlayers: 0,
     winningMeme: {}
  }

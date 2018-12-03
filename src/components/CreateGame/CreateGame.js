@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import io from 'socket.io-client'
 import {roundsToWin, players, numberOfPlayers} from '../../dux/reducer';
 import {Link} from 'react-router-dom';
 
@@ -10,7 +11,7 @@ class CreateGame extends Component {
         this.state = {
             numberOfPlayers: 0,
             roundsForWin: 0,
-            playerUsername: ''
+            room: 0
         }
     }
     componentDidMount = () => {
@@ -37,6 +38,26 @@ class CreateGame extends Component {
         this.props.players.push({username: this.props.username, rounds_won:0, input_top: '', input_bottom: '', role: ''})
         this.props.roundsToWin(this.state.roundsForWin)
         this.props.numberOfPlayers(this.state.numberOfPlayers)
+
+        //create a number for room
+        let newRoom = 0;
+        //check if room exists
+        let duplicate = false;
+        do { 
+            newRoom = Math.floor(Math.random()*8999) + 1000
+            this.props.rooms.map(room => {
+                if (room === newRoom) {
+                    duplicate = true
+                }
+            })
+         } while (duplicate === true)
+        this.props.rooms.push(newRoom)
+
+        this.socket =io();
+        //once a room is joined, go to GameLoading view (prop passed down from Landing Page view)
+        this.props.join()
+        this.socket.on('room joined', data => {
+        })
     }
     render() {
         console.log(this.props)
