@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './Login.css';
+import {username} from '../../dux/reducer';
 
 class Login extends Component {
     constructor() {
@@ -49,7 +50,6 @@ class Login extends Component {
                     >GO!</button></Link>
                     <Link to='/register'><button
                         className='login_register_button'
-                        onClick={this.login.bind(this)}
                     >Register!</button></Link>
                     <Link to='/landing-page'><h6>Play as Guest</h6></Link>
                 </div>
@@ -58,9 +58,6 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => {
-
-}
 
 
-export default connect(mapStateToProps)(Login)
+export default connect(null, {username})(Login)

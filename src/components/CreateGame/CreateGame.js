@@ -12,7 +12,7 @@ class CreateGame extends Component{
     render(){
         return(
             <div>
-
+            
             </div>
         )
     }

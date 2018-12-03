@@ -28,6 +28,7 @@ class LandingPage extends Component {
             username,
             guest
         } = this.props
+        console.log(this.props)
         return (
             <div>
                 {this.state.userType ?

@@ -1,6 +1,6 @@
 const initialState = {
     username: {},
-    guestUsername: {},
+    guestUsername: "",
     roundsToWin: 0,
     customImages: "",
     judgeIndex: 0,
@@ -10,7 +10,7 @@ const initialState = {
  }
  
  const USERNAME = 'USERNAME' 
-
+ 
 
 
  const ROUNDSTOWIN = 'ROUNDSTOWIN'
@@ -44,5 +44,12 @@ const initialState = {
     return {
         type: PLAYERS,
         payload: val
+    }
+ }
+
+ export function username(user){
+    return{
+        type: USERNAME,
+        payload: user
     }
  }
