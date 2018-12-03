@@ -24,6 +24,10 @@ class LandingPage extends Component {
     }
 
     render() {
+        let {
+            username,
+            guest
+        } = this.props
         console.log(this.props)
         return (
             <div>
