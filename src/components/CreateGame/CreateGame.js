@@ -51,9 +51,4 @@ const mapStateToProps = state => {
     
 }
 
-<<<<<<< HEAD
 export default connect(mapStateToProps, {roundsToWin})(CreateGame)
-=======
-
-export default connect()(CreateGame)
->>>>>>> master
