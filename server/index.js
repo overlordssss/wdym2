@@ -3,6 +3,7 @@ const auth = require('./routes/auth')
 const game = require('./routes/game')
 const express = require('express');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const massive = require('massive');
 const helmet = require('helmet');
 
@@ -18,7 +19,7 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 // middleware here
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(helmet());
 app.use(
     session({

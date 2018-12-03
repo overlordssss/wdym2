@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { username, guestUsername } from '../../dux/reducer';
 import './Login.css';
+import axios from 'axios';
 
 class Login extends Component {
     constructor() {
@@ -9,13 +11,50 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            guest: ''
         }
     }
     // the skeleton login method. Functionality will include an axios call to the server endpoint for authentication.
     // maybe also adding some logic for checking if there is a password and username.
     login = () => {
+        console.log('Hit the login frontend')
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        const { username, password } = this.state;
+        if (username && password) {
+            axios
+                .post('/auth/login', user)
+                .then(response => {
+                    const user = response.data;
+                    if (user.user_id) {
+                        // here is where the redux will be updated
+                        this.props.username(response.data);
+                        // here is where we push to landing page if a user is found
+                        this.props.history.push('/landing-page');
+                    } else (
+                        alert('No user found')
+                    )
+                })
+                .catch(err => {
+                    console.log(`Error: ${err}`)
+                })
+        } else if (!username) {
+            alert('Please enter a username')
+        } else if (!password) {
+            alert('Please enter a password')
+        }
+    }
+    guestLogin = () => {
 
+        if (this.state.guest !== '') {
+            this.props.guestUsername(this.state.guest)
+            this.props.history.push('/landing-page')
+        } else {
+            alert('Guest name must not be empty')
+        }
     }
     // just a method for the input boxes
     handleInputs = (e) => {
@@ -31,6 +70,7 @@ class Login extends Component {
 
                     <input
                         type="text"
+                        name='username'
                         value={this.state.username}
                         placeholder="Username"
                         onChange={this.handleInputs}
@@ -38,29 +78,37 @@ class Login extends Component {
                     {/* password input on the login card */}
                     <input
                         type="password"
+                        name='password'
                         value={this.state.password}
                         placeholder="Password"
                         onChange={this.handleInputs}
                     />
 
-                    <Link to='/landing-page'><button
+                    <button
                         className="login_button"
-                        onClick={this.login.bind(this)}
-                    >GO!</button></Link>
-                    <Link to='/register'><button
-                        className='login_register_button'
-                        onClick={this.login.bind(this)}
-                    >Register!</button></Link>
-                    <Link to='/landing-page'><h6>Play as Guest</h6></Link>
+                        onClick={this.login}
+                    >GO!</button>
+                    <Link to='/register'>
+                        <button
+                            className='login_register_button'
+                            onClick={this.login}
+                        >Register!</button></Link>
+                    <h3>Play as Guest</h3>
+                    <input
+                        type="text"
+                        name='guest'
+                        value={this.state.guest}
+                        placeholder="Guest username"
+                        onChange={this.handleInputs}
+                    />
+                    <button
+                        onClick={this.guestLogin}
+                    >GO!</button>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
 
-}
-
-
-export default connect(mapStateToProps)(Login)
+export default connect(null, { username, guestUsername })(Login)
