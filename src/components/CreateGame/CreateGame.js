@@ -1,24 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class CreateGame extends Component{
-    constructor(){
+class CreateGame extends Component {
+    constructor() {
         super();
 
         this.state = {
 
         }
     }
-    render(){
-        return(
+    render() {
+        return (
             <div>
 
             </div>
         )
     }
 }
-
-
-
 
 export default connect()(CreateGame)

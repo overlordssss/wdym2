@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Register.css';
 
 class Register extends Component {
@@ -14,7 +15,28 @@ class Register extends Component {
     }
     // skeleton register endpoint here to register a new user. Some logic here should check that the username doesn't exist and that the password and confirm passwords actually match.
     register = (e) => {
-
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        if (
+            this.state.password !== '' &&
+            this.state.password === this.state.confirmpass
+        ) {
+            axios
+                .post('/auth/register', user)
+                .then(result => {
+                    console.log(result);
+                    this.props.history.push('/')
+                })
+                .catch(err => {
+                    console.log(`Error: ${err}`)
+                })
+        } else if (this.state.username === '') {
+            alert('Please enter a valid username')
+        } else (
+            alert(`Passwords must match`)
+        )
     }
     // basic method to handle any user inputs.
     handleInputs = (e) => {
@@ -24,15 +46,9 @@ class Register extends Component {
     }
     render() {
         return (
-<<<<<<< HEAD
-            <div>
-                <div className='register_card'>
-                    {/* inputs for the user to create a username and password for thier account. */}
-=======
             <div className='register_container'>
                 <div className='register_card'>
                     <h1>Register</h1>
->>>>>>> master
                     <input
                         type="text"
                         value={this.state.username}
@@ -49,18 +65,13 @@ class Register extends Component {
                     <input
                         type="password"
                         value={this.state.confirmpass}
-                        placeholder="Password"
+                        placeholder="Confirm password"
                         onChange={this.handleInputs}
                     />
                     <Link to='/'><button
                         className="login_button"
-<<<<<<< HEAD
-                        onClick={this.register.bind(this)}
-                    >Register!</button>
-=======
-                        // onClick={this.login.bind(this)}
+                    // onClick={this.login.bind(this)}
                     >Register!</button></Link>
->>>>>>> master
                 </div>
             </div>
         )
