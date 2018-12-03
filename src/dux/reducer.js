@@ -1,6 +1,6 @@
 const initialState = {
     username: {},
-    guestUsername: "",
+    guestUsername: '',
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
@@ -12,20 +12,21 @@ const initialState = {
  }
  
  const USERNAME = 'USERNAME' 
+ const GUEST_USERNAME = 'GUEST_USERNAME'
  const ROUNDSTOWIN = 'ROUNDSTOWIN'
  const PLAYERS = 'PLAYERS'
  const IMAGES = 'IMAGES'
  const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
- 
- export default function reducer(state = initialState, action){
-    switch(action.type){
+
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
 
         case USERNAME:
-        return Object.assign({}, state, {username: action.payload})
- 
+        return Object.assign({}, state, { username: action.payload })
+
         case ROUNDSTOWIN:
-        return Object.assign({}, state, {roundsToWin: action.payload})
- 
+        return Object.assign({}, state, { roundsToWin: action.payload })
+
         case PLAYERS:
         return Object.assign({}, state, {players: action.payload})
 
@@ -34,20 +35,23 @@ const initialState = {
 
         case NUMBEROFPLAYERS:
         return Object.assign({}, state, {numberOfPlayers: action.payload})
- 
+
+        case GUEST_USERNAME:
+        return Object.assign({}, state, { guestUsername: action.payload })
+
         default:
         return state;
     }
- }
- 
- export function roundsToWin(val) {
-    return{
+}
+
+export function roundsToWin(val) {
+    return {
         type: ROUNDSTOWIN,
         payload: val
     }
- }
- 
- export function players(val) {
+}
+
+export function players(val) {
     return {
         type: PLAYERS,
         payload: val
@@ -62,12 +66,22 @@ const initialState = {
  }
 
 export function images(images){
-
+    return{
+        type: IMAGES,
+        payload: images
+    }
 }
 
 export function numberOfPlayers(num){
     return{
         type: NUMBEROFPLAYERS,
         payload: num
+    }
+}
+
+export function guestUsername(guest) {
+    return {
+        type: GUEST_USERNAME,
+        payload: guest
     }
 }
