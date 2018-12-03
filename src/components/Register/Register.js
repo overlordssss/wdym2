@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
 
@@ -10,18 +9,19 @@ class Register extends Component {
         this.state = {
             username: '',
             password: '',
-            confirmpass: ''
+            confirmPass: ''
         }
     }
     // skeleton register endpoint here to register a new user. Some logic here should check that the username doesn't exist and that the password and confirm passwords actually match.
-    register = (e) => {
+    register = () => {
+        console.log('hit the front end of register')
         const user = {
             username: this.state.username,
             password: this.state.password
         };
         if (
             this.state.password !== '' &&
-            this.state.password === this.state.confirmpass
+            this.state.password === this.state.confirmPass
         ) {
             axios
                 .post('/auth/register', user)
@@ -51,6 +51,7 @@ class Register extends Component {
                     <h1>Register</h1>
                     <input
                         type="text"
+                        name='username'
                         value={this.state.username}
                         placeholder="Username"
                         onChange={this.handleInputs}
@@ -58,20 +59,22 @@ class Register extends Component {
 
                     <input
                         type="password"
+                        name='password'
                         value={this.state.password}
                         placeholder="Password"
                         onChange={this.handleInputs}
                     />
                     <input
                         type="password"
+                        name='confirmPass'
                         value={this.state.confirmpass}
                         placeholder="Confirm password"
                         onChange={this.handleInputs}
                     />
-                    <Link to='/'><button
+                    <button
                         className="login_button"
-                    // onClick={this.login.bind(this)}
-                    >Register!</button></Link>
+                        onClick={this.register}
+                    >Register!</button>
                 </div>
             </div>
         )
