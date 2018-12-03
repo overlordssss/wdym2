@@ -6,7 +6,8 @@ const initialState = {
     judgeIndex: 0,
     //players array will consist of objects containing username, rounds_won, input_top, input_bottom and role(judge/player)
     players: [],
-    blankMemes: []
+    blankMemes: [],
+    rooms: []
  }
  
  const USERNAME = 'USERNAME' 

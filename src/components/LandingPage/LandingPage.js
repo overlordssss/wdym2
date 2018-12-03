@@ -8,7 +8,7 @@ class LandingPage extends Component {
 
         this.state = {
             userType: false,
-            roomCode: '',
+            roomCode: 0,
             guestUsername: ''
         }
     }
@@ -22,7 +22,16 @@ class LandingPage extends Component {
             [e.target.name]: e.target.value
         })
     }
-
+    //join room method 
+    joinRoom = () => {
+        let exists = false
+        this.props.rooms.map(room => {
+            if (room === this.state.roomCode) {
+                exists = true
+            }
+        })
+        exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+    }
     render() {
         let {
             username,
@@ -38,12 +47,12 @@ class LandingPage extends Component {
                 >Create new game</button></Link>
                 <h3>Enter Room code to join an existing game</h3>
                 <input
-                    type='text'
+                    type='number'
                     value={this.state.roomCode}
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
-                <Link to='/game-loading'><button>Join</button></Link>
+                <button onClick = {this.joinRoom}>Join</button>
                 <div>
                     <Link to='/'>Logout</Link>
                     <Link to='/register'>Create an account</Link>
