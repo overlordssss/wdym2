@@ -35,7 +35,11 @@ class Player extends Component{
     }
 }
 
+const mapStateToProps = state => {
+    return{
+        players: state.players
+    }
+}
 
 
-
-export default connect()(Player)
+export default connect(mapStateToProps)(Player)

@@ -10,7 +10,12 @@ import {connect} from 'react-redux';
             players: []
          }
      }
-    render(){ 
+    render(){
+        let {
+            players,
+            roundsToWin
+        } = this.props
+        console.log(this.props)
     return(
         <div>
             <div class="room-code">
@@ -18,6 +23,7 @@ import {connect} from 'react-redux';
                 <p>This is where the room code will display</p>
             </div>
             <div>
+                <h2>Rounds To Win: {roundsToWin}</h2>
                 <h3>Players</h3>
                 <ul class='players'>
                 {/* We are wanting this list to conditionally render the room size, based on how many people the game creator has selected as the max number of players */}
@@ -38,5 +44,12 @@ import {connect} from 'react-redux';
   }
 }
 
+const mapStateToProps = state => {
+    return {
+        players: state.players,
+        roundsToWin: state.roundsToWin
+    }
+}
 
-export default connect()(GameLoading)
+
+export default connect(mapStateToProps)(GameLoading)

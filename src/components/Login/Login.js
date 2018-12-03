@@ -16,7 +16,7 @@ class Login extends Component {
     // the skeleton login method. Functionality will include an axios call to the server endpoint for authentication.
     // maybe also adding some logic for checking if there is a password and username.
     login = () => {
-
+        
     }
     // just a method for the input boxes
     handleInputs = (e) => {
