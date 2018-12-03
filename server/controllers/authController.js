@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const massive = require('massive');
 
 // here is the auth controller file. Contains all modules related to authentication
 module.exports = {
@@ -33,7 +34,7 @@ module.exports = {
         // setting a password variable to be hased and salted
         let pwd = bcrypt.hashSync(user.password, 10);
         user.password = pwd;
-        db.user
+        db.users
             // insert is a massive statement that does some sql magic for us
             .insert(user)
             // here we're creating a new user object to be stored in the database

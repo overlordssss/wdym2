@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {roundsToWin, players} from '../../dux/reducer'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { roundsToWin, players } from '../../dux/reducer'
 
 class CreateGame extends Component {
     constructor() {
@@ -26,9 +26,9 @@ class CreateGame extends Component {
     }
     handleSubmit = () => {
         let newArr = []
-        newArr.push({username: this.state.playerUsername, rounds_won: 0, input_top: '', input_bottom: '', role: ''})
+        newArr.push({ username: this.state.playerUsername, rounds_won: 0, input_top: '', input_bottom: '', role: '' })
         //fill newArr with objects, up to maxPlayer
-        newArr.fill({username: '', rounds_won: 0, input_top: '', input_bottom: '', role: ''}, 1, this.state.numberOfPlayers-1)
+        newArr.fill({ username: '', rounds_won: 0, input_top: '', input_bottom: '', role: '' }, 1, this.state.numberOfPlayers - 1)
         this.props.players(newArr)
         this.props.roundsToWin(this.state.roundsForWin)
     }
@@ -47,13 +47,6 @@ class CreateGame extends Component {
 }
 
 
-const mapStateToProps = state => {
-    
-}
 
-<<<<<<< HEAD
-export default connect(mapStateToProps, {roundsToWin})(CreateGame)
-=======
 
-export default connect()(CreateGame)
->>>>>>> master
+export default connect(null, { roundsToWin, players })(CreateGame)
