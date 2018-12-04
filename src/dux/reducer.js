@@ -29,13 +29,13 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, { roundsToWin: action.payload })
 
         case PLAYERS:
-        return Object.assign({}, state, {players: action.payload})
+        return Object.assign({}, state, { players: action.payload })
 
         case IMAGES:
-        return Object.assign({}, state, {customImages: action.payload})
+        return Object.assign({}, state, { customImages: action.payload })
 
         case NUMBEROFPLAYERS:
-        return Object.assign({}, state, {numberOfPlayers: action.payload})
+        return Object.assign({}, state, { numberOfPlayers: action.payload })
 
         case GUEST_USERNAME:
         return Object.assign({}, state, { guestUsername: action.payload })
