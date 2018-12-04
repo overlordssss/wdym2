@@ -1,84 +1,90 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import io from 'socket.io-client'
-import {roundsToWin, players, numberOfPlayers} from '../../dux/reducer';
-import {Link} from 'react-router-dom';
+import { roundsToWin, players, numberOfPlayers, rooms } from '../../dux/reducer';
+import axios from 'axios'
 
 class CreateGame extends Component {
     constructor() {
         super();
 
         this.state = {
-            numberOfPlayers: 0,
+            numberOfPlayers: 3,
             roundsForWin: 0,
-            room: 0
+            rooms: []
         }
     }
     componentDidMount = () => {
-        //axios request to get username
+        //axios request to get rooms
+        axios.get('/game/rooms').then( res =>this.setState({rooms: res.data}) )
     }
     //number of players input
     handlePlayerInput = (e) => {
         let amountOfPlayers = e.target.value
-        if(amountOfPlayers > 10){
+        if (amountOfPlayers > 10) {
             alert('Cannot have more than 10 players per game!')
+        } else if (amountOfPlayers < 3) {
+            alert('Cannot have less than 3 players per game!')
         } else {
-        this.setState({ numberOfPlayers: amountOfPlayers })
+            this.setState({ numberOfPlayers: amountOfPlayers })
         }
     }
     handleRoundInput = (e) => {
         let roundInput = e.target.value
-        if(roundInput > 10){
+        if (roundInput > 10) {
             alert('10 rounds is the limit!')
         } else {
-        this.setState({ roundsForWin: roundInput })
+            this.setState({ roundsForWin: roundInput })
         }
     }
     handleSubmit = () => {
-        this.props.players.push({username: this.props.username, rounds_won:0, input_top: '', input_bottom: '', role: ''})
+        console.log('state at submit: ', this.state, 'props: ', this.props)
         this.props.roundsToWin(this.state.roundsForWin)
         this.props.numberOfPlayers(this.state.numberOfPlayers)
-
+        
         //create a number for room
         let newRoom = 0;
         //check if room exists
         let duplicate = false;
-        do { 
-            newRoom = Math.floor(Math.random()*8999) + 1000
-            this.props.rooms.map(room => {
-                if (room === newRoom) {
+        do {
+            newRoom = Math.floor(Math.random() * 8999) + 1000
+            this.state.rooms.map(room => {
+                if (room.room_number === newRoom) {
                     duplicate = true
                 }
             })
-         } while (duplicate === true)
-        this.props.rooms.push(newRoom)
-
-        this.socket =io();
+        } while (duplicate === true)
+        //once an unused rooom code is generated, pass it to the db
+        axios.post(`/game/newRoom`, {newRoom})
+        
+        this.props.players([{ username: this.props.username.username, rounds_won: 0, input_top: '', input_bottom: '',room: newRoom, role: '' }])
+        //set up a socket for the room
+        this.socket = io('http://localhost:4004');
+        this.socket.on('room joined', data => console.log(`User joined room: ${newRoom}`))
+        this.socket.emit('join room', {newRoom})
         //once a room is joined, go to GameLoading view (prop passed down from Landing Page view)
-        this.props.join()
-        this.socket.on('room joined', data => {
-        })
+        this.props.history.push('/game-loading')
     }
     render() {
-        console.log(this.props)
+        console.log('props: ', this.props, 'state: ', this.state)
         return (
             <div>
                 <p>Max number of Players</p>
-                <input type='number' onChange={this.handlePlayerInput} maxLength='2'/><p>(Min 3; Max 10)</p>
+                <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' /><p>(Min 3; Max 10)</p>
                 <p>Rounds to win</p>
-                <input type='number' onChange={this.handleRoundInput}/><p>(Max 10)</p>
+                <input type='number' onChange={this.handleRoundInput} /><p>(Max 10)</p>
                 <p>Custom images</p>
-                <Link to='/game-loading'><button>Submit</button></Link>
+                <button onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         username: state.username
     }
 }
 
 
-export default connect(mapStateToProps, {roundsToWin, players, numberOfPlayers})(CreateGame)
+export default connect(mapStateToProps, { roundsToWin, players, numberOfPlayers, rooms })(CreateGame)
