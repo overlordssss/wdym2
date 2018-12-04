@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
-=======
-import GameLoading from '../GameLoading/GameLoading';
->>>>>>> master
 
 class LandingPage extends Component {
     constructor() {
@@ -37,15 +33,11 @@ class LandingPage extends Component {
                 exists = true
             }
         })
-<<<<<<< HEAD
-        // exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
-=======
         if (exists) {
             this.props.history.push('/game-loading')
         } else {
             alert("Unfortunately we were not able to find that room. Please check the room number and try again")
         }
->>>>>>> master
     }
 
 
