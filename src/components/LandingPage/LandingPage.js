@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
+=======
+import GameLoading from '../GameLoading/GameLoading';
+>>>>>>> master
 
 class LandingPage extends Component {
     constructor() {
@@ -33,8 +37,18 @@ class LandingPage extends Component {
                 exists = true
             }
         })
+<<<<<<< HEAD
         // exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+=======
+        if (exists) {
+            this.props.history.push('/game-loading')
+        } else {
+            alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        }
+>>>>>>> master
     }
+
+
     render() {
         let {
             username,
@@ -46,13 +60,13 @@ class LandingPage extends Component {
                 {this.props.username.username ?
                     <h1>Welcome {this.props.username.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
-                <Link to='/create-game'><button
-                // onClick={}
-                >Create new game</button></Link>
+                {this.props.username.username ? 
+                <Link to='/create-game'><button>Create new game</button></Link>
+                : <h3>Create an account to host your own games</h3>}
                 <h3>Enter Room code to join an existing game</h3>
                 <input
                     type='number'
-                    value={this.state.roomCode}
+                    // value={this.state.roomCode}
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
@@ -69,7 +83,8 @@ class LandingPage extends Component {
 const mapStateToProps = state => {
     return {
         username: state.username,
-        guest: state.guestUsername
+        guest: state.guestUsername,
+        rooms: state.rooms
     }
 }
 

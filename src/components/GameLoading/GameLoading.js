@@ -11,21 +11,18 @@ import {connect} from 'react-redux';
          }
      }
     render(){
-        let {
-            players,
-            roundsToWin
-        } = this.props
         console.log(this.props)
     return(
         <div>
-            <div class="room-code">
+            <div className="room-code">
                 {/* we need to pass the randomly generated room code to this component and display it within this div */}
                 <p>This is where the room code will display</p>
+                <p>Room code: {this.props.players[0].room}</p>
             </div>
             <div>
-                <h2>Rounds To Win: {roundsToWin}</h2>
+                <h2>Rounds To Win: {this.props.roundsToWin}</h2>
                 <h3>Players</h3>
-                <ul class='players'>
+                <ul className='players'>
                 {/* We are wanting this list to conditionally render the room size, based on how many people the game creator has selected as the max number of players */}
                     <li>Hi</li>
                     <li>There</li>

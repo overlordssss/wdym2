@@ -27,7 +27,12 @@ class Judge extends Component{
     }
 }
 
+const mapStateToProps = state => {
+    return{
+        players: state.players
+    }
+}
 
 
 
-export default connect()(Judge)
+export default connect(mapStateToProps)(Judge)

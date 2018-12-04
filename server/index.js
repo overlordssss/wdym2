@@ -41,6 +41,8 @@ io.on('connection', socket => {
 
     //joining a room
     socket.on('join room', data => {
+        socket.join(data.newRoom);
+        io.to(data.newRoom).emit('room joined')
         console.log('room joined')
     })
 

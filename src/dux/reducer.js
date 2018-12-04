@@ -4,10 +4,9 @@ const initialState = {
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
-    //players array will consist of objects containing username, rounds_won, input_top, input_bottom and role(judge/player)
+    //players array will consist of objects containing username, rounds_won, input_top, input_bottom, room and role(judge/player)
     players: [],
     blankMemes: [],
-    rooms: [],
     numberOfPlayers: 0,
     winningMeme: {}
  }
@@ -18,6 +17,7 @@ const initialState = {
  const PLAYERS = 'PLAYERS'
  const IMAGES = 'IMAGES'
  const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
+ const ROOMS = 'ROOMS'
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -29,16 +29,19 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, { roundsToWin: action.payload })
 
         case PLAYERS:
-        return Object.assign({}, state, {players: action.payload})
+        return Object.assign({}, state, { players: action.payload })
 
         case IMAGES:
-        return Object.assign({}, state, {customImages: action.payload})
+        return Object.assign({}, state, { customImages: action.payload })
 
         case NUMBEROFPLAYERS:
-        return Object.assign({}, state, {numberOfPlayers: action.payload})
+        return Object.assign({}, state, { numberOfPlayers: action.payload })
 
         case GUEST_USERNAME:
         return Object.assign({}, state, { guestUsername: action.payload })
+
+        case ROOMS:
+        return Object.assign({}, state, {rooms: action.payload})
 
         default:
         return state;
@@ -84,5 +87,12 @@ export function guestUsername(guest) {
     return {
         type: GUEST_USERNAME,
         payload: guest
+    }
+}
+
+export function rooms(room) {
+    return {
+        type: ROOMS,
+        payload: room
     }
 }

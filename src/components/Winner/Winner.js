@@ -20,4 +20,10 @@ function Winner(){
     )
 }
 
-export default connect()(Winner)
+const mapStateToProps = state => {
+    return{
+        players: state.players
+    }
+}
+
+export default connect(mapStateToProps)(Winner)
