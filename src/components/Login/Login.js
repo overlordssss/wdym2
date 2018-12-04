@@ -34,9 +34,9 @@ class Login extends Component {
                         this.props.username(response.data);
                         // here is where we push to landing page if a user is found
                         this.props.history.push('/landing-page');
-                    } else (
-                        alert('No user found')
-                    )
+                    } else if (response.status === 401) {
+                        alert(`Please enter valid login credentials`)
+                    }
                 })
                 .catch(err => {
                     console.log(`Error: ${err}`)
@@ -91,8 +91,8 @@ class Login extends Component {
                     <Link to='/register'>
                         <button
                             className='login_register_button'
-                            onClick={this.login}
-                        >Register!</button></Link>
+                        >Register!</button>
+                    </Link>
                     <h3>Play as Guest</h3>
                     <input
                         type="text"
