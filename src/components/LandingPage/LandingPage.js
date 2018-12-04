@@ -31,7 +31,11 @@ class LandingPage extends Component {
                 exists = true
             }
         })
-        // exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        if (exists) {
+            this.props.history.push('/game-loading')
+        } else {
+            alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        }
     }
 
 
