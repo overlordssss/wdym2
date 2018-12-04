@@ -13,8 +13,11 @@
 --     played int, 
 --     won int
 -- );
--- Need to have a table for sockets 
--- Need to have a game room table; will delete entry when socket is closed
+-- CREATE TABLE room (
+--     room_id serial primary key,
+--     room_number integer,
+--     creator text
+-- )
 
 -- Second create table syntax. Changed hashed_password to be password and added a unique constraint to the username column.
 

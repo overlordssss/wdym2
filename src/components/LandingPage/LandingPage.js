@@ -30,7 +30,11 @@ class LandingPage extends Component {
                 exists = true
             }
         })
-        exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        if (exists) {
+            this.props.history.push('/game-loading')
+        } else {
+            alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        }
     }
     render() {
         let {
@@ -49,7 +53,7 @@ class LandingPage extends Component {
                 <h3>Enter Room code to join an existing game</h3>
                 <input
                     type='number'
-                    value={this.state.roomCode}
+                    // value={this.state.roomCode}
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
@@ -66,7 +70,8 @@ class LandingPage extends Component {
 const mapStateToProps = state => {
     return {
         username: state.username,
-        guest: state.guestUsername
+        guest: state.guestUsername,
+        rooms: state.rooms
     }
 }
 
