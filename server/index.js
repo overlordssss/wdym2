@@ -33,12 +33,12 @@ app.use('/game', game)
 
 //==========================SOCKETS=========================
 //socket set up with listen on Port 4004
-const io = require('./routes/sockets')(app.listen(SERVER_PORT, () => console.log(`Docked at port: ${SERVER_PORT}`)));
+const io = require('socket.io')(app.listen(SERVER_PORT, () => console.log(`Docked at port: ${SERVER_PORT}`)));
 
 //connecting to the socket
-io.on ('connection', socket => {
+io.on('connection', socket => {
     console.log('User Connected')
-    
+
     //joining a room
     socket.on('join room', data => {
         console.log('room joined')

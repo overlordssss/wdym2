@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import GameLoading from '../GameLoading/GameLoading'
+import axios from 'axios';
 
 class LandingPage extends Component {
     constructor() {
@@ -14,7 +16,8 @@ class LandingPage extends Component {
     }
     // skeleton method for loging out. will just route the user to the login page and destroy the session
     logout = () => {
-
+        axios.get(`/auth/logout`).then(() => { });
+        this.props.history.push('/')
     }
     // basic method for handling any user inputs on this view
     handleInputs = (e) => {
@@ -30,7 +33,7 @@ class LandingPage extends Component {
                 exists = true
             }
         })
-        exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
+        // exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
     }
     render() {
         let {
@@ -53,7 +56,7 @@ class LandingPage extends Component {
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
-                <button onClick = {this.joinRoom}>Join</button>
+                <button onClick={this.joinRoom}>Join</button>
                 <div>
                     <Link to='/'>Logout</Link>
                     <Link to='/register'>Create an account</Link>

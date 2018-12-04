@@ -11,9 +11,6 @@ AuthRouter.post('/login', authController.login);
 // register a new user
 AuthRouter.post('/register', authController.register);
 // logs out a user
-AuthRouter.post('/logout', authController.logout);
-AuthRouter.get('/test', (req, res) => {
-    console.log('hit the endpoint')
-})
+AuthRouter.get('/logout', authController.logout);
 
 module.exports = AuthRouter;
