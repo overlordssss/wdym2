@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
+import {userLogout} from '../../dux/reducer';
 
 class LandingPage extends Component {
     constructor() {
@@ -18,6 +19,7 @@ class LandingPage extends Component {
     logout = () => {
         axios.get(`/auth/logout`).then(() => { });
         this.props.history.push('/')
+        this.props.userLogout()
     }
     // basic method for handling any user inputs on this view
     handleInputs = (e) => {
@@ -42,17 +44,13 @@ class LandingPage extends Component {
 
 
     render() {
-        let {
-            username,
-            guest
-        } = this.props
         console.log(this.props)
         return (
             <div>
-                {this.props.username.username ?
-                    <h1>Welcome {this.props.username.username}! </h1>
+                {this.props.user.username ?
+                    <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
-                {this.props.username.username ? 
+                {this.props.user.username ? 
                 <Link to='/create-game'><button>Create new game</button></Link>
                 : <h3>Create an account to host your own games</h3>}
                 <h3>Enter Room code to join an existing game</h3>
@@ -64,8 +62,10 @@ class LandingPage extends Component {
                 />
                 <button onClick={this.joinRoom}>Join</button>
                 <div>
-                    <Link to='/'>Logout</Link>
+                    <button onClick={this.logout}>Logout</button>
+                    {this.props.guest ? 
                     <Link to='/register'>Create an account</Link>
+                    : ''}
                 </div>
             </div>
         )
@@ -74,11 +74,11 @@ class LandingPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
+        user: state.user,
         guest: state.guestUsername,
         rooms: state.rooms
     }
 }
 
 
-export default connect(mapStateToProps)(LandingPage)
+export default connect(mapStateToProps, {userLogout})(LandingPage)
