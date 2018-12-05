@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { username, guestUsername } from '../../dux/reducer';
+import { user, guestUsername } from '../../dux/reducer';
 import './Login.css';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ class Login extends Component {
                     const user = response.data;
                     if (user.user_id) {
                         // here is where the redux will be updated
-                        this.props.username(response.data);
+                        this.props.user(response.data);
                         // here is where we push to landing page if a user is found
                         this.props.history.push('/landing-page');
                     } else (
@@ -63,6 +63,7 @@ class Login extends Component {
         })
     }
     render() {
+        console.log(this.props)
         return (
             <div className='login_container'>
                 <div className='login_card'>
@@ -111,4 +112,4 @@ class Login extends Component {
 }
 
 
-export default connect(null, { username, guestUsername })(Login)
+export default connect(null, { user, guestUsername })(Login)
