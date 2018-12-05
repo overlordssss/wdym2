@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+import {userLogout} from '../../dux/reducer';
+>>>>>>> master
 
 class LandingPage extends Component {
     constructor() {
@@ -18,6 +22,7 @@ class LandingPage extends Component {
     logout = () => {
         axios.get(`/auth/logout`).then(() => { });
         this.props.history.push('/')
+        this.props.userLogout()
     }
     // basic method for handling any user inputs on this view
     handleInputs = (e) => {
@@ -42,19 +47,21 @@ class LandingPage extends Component {
 
 
     render() {
-        let {
-            username,
-            guest
-        } = this.props
         console.log(this.props)
         return (
             <div>
-                {this.props.username.username ?
-                    <h1>Welcome {this.props.username.username}! </h1>
+                {this.props.user.username ?
+                    <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
+<<<<<<< HEAD
                 {this.props.username.username ?
                     <Link to='/create-game'><button>Create new game</button></Link>
                     : <h3>Create an account to host your own games</h3>}
+=======
+                {this.props.user.username ? 
+                <Link to='/create-game'><button>Create new game</button></Link>
+                : <h3>Create an account to host your own games</h3>}
+>>>>>>> master
                 <h3>Enter Room code to join an existing game</h3>
                 <input
                     type='number'
@@ -65,11 +72,17 @@ class LandingPage extends Component {
                 <button onClick={this.joinRoom}>Join</button>
                 <div>
                     <button onClick={this.logout}>Logout</button>
+<<<<<<< HEAD
                     <Link to="/register">
                         <button>Create an account!</button>
                     </Link>
                     {/* <Link to='/'>Logout</Link>
                     <Link to='/register'>Create an account</Link> */}
+=======
+                    {this.props.guest ? 
+                    <Link to='/register'>Create an account</Link>
+                    : ''}
+>>>>>>> master
                 </div>
             </div>
         )
@@ -78,11 +91,11 @@ class LandingPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
+        user: state.user,
         guest: state.guestUsername,
         rooms: state.rooms
     }
 }
 
 
-export default connect(mapStateToProps)(LandingPage)
+export default connect(mapStateToProps, {userLogout})(LandingPage)

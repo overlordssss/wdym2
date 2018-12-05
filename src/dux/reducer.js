@@ -1,5 +1,5 @@
 const initialState = {
-    username: {},
+    user: {},
     guestUsername: '',
     roundsToWin: 0,
     customImages: [],
@@ -11,19 +11,20 @@ const initialState = {
     winningMeme: {}
  }
  
- const USERNAME = 'USERNAME' 
+ const USER = 'USER' 
  const GUEST_USERNAME = 'GUEST_USERNAME'
  const ROUNDSTOWIN = 'ROUNDSTOWIN'
  const PLAYERS = 'PLAYERS'
  const IMAGES = 'IMAGES'
  const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
  const ROOMS = 'ROOMS'
+ const USERLOGOUT = 'USERLOGOUT'
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
 
-        case USERNAME:
-        return Object.assign({}, state, { username: action.payload })
+        case USER:
+        return Object.assign({}, state, { user: action.payload })
 
         case ROUNDSTOWIN:
         return Object.assign({}, state, { roundsToWin: action.payload })
@@ -42,6 +43,9 @@ export default function reducer(state = initialState, action) {
 
         case ROOMS:
         return Object.assign({}, state, {rooms: action.payload})
+
+        case USERLOGOUT:
+        return initialState
 
         default:
         return state;
@@ -62,9 +66,9 @@ export function players(val) {
     }
  }
 
- export function username(user){
+ export function user(user){
     return{
-        type: USERNAME,
+        type: USER,
         payload: user
     }
  }
@@ -94,5 +98,12 @@ export function rooms(room) {
     return {
         type: ROOMS,
         payload: room
+    }
+}
+
+export function userLogout(){
+    return {
+        type: USERLOGOUT,
+        payload: initialState
     }
 }
