@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
-=======
-import GameLoading from '../GameLoading/GameLoading';
->>>>>>> master
+import io from 'socket.io-client'
 
 class LandingPage extends Component {
     constructor() {
@@ -15,8 +11,12 @@ class LandingPage extends Component {
         this.state = {
             userType: false,
             roomCode: 0,
-            guestUsername: ''
+            guestUsername: '',
+            rooms: []
         }
+    }
+    componentDidMount() {
+        axios.get('/game/rooms').then( res => this.setState({rooms: res.data}))
     }
     // skeleton method for loging out. will just route the user to the login page and destroy the session
     logout = () => {
@@ -32,33 +32,35 @@ class LandingPage extends Component {
     //join room method 
     joinRoom = () => {
         let exists = false
-        this.props.rooms.map(room => {
+        this.state.rooms.map(room => {
             if (room === this.state.roomCode) {
                 exists = true
             }
         })
-<<<<<<< HEAD
-        // exists ? <GameLoading /> : alert("Unfortunately we were not able to find that room. Please check the room number and try again")
-=======
         if (exists) {
+            //set up sockets for existing room
+            let room = this.state.roomCode
+            this.socket = io('http://localhost:4004')
+            this.socket.on('room joined', data => console.log(`Player joined room ${room}`))
+            this.socket.emit('room joined', {room})
+
+            //push player info to players array
+            this.props.players([...this.props.players, {username: this.props.user.username, rounds_won:0, input_top: '', input_bottom: '', room: room, role: ''}])
+
+            //send player to game loading view
             this.props.history.push('/game-loading')
         } else {
             alert("Unfortunately we were not able to find that room. Please check the room number and try again")
         }
->>>>>>> master
     }
 
 
     render() {
-        let {
-            username,
-            guest
-        } = this.props
         console.log(this.props)
         return (
             <div>
                 {this.props.username.username ?
-                    <h1>Welcome {this.props.username.username}! </h1>
+                    <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
                 {this.props.username.username ? 
                 <Link to='/create-game'><button>Create new game</button></Link>
