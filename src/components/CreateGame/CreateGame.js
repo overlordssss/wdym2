@@ -82,7 +82,7 @@ class CreateGame extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username
+        user: state.user
     }
 }
 
