@@ -57,7 +57,7 @@ class CreateGame extends Component {
         //once an unused rooom code is generated, pass it to the db
         axios.post(`/game/newRoom`, {newRoom})
         
-        this.props.players([{ username: this.props.username.username, rounds_won: 0, input_top: '', input_bottom: '',room: newRoom, role: '' }])
+        this.props.players([{ username: this.props.user.username, rounds_won: 0, input_top: '', input_bottom: '',room: newRoom, role: '' }])
         //set up a socket for the room
         this.socket = io('http://localhost:4004');
         this.socket.on('room joined', data => console.log(`User joined room: ${newRoom}`))
@@ -82,7 +82,7 @@ class CreateGame extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.username
+        user: state.user
     }
 }
 
