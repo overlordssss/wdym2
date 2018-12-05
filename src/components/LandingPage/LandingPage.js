@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameLoading from '../GameLoading/GameLoading'
 import axios from 'axios';
-<<<<<<< HEAD
-=======
-import {userLogout} from '../../dux/reducer';
->>>>>>> master
+import { userLogout } from '../../dux/reducer';
 
 class LandingPage extends Component {
     constructor() {
@@ -53,15 +50,9 @@ class LandingPage extends Component {
                 {this.props.user.username ?
                     <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
-<<<<<<< HEAD
-                {this.props.username.username ?
+                {this.props.user.username ?
                     <Link to='/create-game'><button>Create new game</button></Link>
                     : <h3>Create an account to host your own games</h3>}
-=======
-                {this.props.user.username ? 
-                <Link to='/create-game'><button>Create new game</button></Link>
-                : <h3>Create an account to host your own games</h3>}
->>>>>>> master
                 <h3>Enter Room code to join an existing game</h3>
                 <input
                     type='number'
@@ -72,17 +63,9 @@ class LandingPage extends Component {
                 <button onClick={this.joinRoom}>Join</button>
                 <div>
                     <button onClick={this.logout}>Logout</button>
-<<<<<<< HEAD
-                    <Link to="/register">
-                        <button>Create an account!</button>
-                    </Link>
-                    {/* <Link to='/'>Logout</Link>
-                    <Link to='/register'>Create an account</Link> */}
-=======
-                    {this.props.guest ? 
-                    <Link to='/register'>Create an account</Link>
-                    : ''}
->>>>>>> master
+                    {this.props.guest ?
+                        <Link to='/register'>Create an account</Link>
+                        : ''}
                 </div>
             </div>
         )
@@ -98,4 +81,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {userLogout})(LandingPage)
+export default connect(mapStateToProps, { userLogout })(LandingPage)
