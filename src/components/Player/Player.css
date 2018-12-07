@@ -1,0 +1,30 @@
+.counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    float: right;
+    margin-right: 58px;
+    margin-top: 25px;
+}
+.spinner{
+    position: absolute;
+    align-self: auto;
+    z-index: -2;
+    float: right;
+    margin-left: 1320px;
+}
+.meme{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin-top: 250px;
+    align-items: center;
+    margin-right: 400px;
+    position: relative;
+}
+.user-meme{
+    width: 500px;
+}

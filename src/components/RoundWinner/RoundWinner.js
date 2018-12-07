@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function RoundWinner(){
+function RoundWinner(props){
     return (
-        <div>
+        <div className=''>
             <h1>
                 {/* round winner will be a prop passed from the judge view */}
-                Round Winner is: {this.props.username}
+                Round Winner is: {props.user.username}
             </h1>
             <div>
                 This is where the winning meme will display
-                {this.props.winningMeme}
+                {props.winningMeme}
             </div>
         </div>
     )
@@ -18,7 +18,7 @@ function RoundWinner(){
 
 const mapStateToProps = state => {
     return{
-        username: state.username,
+        user: state.user,
         winningMeme: state.winningMeme
     }
 }

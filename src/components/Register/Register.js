@@ -55,6 +55,7 @@ class Register extends Component {
                         value={this.state.username}
                         placeholder="Username"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
 
                     <input
@@ -63,6 +64,7 @@ class Register extends Component {
                         value={this.state.password}
                         placeholder="Password"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
                     <input
                         type="password"
@@ -70,6 +72,7 @@ class Register extends Component {
                         value={this.state.confirmpass}
                         placeholder="Confirm password"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
                     <button
                         className="login_button"

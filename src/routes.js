@@ -10,6 +10,7 @@ import Judge from './components/Judge/Judge';
 import Winner from './components/Winner/Winner';
 import JudgePlayerWaiting from './components/JudgePlayerWaiting/JudgePlayerWaiting';
 import InGame from './components/InGame/InGame';
+import RoundWinner from './components/RoundWinner/RoundWinner';
 
 export default (socket) => (
     <Switch>
