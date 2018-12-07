@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client'
-import { roundsToWin, players, numberOfPlayers } from '../../dux/reducer';
-import axios from 'axios';
-import './CreateGame.css';
+import { roundsToWin, players, numberOfPlayers, room } from '../../dux/reducer';
+import axios from 'axios'
 
 class CreateGame extends Component {
     constructor() {
@@ -17,7 +15,7 @@ class CreateGame extends Component {
     }
     componentDidMount = () => {
         //axios request to get rooms
-        axios.get('/game/rooms').then( res =>this.setState({rooms: res.data}) )
+        axios.get('/game/rooms').then(res => this.setState({ rooms: res.data }))
     }
     //number of players input
     handlePlayerInput = (e) => {
@@ -42,7 +40,7 @@ class CreateGame extends Component {
         console.log('state at submit: ', this.state, 'props: ', this.props)
         this.props.roundsToWin(this.state.roundsForWin)
         this.props.numberOfPlayers(this.state.numberOfPlayers)
-        
+
         //create a number for room
         let newRoom = 0;
         //check if room exists
@@ -56,18 +54,25 @@ class CreateGame extends Component {
             })
         } while (duplicate === true)
         //once an unused rooom code is generated, pass it to the db
-        axios.post(`/game/newRoom`, {newRoom})
-        
-        this.props.players([{ username: this.props.user.username, rounds_won: 0, input_top: '', input_bottom: '',room: newRoom, role: '' }])
-        //set up a socket for the room
-        this.socket = io('http://localhost:4004');
-        this.socket.on('room joined', data => console.log(`User joined room: ${newRoom}`))
-        this.socket.emit('join room', {newRoom})
-        //once a room is joined, go to GameLoading view (prop passed down from Landing Page view)
-        this.props.history.push('/game-loading')
+        let roundsToWin = Number(this.state.roundsForWin)
+        let maxPlayers = Number(this.state.numberOfPlayers)
+        console.log("Going to database: ", roundsToWin, maxPlayers, newRoom)
+        axios.post(`/game/newRoom`, { newRoom, roundsToWin, maxPlayers }).then(res => {
+            console.log('Db is updated with room info')
+            let { username } = this.props.user
+            this.props.players([{ username: username, rounds_won: 0 }])
+
+            //set up a socket for the room
+            this.props.socket.emit('create room', { newRoom, username })
+
+            this.props.socket.on('room created', data => console.log(`User created room: ${newRoom}`))
+
+            //once a room is created, save room to redux and go to GameLoading view 
+            this.props.room(newRoom)
+            this.props.history.push('/game-loading')
+        })
     }
     render() {
-        console.log('props: ', this.props, 'state: ', this.state)
         return (
             <div className='create-game'>
                 <p>Max number of Players</p>
@@ -88,4 +93,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { roundsToWin, players, numberOfPlayers })(CreateGame)
+export default connect(mapStateToProps, { roundsToWin, players, numberOfPlayers, room })(CreateGame)

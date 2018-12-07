@@ -4,9 +4,8 @@ const initialState = {
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
-    //players array will consist of objects containing username, rounds_won, input_top, input_bottom, room and role(judge/player)
-    players: [],
     blankMemes: [],
+    room: 0,
     numberOfPlayers: 0,
     winningMeme: [],
  }
@@ -17,6 +16,7 @@ const initialState = {
  const PLAYERS = 'PLAYERS'
  const IMAGES = 'IMAGES'
  const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
+ const ROOM = 'ROOM'
  const USERLOGOUT = 'USERLOGOUT'
  const JUDGE_INDEX = 'JUDGE_INDEX'
  const WINNINGMEME = 'WINNINGMEME'
@@ -33,6 +33,7 @@ export default function reducer(state = initialState, action) {
         case PLAYERS:
         return Object.assign({}, state, { players: action.payload })
 
+
         case IMAGES:
         return Object.assign({}, state, { customImages: action.payload })
 
@@ -47,6 +48,9 @@ export default function reducer(state = initialState, action) {
 
         case WINNINGMEME:
         return Object.assign({}, state, { winningMeme: action.payload })
+        
+        case ROOM:
+        return Object.assign({}, state, {room: action.payload})
 
         case USERLOGOUT:
         return initialState
@@ -69,6 +73,7 @@ export function players(val) {
         payload: val
     }
  }
+
 
  export function user(user){
     return{
@@ -109,6 +114,13 @@ export function winningMeme(winningMeme){
     return {
         type: WINNINGMEME,
         payload: winningMeme
+    }
+}        
+
+export function room(room) {
+    return {
+        type: ROOM,
+        payload: room
     }
 }
 

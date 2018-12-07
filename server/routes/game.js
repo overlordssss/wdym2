@@ -15,5 +15,7 @@ GameRouter.get('/images');
 GameRouter.get('/rooms', gameController.rooms);
 //will post a new room to db
 GameRouter.post('/newRoom', gameController.newRoom)
+//will retrieve a specified room's information
+GameRouter.get('/roomInfo/:room_number', gameController.roomInfo)
 
 module.exports = GameRouter
