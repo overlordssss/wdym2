@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {judgeIndex} from '../../dux/reducer';
 import axios from 'axios';
 
  class GameLoading extends Component{
@@ -76,4 +77,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(GameLoading)
+export default connect(mapStateToProps, {judgeIndex})(GameLoading)

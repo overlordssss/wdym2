@@ -66,7 +66,7 @@ class LandingPage extends Component {
     render() {
         console.log(this.props)
         return (
-            <div>
+            <div className='landing-page'>
                 {this.props.user.username ?
                     <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}

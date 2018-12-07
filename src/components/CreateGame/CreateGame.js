@@ -74,7 +74,7 @@ class CreateGame extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='create-game'>
                 <p>Max number of Players</p>
                 <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' /><p>(Min 3; Max 10)</p>
                 <p>Rounds to win</p>
