@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {userLogout} from '../../dux/reducer';
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import './LandingPage.css'
 
 class LandingPage extends Component {
     constructor() {
@@ -60,7 +61,7 @@ class LandingPage extends Component {
     render() {
         console.log(this.props)
         return (
-            <div>
+            <div className='landing-page'>
                 {this.props.user.username ?
                     <h1>Welcome {this.props.user.username}! </h1>
                     : <h1>Welcome {this.props.guest}! </h1>}
@@ -90,7 +91,6 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         guest: state.guestUsername,
-        rooms: state.rooms
     }
 }
 

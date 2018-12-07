@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client'
-import { roundsToWin, players, numberOfPlayers, rooms } from '../../dux/reducer';
-import axios from 'axios'
+import { roundsToWin, players, numberOfPlayers } from '../../dux/reducer';
+import axios from 'axios';
+import './CreateGame.css';
 
 class CreateGame extends Component {
     constructor() {
@@ -68,7 +69,7 @@ class CreateGame extends Component {
     render() {
         console.log('props: ', this.props, 'state: ', this.state)
         return (
-            <div>
+            <div className='create-game'>
                 <p>Max number of Players</p>
                 <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' /><p>(Min 3; Max 10)</p>
                 <p>Rounds to win</p>
@@ -87,4 +88,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { roundsToWin, players, numberOfPlayers, rooms })(CreateGame)
+export default connect(mapStateToProps, { roundsToWin, players, numberOfPlayers })(CreateGame)

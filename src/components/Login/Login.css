@@ -20,4 +20,19 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+    border-radius: 20px;
+}
+.inputs{
+    border-radius: 20px;
+    height: 20px;
+    width: 170px;
+}
+.login_button{
+    border-radius: 20px;
+}
+.login_register_button{
+    border-radius: 20px;
+}
+.go{
+    border-radius: 20px;
 }

@@ -6,6 +6,9 @@ import Winner from '../Winner/Winner';
 import RoundWinner from '../RoundWinner/RoundWinner';
 import JudgePlayerWaiting from '../JudgePlayerWaiting/JudgePlayerWaiting';
 import {connect} from 'react-redux';
+import Spinner from '../SpinnerComponent/Spinner';
+import axios from 'axios';
+
 
 class InGame extends Component {
     constructor() {
@@ -14,9 +17,15 @@ class InGame extends Component {
         this.state = {
             player_index: 0,
             username: '',
-            winner: false
+            winner: false,
+            count: 60
         }
     }
+
+    componentDidMount(){
+        axios.get()
+    }
+
     // componentDidMount() {
     //     //get user info, change username in state 
     //     //missing endpoint
@@ -32,23 +41,28 @@ class InGame extends Component {
     //         }
     //     })
     // }
+
+
     render() {
+        
         return(
             <div>
-                
+            {this.state.winner ?
+            <RoundWinner /> : this.props.players[this.props.judgeIndex] ?
+            <JudgePlayerWaiting /> : <Player />
+            }
+            {this.props.players[1] === this.props.roundsToWin ? <Winner /> : ''}
+            {}
             </div>
         )
-        // if (this.state.winner === true) {
-        //    return <Winner />
-        // } else {
-        //     //conditional rendering depending on role
-        //     if (player_index === this.props.judgeIndex) {
-        //         return <Judge />
-        //     } else {
-        //         return <Player />
-        //     }
-        // }
     }
 }
 
-export default connect()(InGame)
+const mapStateToProps = state => {
+    return{
+        players: state.players,
+        roundsToWin: state.roundsToWin
+    }
+}
+
+export default connect(mapStateToProps)(InGame)

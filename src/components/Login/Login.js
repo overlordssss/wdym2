@@ -75,6 +75,7 @@ class Login extends Component {
                         value={this.state.username}
                         placeholder="Username"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
                     {/* password input on the login card */}
                     <input
@@ -83,6 +84,7 @@ class Login extends Component {
                         value={this.state.password}
                         placeholder="Password"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
 
                     <button
@@ -92,7 +94,6 @@ class Login extends Component {
                     <Link to='/register'>
                         <button
                             className='login_register_button'
-                            onClick={this.login}
                         >Register!</button></Link>
                     <h3>Play as Guest</h3>
                     <input
@@ -101,9 +102,11 @@ class Login extends Component {
                         value={this.state.guest}
                         placeholder="Guest username"
                         onChange={this.handleInputs}
+                        className='inputs'
                     />
                     <button
                         onClick={this.guestLogin}
+                        className='go'
                     >GO!</button>
                 </div>
             </div>

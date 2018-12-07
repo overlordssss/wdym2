@@ -10,6 +10,7 @@ import Judge from './components/Judge/Judge';
 import Winner from './components/Winner/Winner';
 import JudgePlayerWaiting from './components/JudgePlayerWaiting/JudgePlayerWaiting';
 import InGame from './components/InGame/InGame';
+import RoundWinner from './components/RoundWinner/RoundWinner';
 
 export default (
     <Switch>
@@ -23,5 +24,6 @@ export default (
         <Route path='/winner' component={Winner}/>
         <Route path='/waiting-room' component={JudgePlayerWaiting}/>
         <Route path='/in-game' component={InGame}/>
+        <Route path='/round-winner' component={RoundWinner} />
     </Switch>
 )
