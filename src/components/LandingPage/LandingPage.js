@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import {userLogout} from '../../dux/reducer';
-import io from 'socket.io-client'
+import {userLogout, room } from '../../dux/reducer';
 
 class LandingPage extends Component {
     constructor() {
@@ -33,21 +32,24 @@ class LandingPage extends Component {
     }
     //join room method 
     joinRoom = () => {
+        console.log('State: ', this.state)
         let exists = false
         this.state.rooms.map(room => {
-            if (room === this.state.roomCode) {
+            if (room.room_number == this.state.roomCode) {
                 exists = true
             }
         })
         if (exists) {
             //set up sockets for existing room
-            let room = this.state.roomCode
-            this.socket = io('http://localhost:4004')
-            this.socket.on('room joined', data => console.log(`Player joined room ${room}`))
-            this.socket.emit('room joined', {room})
+            let {username} = this.props.user
+            let room = Number(this.state.roomCode)
 
-            //push player info to players array
-            this.props.players([...this.props.players, {username: this.props.user.username, rounds_won:0, input_top: '', input_bottom: '', room: room, role: ''}])
+            //send username to socket with room number
+            this.props.socket.emit('join room', {room, username})
+            //when specified socket is joined
+            this.props.socket.on('room joined', data => console.log(`Player joined room ${room}`))
+            //send room to redux
+            this.props.room(room)
 
             //send player to game loading view
             this.props.history.push('/game-loading')
@@ -71,6 +73,7 @@ class LandingPage extends Component {
                 <input
                     type='number'
                     // value={this.state.roomCode}
+                    name='roomCode'
                     placeholder='Room Code'
                     onChange={this.handleInputs}
                 />
@@ -89,10 +92,10 @@ class LandingPage extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        guest: state.guestUsername,
-        rooms: state.rooms
+        guest: state.guestUsername, 
+        players: state.players
     }
 }
 
 
-export default connect(mapStateToProps, {userLogout})(LandingPage)
+export default connect(mapStateToProps, {userLogout, room })(LandingPage)

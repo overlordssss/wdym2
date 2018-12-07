@@ -1,0 +1,1 @@
+SELECT * from room WHERE room_number = $1
