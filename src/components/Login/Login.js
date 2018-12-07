@@ -92,7 +92,6 @@ class Login extends Component {
                     <Link to='/register'>
                         <button
                             className='login_register_button'
-                            onClick={this.login}
                         >Register!</button></Link>
                     <h3>Play as Guest</h3>
                     <input

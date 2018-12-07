@@ -36,14 +36,24 @@ app.use('/game', game)
 const io = require('socket.io')(app.listen(SERVER_PORT, () => console.log(`Docked at port: ${SERVER_PORT}`)));
 
 //connecting to the socket
+let currentGames = {}
 io.on('connection', socket => {
     console.log('User Connected')
 
-    //joining a room
-    socket.on('join room', data => {
+    //creating a room
+    socket.on('create room', data => {
         socket.join(data.newRoom);
-        io.to(data.newRoom).emit('room joined')
-        console.log('room joined')
+        io.to(data.newRoom).emit('room created')
+        currentGames[data.newRoom] = [data.username]
+        console.log('room created')
+    })
+
+    socket.on('join room', data => {
+        let room = data.room
+        socket.join(room);
+        currentGames[room].push(data.username)
+        io.to(room).emit('room joined', currentGames[room])
+        console.log(currentGames)
     })
 
     //disconnect

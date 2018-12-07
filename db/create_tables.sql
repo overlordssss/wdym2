@@ -16,7 +16,9 @@
 -- CREATE TABLE room (
 --     room_id serial primary key,
 --     room_number integer,
---     creator text
+--     creator text,
+--     rounds_to_win integer,
+--     number_of_players integer
 -- )
 
 -- Second create table syntax. Changed hashed_password to be password and added a unique constraint to the username column.
