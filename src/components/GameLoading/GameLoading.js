@@ -37,7 +37,6 @@ import axios from 'axios';
         <div>
             <div className="room-code">
                 {/* we need to pass the randomly generated room code to this component and display it within this div */}
-                <p>This is where the room code will display</p>
                 <p>Room code: {this.props.room}</p>
             </div>
             <div>
