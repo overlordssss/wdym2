@@ -16,9 +16,10 @@ module.exports = {
                     delete user.password;
                     req.session.user = user;
                     res.status(200).send(user);
-                } else {
+                } else if (!bcrypt.compareSync(password, user.password)) {
                     // if the passwords don't match you will get this message.
-                    res.status(401).send({ error: 'Invalid username or password' })
+                    console.log(`It's working!`)
+                    res.status(401).send('Incorrect password please try again')
                 }
             })
             .catch(err => {

@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-<<<<<<< HEAD
 import { userLogout } from '../../dux/reducer';
-=======
-import {userLogout} from '../../dux/reducer';
 import io from 'socket.io-client'
->>>>>>> master
 
 class LandingPage extends Component {
     constructor() {
@@ -21,7 +17,7 @@ class LandingPage extends Component {
         }
     }
     componentDidMount() {
-        axios.get('/game/rooms').then( res => this.setState({rooms: res.data}))
+        axios.get('/game/rooms').then(res => this.setState({ rooms: res.data }))
     }
     // skeleton method for loging out. will just route the user to the login page and destroy the session
     logout = () => {
@@ -48,10 +44,10 @@ class LandingPage extends Component {
             let room = this.state.roomCode
             this.socket = io('http://localhost:4004')
             this.socket.on('room joined', data => console.log(`Player joined room ${room}`))
-            this.socket.emit('room joined', {room})
+            this.socket.emit('room joined', { room })
 
             //push player info to players array
-            this.props.players([...this.props.players, {username: this.props.user.username, rounds_won:0, input_top: '', input_bottom: '', room: room, role: ''}])
+            this.props.players([...this.props.players, { username: this.props.user.username, rounds_won: 0, input_top: '', input_bottom: '', room: room, role: '' }])
 
             //send player to game loading view
             this.props.history.push('/game-loading')
@@ -62,7 +58,7 @@ class LandingPage extends Component {
 
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div>
                 {this.props.user.username ?
@@ -94,7 +90,6 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         guest: state.guestUsername,
-        rooms: state.rooms
     }
 }
 

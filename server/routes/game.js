@@ -9,8 +9,8 @@ const GameRouter = express.Router();
 GameRouter.post('/uploadimg');
 // gets user data to display upon logging in
 GameRouter.get('/userdata');
-// will pull images cloudinary for database storage
-GameRouter.get('/images');
+// will pull images s3 for database storage
+GameRouter.get('/memes', gameController.getMemeImages);
 //will get all existing rooms from db
 GameRouter.get('/rooms', gameController.rooms);
 //will post a new room to db
