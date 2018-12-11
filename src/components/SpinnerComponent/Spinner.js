@@ -1,7 +1,7 @@
 import React from 'react';
-import { css } from 'react-emotion';
+import { css } from '@emotion/core';
 import { RingLoader } from 'react-spinners';
- 
+
 const override = css`
     display: block;
     margin: 0 auto;
@@ -9,7 +9,7 @@ const override = css`
     z-index: -1;
     
 `;
- 
+
 class Spinner extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class Spinner extends React.Component {
     }
   }
   render() {
-    
+
     return (
       <div className='sweet-loading-two'>
         <RingLoader
@@ -28,7 +28,7 @@ class Spinner extends React.Component {
           color={'#42d7f4'}
           loading={this.state.loading}
         />
-      </div> 
+      </div>
     )
   }
 }

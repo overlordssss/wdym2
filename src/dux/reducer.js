@@ -8,6 +8,7 @@ const initialState = {
     room: 0,
     numberOfPlayers: 0,
     winningMeme: [],
+    players: [],
  }
  
  const USER = 'USER' 
@@ -117,10 +118,10 @@ export function winningMeme(winningMeme){
     }
 }        
 
-export function room(room) {
+export function room(val) {
     return {
         type: ROOM,
-        payload: room
+        payload: val
     }
 }
 

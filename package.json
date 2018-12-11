@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.4",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
@@ -15,8 +16,10 @@
     "massive": "^5.5.3",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-emotion": "^10.0.0",
     "react-particles-js": "^2.4.2",
     "react-redux": "^5.1.1",
+    "react-responsive-carousel": "^3.1.43",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",

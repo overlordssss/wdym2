@@ -46,8 +46,19 @@ io.on('connection', socket => {
         io.to(data.newRoom).emit('room created')
         currentGames[data.newRoom] = [data.username]
         console.log('room created')
+        console.log(currentGames)
     })
 
+    //checking if a room has hit max capacity
+    socket.on('check room', data => {
+        console.log('data coming in: ', data)
+        console.log('game info: ', currentGames[data.room])
+        let {roomIndex} = data 
+        let usernames = currentGames[data.room]
+        io.to().emit('room info', {usernames, roomIndex})
+    })
+
+    //joining a room and once a room is joined
     socket.on('join room', data => {
         let room = data.room
         socket.join(room);
@@ -56,11 +67,21 @@ io.on('connection', socket => {
         console.log(currentGames)
     })
 
+    //starting a game for every player
+    socket.on('start game', data => {
+        io.to(data.room).emit('game started', data)
+    })
+
     //disconnect
     socket.on('disconnect', () => {
         console.log('User Disconnected')
     })
-
     //judge submit handler
     socket.on('')
+})
+
+
+app.get('/api/usernames/:room', (req, res) => {
+    console.log('params: ', req.params)
+    res.send(currentGames[req.params.room])
 })

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const image = ''
 const particleOpt = {
@@ -59,44 +59,46 @@ const particleOpt = {
 
 
 
-class JudgePlayerWaiting extends Component{
-    constructor(){
+
+
+class JudgePlayerWaiting extends Component {
+    constructor() {
         super();
-    
+
         this.state = {
 
         }
     }
-       
-    render(){
+
+    render() {
         console.log(this.props)
-        return(
+        return (
             <div>
-                <Particles params={particleOpt}/>
+                <Particles params={particleOpt} />
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
                 {this.props.user.username === 'Creehaw' ?
-                <div className='container'>
-                    <h1 className='waiting'>WAITING ON PLAYERS</h1>
-                    <div class="dash uno"></div>
-                    <div class="dash dos"></div>
-                    <div class="dash tres"></div>
-                    <div class="dash cuatro"></div> 
-                </div>
-                : 
-                <div className='container'>
-                    <h1 className='judge'>WAITING ON JUDGE</h1>
-                    <div class="dash uno"></div>
-                    <div class="dash dos"></div>
-                    <div class="dash tres"></div>
-                    <div class="dash cuatro"></div> 
-                </div>}
+                    <div className='container'>
+                        <h1 className='waiting'>WAITING ON PLAYERS</h1>
+                        <div class="dash uno"></div>
+                        <div class="dash dos"></div>
+                        <div class="dash tres"></div>
+                        <div class="dash cuatro"></div>
+                    </div>
+                    :
+                    <div className='container'>
+                        <h1 className='judge'>WAITING ON JUDGE</h1>
+                        <div class="dash uno"></div>
+                        <div class="dash dos"></div>
+                        <div class="dash tres"></div>
+                        <div class="dash cuatro"></div>
+                    </div>}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         players: state.players,
         judgeIndex: state.judgeIndex,
         user: state.user
