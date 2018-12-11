@@ -18,29 +18,30 @@ class InGame extends Component {
             player_index: 0,
             username: '',
             winner: false,
-            count: 60
+            count: 60,
+            judgeIndex: 0
         }
     }
+    // componentDidMount(){
+    //     axios.get()
 
-    componentDidMount(){
-        axios.get()
-    }
-
-    // componentDidMount() {
-    //     //get user info, change username in state 
-    //     //missing endpoint
-    //     this.setState({ username: res.data.username })
-    //     //find user in players array and change index
-    //     this.props.players.map((user, i) => {
-    //         if (user.username === this.state.username) { this.setState({ player_index: i }) }
-    //     })
-    //     //check if anyone has won(compared with reducer rounds to win)
-    //     this.props.players.map(player => {
-    //         if (player.rounds_won === this.props.roundsToWin) {
-    //             this.setState({ winner: true })
-    //         }
-    //     })
     // }
+
+    componentDidMount() {
+        //get user info, change username in state 
+        //missing endpoint
+        this.setState({ 
+            username: this.props.user.username,
+            judgeIndex: this.props.judgeIndex,
+         })
+        //find user in players array and change index
+        //check if anyone has won(compared with reducer rounds to win)
+        this.props.players.map(player => {
+            if (player.rounds_won === this.props.roundsToWin) {
+                this.setState({ winner: true })
+            }
+        })
+    }
 
 
     render() {

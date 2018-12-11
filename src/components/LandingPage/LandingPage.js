@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { userLogout, room } from '../../dux/reducer';
+import './LandingPage.css'
 
 class LandingPage extends Component {
     constructor() {
@@ -12,7 +13,8 @@ class LandingPage extends Component {
             userType: false,
             roomCode: 0,
             guestUsername: '',
-            rooms: []
+            rooms: [],
+            usernames: []
         }
     }
     componentDidMount() {
@@ -32,39 +34,48 @@ class LandingPage extends Component {
     }
     //join room method 
     joinRoom = () => {
-        console.log('State: ', this.state)
         let exists = false
         let full = true
-        this.state.rooms.map(room => {
+        let roomIndex = -1
+        this.state.rooms.map((room, i) => {
             if (room.room_number == this.state.roomCode) {
                 exists = true
+                roomIndex = i
             }
         })
-        this.props.socket.emit()
-        if (!full) {
-            if (exists) {
-                //set up sockets for existing room
-                let { username } = this.props.user
-                let room = Number(this.state.roomCode)
-
-                //send username to socket with room number
-                this.props.socket.emit('join room', { room, username })
-                //when specified socket is joined
-                this.props.socket.on('room joined', data => console.log(`Player joined room ${room}`))
-                //send room to redux
-                this.props.room(room)
-
-                //send player to game loading view
-                this.props.history.push('/game-loading')
-            } else {
-                alert("Unfortunately we were not able to find that room. Please check the room number and try again")
-            }
+        if (exists) {
+            let usernames = []
+            axios.get(`/api/usernames/${this.state.roomCode}`)
+            .then(res => {
+                usernames = res.data
+                console.log('usernames: ', this.state.usernames)
+                //error with this filter, as this.state.usernames does not contain users within room. reamians an empty array. 
+                if (usernames.length < this.state.rooms[roomIndex].number_of_players) {
+                    full = false
+                }
+                if (full === false) {
+                    //set up sockets for existing room
+                    let { username } = this.props.user
+                    let room = Number(this.state.roomCode)
+                    
+                    //send username to socket with room number
+                    this.props.socket.emit('join room', { room, username })
+                    //when specified socket is joined
+                    this.props.socket.on('room joined', data => console.log(`Player joined room ${this.state.roomCode}`))
+                    //send room to redux
+                    this.props.room(room)
+                    //send player to game loading view
+                    this.props.history.push('/game-loading')
+                } else {
+                    alert("Unfortunately that game already has the max number of players. Please create a new game or join a different one.")
+                }
+            })
+        } else {
+                alert("Unfortunately we were not able to find that room. Please check the room number and try again.")
         }
     }
 
-
     render() {
-        console.log(this.props)
         return (
             <div className='landing-page'>
                 {this.props.user.username ?
