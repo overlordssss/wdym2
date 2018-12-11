@@ -30,16 +30,17 @@ class Login extends Component {
                 .then(response => {
                     const user = response.data;
                     if (user.user_id) {
+                        console.log(response.status)
+                        // console.log(response)
                         // here is where the redux will be updated
                         this.props.user(response.data);
                         // here is where we push to landing page if a user is found
                         this.props.history.push('/landing-page');
-                    } else (
-                        alert('No user found')
-                    )
+                    }
                 })
                 .catch(err => {
-                    console.log(`Error: ${err}`)
+                    alert(err.response.request.response)
+                    console.log(`Error: ${err.response.request}`)
                 })
         } else if (!username) {
             alert('Please enter a username')
@@ -63,7 +64,6 @@ class Login extends Component {
         })
     }
     render() {
-        console.log(this.props)
         return (
             <div className='login_container'>
                 <div className='login_card'>

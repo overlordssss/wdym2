@@ -5,7 +5,7 @@ import Player from '../Player/Player';
 import Winner from '../Winner/Winner';
 import RoundWinner from '../RoundWinner/RoundWinner';
 import JudgePlayerWaiting from '../JudgePlayerWaiting/JudgePlayerWaiting';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
 import axios from 'axios';
 
@@ -17,49 +17,53 @@ class InGame extends Component {
         this.state = {
             player_index: 0,
             username: '',
-            winner: false,
-            count: 60
+            winner: false
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get()
     }
 
-    // componentDidMount() {
-    //     //get user info, change username in state 
-    //     //missing endpoint
-    //     this.setState({ username: res.data.username })
-    //     //find user in players array and change index
-    //     this.props.players.map((user, i) => {
-    //         if (user.username === this.state.username) { this.setState({ player_index: i }) }
-    //     })
-    //     //check if anyone has won(compared with reducer rounds to win)
-    //     this.props.players.map(player => {
-    //         if (player.rounds_won === this.props.roundsToWin) {
-    //             this.setState({ winner: true })
-    //         }
-    //     })
-    // }
+    componentDidMount() {
+        //get user info, change username in state 
+        //missing endpoint
+        axios.get('/game/memes')
+            .then(res => {
+                // some sort of code here
+            })
+            .catch(err => console.log(`Error: ${err}`))
+        // this.setState({ username: res.data.username })
+        //find user in players array and change index
+        this.props.players.map((user, i) => {
+            if (user.username === this.state.username) { this.setState({ player_index: i }) }
+        })
+        //check if anyone has won(compared with reducer rounds to win)
+        this.props.players.map(player => {
+            if (player.rounds_won === this.props.roundsToWin) {
+                this.setState({ winner: true })
+            }
+        })
+    }
 
 
     render() {
-        
-        return(
+
+        return (
             <div>
-            {this.state.winner ?
-            <RoundWinner /> : this.props.players ?
-            <JudgePlayerWaiting /> : <Player history={this.props.history}/>
-            }
-            {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
-            {}
+                {this.state.winner ?
+                    <RoundWinner /> : this.props.players ?
+                        <JudgePlayerWaiting /> : <Player history={this.props.history} />
+                }
+                {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
+                {}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         players: state.players,
         roundsToWin: state.roundsToWin
     }
