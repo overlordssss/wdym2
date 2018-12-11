@@ -10,16 +10,20 @@ canvas {
   }
 
   .waiting{
-    color: white;
-    margin-top: 350px;
+    color: black;
     animation: bouncy 3s linear;
     animation-iteration-count: infinite;
-    position: relative
+    position: relative;
+    margin-top: 33px;
+    padding: 10px 30px 30px;
   }
   .judge{
-    color: white;
-    margin-right: 30px;
-    text-shadow: 0px 3px #000000
+    color: black;
+    animation: bouncy 3s linear;
+    animation-iteration-count: infinite;
+    position: relative;
+    margin-top: 33px;
+    padding: 10px 30px 30px;
   }
 
   .container {
@@ -29,7 +33,10 @@ canvas {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly
+    justify-content: space-evenly;
+    border: 2px solid black;
+    background: #ffffff80;
+    padding: 10px 30px 30px;
   }
   
   .dash {
@@ -39,7 +46,7 @@ canvas {
     border-radius: 8px;
     background: #ffffff;
     box-shadow: 0 0 10px 0 #FECDFF;
-    margin-top: 33px;
+    margin-top: 50px;
   }
   
   .uno {

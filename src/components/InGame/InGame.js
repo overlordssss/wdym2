@@ -52,10 +52,10 @@ class InGame extends Component {
         return (
             <div>
                 {this.state.winner ?
-                    <RoundWinner /> : this.props.players[this.props.judgeIndex] ?
-                        <JudgePlayerWaiting /> : <Player />
+                    <RoundWinner /> : this.props.players ?
+                        <JudgePlayerWaiting /> : <Player history={this.props.history} />
                 }
-                {this.props.players[1] === this.props.roundsToWin ? <Winner /> : ''}
+                {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
                 {}
             </div>
         )

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { roundsToWin, players, numberOfPlayers, room } from '../../dux/reducer';
-import axios from 'axios'
+import axios from 'axios';
+import './CreateGame.css';
 
 class CreateGame extends Component {
     constructor() {
@@ -75,12 +76,14 @@ class CreateGame extends Component {
     render() {
         return (
             <div className='create-game'>
-                <p>Max number of Players</p>
-                <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' /><p>(Min 3; Max 10)</p>
-                <p>Rounds to win</p>
-                <input type='number' onChange={this.handleRoundInput} /><p>(Max 10)</p>
-                <p>Custom images</p>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <div className='createGameContainer'>
+                <h1 className='displayPlayer'>Max number of Players</h1>
+                <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' className='inputs'/><h2 className='displayPlayer'>(Min 3; Max 10)</h2>
+                <h1 className='displayPlayer'>Rounds to win</h1>
+                <input type='number' onChange={this.handleRoundInput} className='inputs'/><h2 className='displayPlayer'>(Max 10)</h2>
+                <h1 className='displayPlayer'>Custom images</h1>
+                <button onClick={this.handleSubmit} className='btn'>Submit</button>
+                </div>
             </div>
         )
     }

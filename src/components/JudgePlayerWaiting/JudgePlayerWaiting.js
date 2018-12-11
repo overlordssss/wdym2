@@ -3,6 +3,7 @@ import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
 
+const image = ''
 const particleOpt = {
     particles: {
         number: {
@@ -17,7 +18,7 @@ const particleOpt = {
             type: 'image',
             stroke: { width: 0, color: '#000000' },
             polygon: { nb_sides: 5 },
-            image: { src: "https://www.mememaker.net/api/bucket?path=static/img/memes/full/2017/Apr/27/18/no-just-no7.jpg", "width": 100, "height": 100 }
+            image: { src: `${image === '' ? 'https://wallpapertag.com/wallpaper/middle/9/3/8/980684-meme-background-pictures-1920x1080-htc.jpg' : 'https://cdn.suwalls.com/wallpapers/meme/trolldad-9385-2560x1600.jpg'}`, "width": 100, "height": 100 }
         },
         opacity: {
             value: 0.5,
@@ -81,17 +82,24 @@ const particleOpt = {
     },
     retina_detect: true
 }
-//     }
-//   }
 
 
 class JudgePlayerWaiting extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+
+        }
+    }
+
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Particles params={particleOpt} />
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
-                {this.props.players ?
+                {this.props.user.username === 'Creehaw' ?
                     <div className='container'>
                         <h1 className='waiting'>WAITING ON PLAYERS</h1>
                         <div class="dash uno"></div>
@@ -101,14 +109,12 @@ class JudgePlayerWaiting extends Component {
                     </div>
                     :
                     <div className='container'>
-                        <h1 className='judge'>WAITING ON THE JUDGE</h1>
+                        <h1 className='judge'>WAITING ON JUDGE</h1>
                         <div class="dash uno"></div>
                         <div class="dash dos"></div>
                         <div class="dash tres"></div>
                         <div class="dash cuatro"></div>
-
-                    </div>
-                }
+                    </div>}
             </div>
         )
     }
@@ -117,7 +123,8 @@ class JudgePlayerWaiting extends Component {
 const mapStateToProps = state => {
     return {
         players: state.players,
-        judgeIndex: state.judgeIndex
+        judgeIndex: state.judgeIndex,
+        user: state.user
     }
 }
 
