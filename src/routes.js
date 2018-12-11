@@ -25,6 +25,7 @@ export default (socket) => (
         <Route path='/winner' render={() => <Winner socket={socket}/>}/>
         <Route path='/waiting-room' render={(props) => <JudgePlayerWaiting socket = {socket}{...props} />}/>
         <Route path='/in-game' render={(props) => <InGame socket= {socket}{...props}/>}/>
+        <Route path='/round-winner' component={RoundWinner}/>
     </Switch>
 )
 //path= render ={props => {Component socket = {socket} {...props} } }
