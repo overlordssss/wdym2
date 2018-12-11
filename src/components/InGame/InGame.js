@@ -17,27 +17,24 @@ class InGame extends Component {
         this.state = {
             player_index: 0,
             username: '',
-            winner: false
+            winner: false,
+            count: 60,
+            judgeIndex: 0
         }
     }
+    // componentDidMount(){
+    //     axios.get()
 
-    componentDidMount() {
-        axios.get()
-    }
+    // }
 
     componentDidMount() {
         //get user info, change username in state 
         //missing endpoint
-        axios.get('/game/memes')
-            .then(res => {
-                // some sort of code here
-            })
-            .catch(err => console.log(`Error: ${err}`))
-        // this.setState({ username: res.data.username })
+        this.setState({ 
+            username: this.props.user.username,
+            judgeIndex: this.props.judgeIndex,
+         })
         //find user in players array and change index
-        this.props.players.map((user, i) => {
-            if (user.username === this.state.username) { this.setState({ player_index: i }) }
-        })
         //check if anyone has won(compared with reducer rounds to win)
         this.props.players.map(player => {
             if (player.rounds_won === this.props.roundsToWin) {

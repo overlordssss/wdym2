@@ -1,2 +1,2 @@
-SELECT room_number
+SELECT *
 FROM room

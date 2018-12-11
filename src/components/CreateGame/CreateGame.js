@@ -25,17 +25,15 @@ class CreateGame extends Component {
             alert('Cannot have more than 10 players per game!')
         } else if (amountOfPlayers < 3) {
             alert('Cannot have less than 3 players per game!')
-        } else {
-            this.setState({ numberOfPlayers: amountOfPlayers })
         }
+        this.setState({ numberOfPlayers: amountOfPlayers })
     }
     handleRoundInput = (e) => {
         let roundInput = e.target.value
         if (roundInput > 10) {
             alert('10 rounds is the limit!')
-        } else {
-            this.setState({ roundsForWin: roundInput })
         }
+        this.setState({ roundsForWin: roundInput })
     }
     handleSubmit = () => {
         console.log('state at submit: ', this.state, 'props: ', this.props)
@@ -66,23 +64,29 @@ class CreateGame extends Component {
             //set up a socket for the room
             this.props.socket.emit('create room', { newRoom, username })
 
-            this.props.socket.on('room created', data => console.log(`User created room: ${newRoom}`))
+            this.props.socket.on('room created', data => {
+                console.log(`User created room: ${newRoom}`)
+                this.props.history.push('/game-loading')
+            })
 
             //once a room is created, save room to redux and go to GameLoading view 
             this.props.room(newRoom)
-            this.props.history.push('/game-loading')
         })
     }
     render() {
         return (
             <div className='create-game'>
                 <div className='createGameContainer'>
-                <h1 className='displayPlayer'>Max number of Players</h1>
-                <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' className='inputs'/><h2 className='displayPlayer'>(Min 3; Max 10)</h2>
-                <h1 className='displayPlayer'>Rounds to win</h1>
-                <input type='number' onChange={this.handleRoundInput} className='inputs'/><h2 className='displayPlayer'>(Max 10)</h2>
-                <h1 className='displayPlayer'>Custom images</h1>
-                <button onClick={this.handleSubmit} className='btn'>Submit</button>
+                    <h1 className='displayPlayer'>Max number of Players</h1>
+                    <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' className='inputs' /><h2 className='displayPlayer'>(Min 3; Max 10)</h2>
+                    <h1 className='displayPlayer'>Rounds to win</h1>
+                    <input type='number' onChange={this.handleRoundInput} className='inputs' /><h2 className='displayPlayer'>(Max 10)</h2>
+                    <h1 className='displayPlayer'>Custom images</h1>
+                    {(this.state.roundsForWin <= 10 && this.state.roundsForWin > 0
+                        && this.state.numberOfPlayers >= 3 && this.state.numberOfPlayers <= 10) ?
+                        <button onClick={this.handleSubmit} className='btn'>Submit</button>
+                        : null
+                    }
                 </div>
             </div>
         )
