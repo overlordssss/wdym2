@@ -5,8 +5,15 @@ module.exports = {
     getUserData: (req, res) => {
 
     },
-    getMemeImages: (req, res) => {
-
+    getMemeImages: async (req, res) => {
+        try {
+            const db = req.app.get('db')
+            let memes = await db.get_memes()
+            res.status(200).send(memes)
+        } catch (error) {
+            console.log(`///////////////ERROR//////////////`, error)
+            res.send('Problem on the getMemeImages endpoint')
+        }
     },
     rooms: async (req, res) => {
         const db = req.app.get('db')
@@ -16,11 +23,11 @@ module.exports = {
     newRoom: async (req, res) => {
         try {
             const db = req.app.get('db')
-            let {newRoom, roundsToWin, maxPlayers} = req.body
+            let { newRoom, roundsToWin, maxPlayers } = req.body
             let creator = req.session.user.username
             await db.new_room(newRoom, creator, roundsToWin, maxPlayers)
             res.status(200).send('test')
-            
+
         } catch (error) {
             console.log("=======ERROR========", error)
             res.send("sorry, you suck")
@@ -28,7 +35,7 @@ module.exports = {
     },
     roomInfo: async (req, res) => {
         const db = req.app.get('db')
-        let {room_number} = req.params
+        let { room_number } = req.params
         let info = await db.room_info(room_number)
         res.status(200).send(info)
     }

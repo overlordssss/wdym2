@@ -5,7 +5,7 @@ import Player from '../Player/Player';
 import Winner from '../Winner/Winner';
 import RoundWinner from '../RoundWinner/RoundWinner';
 import JudgePlayerWaiting from '../JudgePlayerWaiting/JudgePlayerWaiting';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
 import axios from 'axios';
 
@@ -45,22 +45,22 @@ class InGame extends Component {
 
 
     render() {
-        
-        return(
+
+        return (
             <div>
-            {this.state.winner ?
-            <RoundWinner /> : this.props.players ?
-            <JudgePlayerWaiting /> : <Player history={this.props.history}/>
-            }
-            {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
-            {}
+                {this.state.winner ?
+                    <RoundWinner /> : this.props.players ?
+                        <JudgePlayerWaiting /> : <Player history={this.props.history} />
+                }
+                {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
+                {}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         players: state.players,
         roundsToWin: state.roundsToWin
     }

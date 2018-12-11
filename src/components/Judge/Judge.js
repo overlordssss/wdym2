@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-import {winningMeme} from '../../dux/reducer';
+import { winningMeme } from '../../dux/reducer';
 
-class Judge extends Component{
-    constructor(){
+class Judge extends Component {
+    constructor() {
         super();
 
         this.state = {
@@ -14,12 +14,12 @@ class Judge extends Component{
     }
     handleSwipeLeft = () => {
         let new_index = this.state.meme_index
-        new_index ++
-        this.setState({meme_index: new_index})
+        new_index++
+        this.setState({ meme_index: new_index })
     }
 
     timer = (val) => {
-        if(val > 0){
+        if (val > 0) {
             setTimeout(() => {
                 this.setState({
                     count: this.state.count - 1
@@ -32,7 +32,7 @@ class Judge extends Component{
         this.props.winningMeme(val)
     }
 
-    render(){
+    render() {
         const displayedText = this.props.players.map((player, index) => {
             let input_top = player.input_top;
             let input_bottom = player.input_bottom;
@@ -44,33 +44,33 @@ class Judge extends Component{
             )
         })
         console.log(this.props)
-        return(
+        return (
             <div>
                 <div className='counter'>
-                {this.timer(this.state.count)}
-                <h1>{this.state.count}</h1>
+                    {this.timer(this.state.count)}
+                    <h1>{this.state.count}</h1>
                 </div>
                 <div className='spinner'>
-                {this.state.count > 0 ? <Spinner/>
-                : <h1 className='time-up'>TIME IS UP!!!!</h1>}
+                    {this.state.count > 0 ? <Spinner />
+                        : <h1 className='time-up'>TIME IS UP!!!!</h1>}
                 </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
                 <button onClick={this.memeSelect}>Select</button>
-                
+                {}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         players: state.players
     }
 }
 
 
 
-export default connect(mapStateToProps, {winningMeme})(Judge)
+export default connect(mapStateToProps, { winningMeme })(Judge)
