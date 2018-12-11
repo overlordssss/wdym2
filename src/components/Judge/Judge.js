@@ -59,7 +59,7 @@ class Judge extends Component {
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
                 <button onClick={this.memeSelect}>Select</button>
-
+                {}
             </div>
         )
     }
