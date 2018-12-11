@@ -56,8 +56,7 @@ const particleOpt = {
                                             repulse:{"distance":200,duration:0.4},
                                             push:{particles_nb:4},remove:{particles_nb:2}}},
                                             retina_detect:true}
-//     }
-//   }
+
 
 
 class JudgePlayerWaiting extends Component{
