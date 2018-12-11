@@ -1,3 +1,10 @@
+.wallpaper{
+    background-image: url('https://wallpapertag.com/wallpaper/middle/9/3/8/980684-meme-background-pictures-1920x1080-htc.jpg');
+    z-index: -10;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
 .counter{
     display: flex;
     justify-content: center;
@@ -10,20 +17,21 @@
 .spinner{
     position: absolute;
     align-self: auto;
-    z-index: -2;
+    z-index: 2;
     float: right;
     margin-left: 1320px;
 }
 .meme{
+    height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     float: right;
-    margin-top: 250px;
+    margin-top: 100px;
     align-items: center;
-    margin-right: 400px;
-    position: relative;
+    position: absolute;
+    margin-left: 480px;
 }
 .user-meme{
     width: 500px;

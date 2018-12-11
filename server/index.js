@@ -60,4 +60,7 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('User Disconnected')
     })
+
+    //judge submit handler
+    socket.on('')
 })

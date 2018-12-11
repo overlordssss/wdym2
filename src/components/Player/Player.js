@@ -16,7 +16,6 @@ class Player extends Component{
     }
     
     topInput = (e) => {
-        //players array passed from redux; player_index passed from parent component InGame
         
     }
     
@@ -25,7 +24,7 @@ class Player extends Component{
     }
     
     submitHandler = () => {
-
+        this.props.socket.on()
     }
 
     timer = (val) => {
@@ -42,20 +41,20 @@ class Player extends Component{
         
         
         return(
-            <div >
+            <div className='wallpaper'>
                 <div className='timer-container'>
                 {this.timer(this.state.count)}
                 <h1 className='counter'>{this.state.count}</h1>
                 <div className='spinner'>
-                {this.state.count > 1 ? <Spinner/>
-                : <RoundWinner />}
+                {this.state.count > 0 ? <Spinner/>
+                : this.props.history.push('/waiting-room')}
                 </div>
                 </div>
                 <div className='meme'>
-                    <img src = 'https://quizizz.zendesk.com/hc/article_attachments/115002501069/1024x1024.jpg' className='user-meme'/>
-                    <p>Text at Top: </p><input placeholder="Enter text here" />
-                    <p>Text at Bottom: </p><input placeholder="Enter text here"/>
-                    <Link to='/waiting-room'><button>Submit Meme</button></Link>
+                    <img src = 'https://quizizz.zendesk.com/hc/article_attachments/115002501069/1024x1024.jpg' alt='' className='user-meme'/>
+                    <p>Text at Top: </p><input placeholder="Enter text here" className='inputs'/>
+                    <p>Text at Bottom: </p><input placeholder="Enter text here" className='inputs'/>
+                    <Link to='/waiting-room'><button className='btn'>Submit Meme</button></Link>
                 </div>
             </div>
         )

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {userLogout, room } from '../../dux/reducer';
+import './LandingPage.css';
 
 class LandingPage extends Component {
     constructor() {
