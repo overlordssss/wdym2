@@ -174,3 +174,138 @@ canvas {
       transform: rotate(-360deg);
     }
   }
+
+  @media (max-width: 775px) {
+    .waiting{
+      color: black;
+      animation: bouncy 3s linear;
+      animation-iteration-count: infinite;
+      position: relative;
+      margin-top: 33px;
+      padding: 10px 30px 30px;
+    }
+    .judge{
+      color: black;
+      animation: bouncy 3s linear;
+      animation-iteration-count: infinite;
+      position: relative;
+      margin-top: 33px;
+      padding: 10px 30px 30px;
+    }
+  
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      border: 2px solid black;
+      background: #ffffff80;
+      padding: 10px 30px 30px;
+    }
+    
+    .dash {
+      margin: 0 5px;
+      width: 35px;
+      height: 15px;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 0 10px 0 #FECDFF;
+      margin-top: 70px;
+    }
+    .uno {
+      margin-right: -5px;
+      transform-origin: center left;
+      animation: spin 3s linear infinite;  
+    }
+    .dos {
+      margin-right: 15px;
+      transform-origin: center right;
+      animation: spin2 3s linear infinite;
+      animation-delay: .2s;
+    }
+    
+    .tres {
+      margin-right: 15px;
+      transform-origin: center right;
+      animation: spin3 3s linear infinite;
+      animation-delay: .3s;
+    }
+    
+    .cuatro {
+      margin-right: 15px;
+      transform-origin: center right;
+      animation: spin4 3s linear infinite;
+      animation-delay: .4s;
+    }
+  }
+
+
+@media (max-width: 450px) {
+.waiting{
+    color: black;
+    animation: bouncy 3s linear;
+    animation-iteration-count: infinite;
+    position: relative;
+    margin-top: 33px;
+    padding: 10px 30px 30px;
+  }
+  .judge{
+    color: black;
+    animation: bouncy 3s linear;
+    animation-iteration-count: infinite;
+    position: relative;
+    margin-top: 33px;
+    padding: 10px 30px 30px;
+  }
+
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    background: #ffffff80;
+    padding: 10px 30px 30px;
+  }
+  
+  .dash {
+    margin: 0 5px;
+    width: 35px;
+    height: 15px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 0 10px 0 #FECDFF;
+    margin-top: 70px;
+  }
+  .uno {
+    margin-right: -5px;
+    transform-origin: center left;
+    animation: spin 3s linear infinite;  
+  }
+  .dos {
+    margin-right: 15px;
+    transform-origin: center right;
+    animation: spin2 3s linear infinite;
+    animation-delay: .2s;
+  }
+  
+  .tres {
+    margin-right: 15px;
+    transform-origin: center right;
+    animation: spin3 3s linear infinite;
+    animation-delay: .3s;
+  }
+  
+  .cuatro {
+    margin-right: 15px;
+    transform-origin: center right;
+    animation: spin4 3s linear infinite;
+    animation-delay: .4s;
+  }
+  }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
 import { winningMeme } from '../../dux/reducer';
+import Carousel from 'react-responsive-carousel';
 
 class Judge extends Component {
     constructor() {
@@ -58,6 +59,16 @@ class Judge extends Component {
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
+                {/* <Carousel
+                    showArrows={true}
+                    infiniteLoop={true}
+                    swipable={true}
+                >
+                    <div>
+                        {displayedText}
+                    </div>
+
+                </Carousel> */}
                 <button onClick={this.memeSelect}>Select</button>
                 {}
             </div>

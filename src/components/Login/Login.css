@@ -36,3 +36,21 @@
 .go{
     border-radius: 20px;
 }
+
+@media (max-width: 450px) {
+    .login_card {
+        align-self: center;
+        z-index: 0;
+        background-color: #f2f2f2CC;
+        width: 350px;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid black;
+        box-shadow: 10px 10px 30px black;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+  }
