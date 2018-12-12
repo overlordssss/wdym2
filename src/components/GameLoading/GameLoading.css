@@ -1,0 +1,29 @@
+.game-loading-background{
+    background-image: linear-gradient(to bottom right, #e600e6, green);
+    z-index: -2;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+.room-code{
+    font-size: 80px;
+}
+.game-loading-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+}
+.display-list{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+}
+.rounds{
+    font-size: 60px;
+}
+.le-players{
+    font-size: 55px;
+}

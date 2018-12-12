@@ -25,7 +25,7 @@ class Spinner extends React.Component {
           className={override}
           sizeUnit={"px"}
           size={75}
-          color={'#42d7f4'}
+          color={'#000000'}
           loading={this.state.loading}
         />
       </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {judgeIndex, players, roundsToWin} from '../../dux/reducer';
 import axios from 'axios';
+import './GameLoading.css'
 
  class GameLoading extends Component{
      constructor(){
@@ -55,25 +56,26 @@ import axios from 'axios';
     render(){
         console.log('state: ', this.state)
     return(
-        <div>
-            <div className="room-code">
-                {/* we need to pass the randomly generated room code to this component and display it within this div */}
-                <p>Room code: {this.props.room}</p>
+        <div className='game-loading-background'>
+            <div className='game-loading-container'>
+            <div >
+                <h1 className="room-code">Room code: {this.props.room}</h1>
             </div>
-            <div>
-                <h2>Rounds To Win: {this.state.roundsToWin}</h2>
-                <h3>Players</h3>
+            <div className='display-list'>
+                <h1 className='rounds'>Rounds To Win: {this.state.roundsToWin}</h1>
+                <h1 className='le-players'>Players</h1>
                 <ul className='players'>
                 {this.state.players.map(username => {
-                    return <li key = {username} >{username}</li>
+                    return <h1 key = {username} >{username}</h1>
                 })}
                 </ul>
             </div>
             {/* basic start button passing the socket players connected to the room to the game */}
-            {(this.state.creator === this.props.user.username && this.state.players.length >= 3) ?
+            {(this.state.creator === this.props.user.username && this.props.guest && this.state.players.length >= 3) ?
             <button onClick={this.handleClick}>START</button>
             : null
             }
+            </div>
         </div>
     )
   }
@@ -82,7 +84,8 @@ import axios from 'axios';
 const mapStateToProps = state => {
     return {
         user: state.user,
-        room: state.room
+        room: state.room,
+        guest: state.guestUsername
     }
 }
 

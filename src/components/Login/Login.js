@@ -105,7 +105,7 @@ class Login extends Component {
                         className='inputs'
                     />
                     <button
-                        onClick={this.guestLogin}
+                        onClick={this.login}
                         className='go'
                     >GO!</button>
                 </div>
