@@ -30,16 +30,16 @@ class InGame extends Component {
     componentDidMount() {
         //get user info, change username in state 
         //missing endpoint
-        this.setState({ 
+        this.setState({
             username: this.props.user.username,
             judgeIndex: this.props.judgeIndex,
-         })
+        })
         //find user in players array and change index
         //check if anyone has won(compared with reducer rounds to win)
         this.props.players.map(player => {
             if (player.rounds_won === this.props.roundsToWin) {
                 this.setState({ winner: true })
-                
+
             }
         })
     }
@@ -50,16 +50,16 @@ class InGame extends Component {
         return (
             <div>
                 {/* if someone has won */}
-                {this.props.players === this.props.roundsToWin ? 
-                    <Winner /> 
-                : null}
+                {this.props.players === this.props.roundsToWin ?
+                    <Winner />
+                    : null}
                 {this.state.winner ?
-                    <RoundWinner /> 
-                //check to see if player is the judge
-                : this.props.user.username === this.props.players[this.props.judgeIndex] ?
-                        <JudgePlayerWaiting /> 
-                //
-                : <Player history={this.props.history} />
+                    <RoundWinner />
+                    //check to see if player is the judge
+                    : this.props.user.username === this.props.players[this.props.judgeIndex] ?
+                        <JudgePlayerWaiting />
+                        //
+                        : <Player history={this.props.history} />
                 }
                 {}
             </div>

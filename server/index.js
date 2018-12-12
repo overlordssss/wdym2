@@ -53,9 +53,9 @@ io.on('connection', socket => {
     socket.on('check room', data => {
         console.log('data coming in: ', data)
         console.log('game info: ', currentGames[data.room])
-        let {roomIndex} = data 
+        let { roomIndex } = data
         let usernames = currentGames[data.room]
-        io.to().emit('room info', {usernames, roomIndex})
+        io.to().emit('room info', { usernames, roomIndex })
     })
 
     //joining a room and once a room is joined

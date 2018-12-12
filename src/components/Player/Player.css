@@ -9,10 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
     float: right;
-    margin-right: 58px;
     margin-top: 25px;
+    margin-left: 1352px;
 }
 .spinner{
     position: absolute;
