@@ -15,7 +15,6 @@ import axios from 'axios';
          }
      }
      componentDidMount=() => {
-         console.log('props: ', this.props)
          let {room} = this.props 
          axios.get(`/game/roomInfo/${room}`)
          .then( res => {
@@ -38,10 +37,16 @@ import axios from 'axios';
         })
      }
      handleClick = () => {
+        //send amount of players to db to change max Players (if need be)
+         let currentNumPlayers = this.state.players.length
+         let {room} = this.props
+        if (currentNumPlayers !== this.state.maxPlayers) {
+            axios.put(`/game/updateMax/`,{currentNumPlayers, room})
+        }
+
          //generate a random index for the judge
          let judge = Math.floor(Math.random*(this.state.players.length) - 1)
 
-        let {room} = this.props
         let {players, roundsToWin} = this.state
 
          //send judge index, players and game start to sockets
