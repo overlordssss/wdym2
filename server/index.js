@@ -37,6 +37,7 @@ const io = require('socket.io')(app.listen(SERVER_PORT, () => console.log(`Docke
 
 //connecting to the socket
 let currentGames = {}
+let responses = {}
 io.on('connection', socket => {
     console.log('User Connected')
 
@@ -76,8 +77,15 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('User Disconnected')
     })
-    //judge submit handler
-    socket.on('')
+    //player submit handler
+    socket.on('player submit', ({username, inputTop, inputBottom, room}) => {
+        console.log('player submitted meme', username, inputTop, inputBottom, room)
+        if(!responses[room]){
+            responses[room] = []
+        }
+        responses[room].push({username, inputTop, inputBottom})
+        io.to(room).emit('get responses', responses[room])
+    })
 })
 
 

@@ -10,8 +10,18 @@ class Judge extends Component {
         this.state = {
             meme_index: 0,
             count: 60,
+            playerData: []
         }
     }
+
+    componentDidMount(){
+        this.props.socket.on('get responses', (data) => {
+            this.setState({
+                playerData: data
+            })
+        })
+    }
+
     handleSwipeLeft = () => {
         let new_index = this.state.meme_index
         new_index++
@@ -33,9 +43,9 @@ class Judge extends Component {
     }
 
     render() {
-        const displayedText = this.props.players.map((player, index) => {
-            let input_top = player.input_top;
-            let input_bottom = player.input_bottom;
+        const displayedText = this.state.playerData.map((player, index) => {
+            let input_top = this.state.playerData.input_top;
+            let input_bottom = this.state.playerData.input_bottom;
             return (
                 <div className="meme_text">
                     {input_top}
@@ -43,7 +53,6 @@ class Judge extends Component {
                 </div>
             )
         })
-        console.log(this.props)
         return (
             <div>
                 <div className='counter'>
@@ -51,8 +60,8 @@ class Judge extends Component {
                     <h1>{this.state.count}</h1>
                 </div>
                 <div className='spinner'>
-                    {this.state.count > 0 ? <Spinner />
-                        : <h1 className='time-up'>TIME IS UP!!!!</h1>}
+                    {this.state.count > 0 ? ''
+                        : this.props.history.push('/round-winner')}
                 </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}

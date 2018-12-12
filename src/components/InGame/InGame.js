@@ -31,7 +31,7 @@ class InGame extends Component {
         //get user info, change username in state 
         //missing endpoint
         this.setState({ 
-            username: this.props.user.username,
+            username: this.props.user,
             judgeIndex: this.props.judgeIndex,
          })
         //find user in players array and change index
@@ -62,7 +62,8 @@ class InGame extends Component {
 const mapStateToProps = state => {
     return {
         players: state.players,
-        roundsToWin: state.roundsToWin
+        roundsToWin: state.roundsToWin,
+        user: state.username
     }
 }
 
