@@ -46,32 +46,32 @@ class LandingPage extends Component {
         if (exists) {
             let usernames = []
             axios.get(`/api/usernames/${this.state.roomCode}`)
-            .then(res => {
-                usernames = res.data
-                console.log('usernames: ', this.state.usernames)
-                //error with this filter, as this.state.usernames does not contain users within room. reamians an empty array. 
-                if (usernames.length < this.state.rooms[roomIndex].number_of_players) {
-                    full = false
-                }
-                if (full === false) {
-                    //set up sockets for existing room
-                    let { username } = this.props.user
-                    let room = Number(this.state.roomCode)
-                    
-                    //send username to socket with room number
-                    this.props.socket.emit('join room', { room, username })
-                    //when specified socket is joined
-                    this.props.socket.on('room joined', data => console.log(`Player joined room ${this.state.roomCode}`))
-                    //send room to redux
-                    this.props.room(room)
-                    //send player to game loading view
-                    this.props.history.push('/game-loading')
-                } else {
-                    alert("Unfortunately that game already has the max number of players. Please create a new game or join a different one.")
-                }
-            })
+                .then(res => {
+                    usernames = res.data
+                    console.log('usernames: ', this.state.usernames)
+                    //error with this filter, as this.state.usernames does not contain users within room. reamians an empty array. 
+                    if (usernames.length < this.state.rooms[roomIndex].number_of_players) {
+                        full = false
+                    }
+                    if (full === false) {
+                        //set up sockets for existing room
+                        let { username } = this.props.user
+                        let room = Number(this.state.roomCode)
+
+                        //send username to socket with room number
+                        this.props.socket.emit('join room', { room, username })
+                        //when specified socket is joined
+                        this.props.socket.on('room joined', data => console.log(`Player joined room ${this.state.roomCode}`))
+                        //send room to redux
+                        this.props.room(room)
+                        //send player to game loading view
+                        this.props.history.push('/game-loading')
+                    } else {
+                        alert("Unfortunately that game already has the max number of players. Please create a new game or join a different one.")
+                    }
+                })
         } else {
-                alert("Unfortunately we were not able to find that room. Please check the room number and try again.")
+            alert("Unfortunately we were not able to find that room. Please check the room number and try again.")
         }
     }
 
@@ -84,7 +84,7 @@ class LandingPage extends Component {
                         <h1 className='landing-text'>Welcome {this.props.user.username}! </h1>
                         : <h1 className='landing-text'>Welcome {this.props.guest}! </h1>}
                     {this.props.user.username ?
-                        <Link to='/create-game'><button>Create new game</button></Link>
+                        <Link to='/create-game'><button className='btn'>Create new game</button></Link>
                         : <h3 className='landing-text'>Create an account to host your own games</h3>}
                     <h3 className='landing-text'>Enter Room code to join an existing game</h3>
                     <input
