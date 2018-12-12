@@ -38,5 +38,11 @@ module.exports = {
         let { room_number } = req.params
         let info = await db.room_info(room_number)
         res.status(200).send(info)
+    },
+    updateMax: async (req, res) => {
+        const db = req.app.get('db')
+        let { currentNumPlayers, room } = req.params.body
+        await db.update_max(currentNumPlayers, room)
+        res.sendStatus(200)
     }
 }
