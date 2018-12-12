@@ -81,7 +81,7 @@ class CreateGame extends Component {
                     <input type='number' onChange={this.handlePlayerInput} value={this.state.numberOfPlayers} maxLength='2' className='inputs' /><h2 className='displayPlayer'>(Min 3; Max 10)</h2>
                     <h1 className='displayPlayer'>Rounds to win</h1>
                     <input type='number' onChange={this.handleRoundInput} className='inputs' /><h2 className='displayPlayer'>(Max 10)</h2>
-                    <h1 className='displayPlayer'>Custom images</h1>
+                    {/* <h1 className='displayPlayer'>Custom images</h1> */}
                     {(this.state.roundsForWin <= 10 && this.state.roundsForWin > 0
                         && this.state.numberOfPlayers >= 3 && this.state.numberOfPlayers <= 10) ?
                         <button onClick={this.handleSubmit} className='btn'>Submit</button>

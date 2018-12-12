@@ -39,6 +39,7 @@ class InGame extends Component {
         this.props.players.map(player => {
             if (player.rounds_won === this.props.roundsToWin) {
                 this.setState({ winner: true })
+                
             }
         })
     }
@@ -48,11 +49,18 @@ class InGame extends Component {
 
         return (
             <div>
+                {/* if someone has won */}
+                {this.props.players === this.props.roundsToWin ? 
+                    <Winner /> 
+                : null}
                 {this.state.winner ?
-                    <RoundWinner /> : this.props.players ?
-                        <JudgePlayerWaiting /> : <Player history={this.props.history} />
+                    <RoundWinner /> 
+                //check to see if player is the judge
+                : this.props.user.username === this.props.players[this.props.judgeIndex] ?
+                        <JudgePlayerWaiting /> 
+                //
+                : <Player history={this.props.history} />
                 }
-                {this.props.players === this.props.roundsToWin ? <Winner /> : ''}
                 {}
             </div>
         )
@@ -63,6 +71,10 @@ const mapStateToProps = state => {
     return {
         players: state.players,
         roundsToWin: state.roundsToWin,
+<<<<<<< HEAD
+=======
+        judgeIndex: state.judgeIndex,
+>>>>>>> master
         user: state.user
     }
 }

@@ -17,5 +17,7 @@ GameRouter.get('/rooms', gameController.rooms);
 GameRouter.post('/newRoom', gameController.newRoom)
 //will retrieve a specified room's information
 GameRouter.get('/roomInfo/:room_number', gameController.roomInfo)
+//will update max players in a room
+GameRouter.put('/updateMax', gameController.updateMax)
 
 module.exports = GameRouter
