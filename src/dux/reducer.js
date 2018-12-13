@@ -1,6 +1,5 @@
 const initialState = {
     user: {},
-    guestUsername: '',
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
@@ -12,7 +11,6 @@ const initialState = {
  }
  
  const USER = 'USER' 
- const GUEST_USERNAME = 'GUEST_USERNAME'
  const ROUNDSTOWIN = 'ROUNDSTOWIN'
  const PLAYERS = 'PLAYERS'
  const IMAGES = 'IMAGES'
@@ -21,6 +19,7 @@ const initialState = {
  const USERLOGOUT = 'USERLOGOUT'
  const JUDGE_INDEX = 'JUDGE_INDEX'
  const WINNINGMEME = 'WINNINGMEME'
+ const MEMES = 'MEMES'
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -41,9 +40,6 @@ export default function reducer(state = initialState, action) {
         case NUMBEROFPLAYERS:
         return Object.assign({}, state, { numberOfPlayers: action.payload })
 
-        case GUEST_USERNAME:
-        return Object.assign({}, state, { guestUsername: action.payload })
-
         case JUDGE_INDEX:
         return Object.assign({}, state, { judgeIndex: action.payload })
 
@@ -52,6 +48,9 @@ export default function reducer(state = initialState, action) {
         
         case ROOM:
         return Object.assign({}, state, {room: action.payload})
+
+        case MEMES:
+        return Object.assign({}, state, {blankMemes: action.payload})
 
         case USERLOGOUT:
         return initialState
@@ -97,13 +96,6 @@ export function numberOfPlayers(num){
     }
 }
 
-export function guestUsername(guest) {
-    return {
-        type: GUEST_USERNAME,
-        payload: guest
-    }
-}
-
 export function judgeIndex(index){
     return {
         type: JUDGE_INDEX,
@@ -121,6 +113,13 @@ export function winningMeme(winningMeme){
 export function room(val) {
     return {
         type: ROOM,
+        payload: val
+    }
+}
+
+export function memes(val) {
+    return {
+        type: MEMES, 
         payload: val
     }
 }

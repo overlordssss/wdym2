@@ -75,21 +75,21 @@ class JudgePlayerWaiting extends Component {
             <div>
                 <Particles params={particleOpt} />
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
-                {image === '' ?
+                {this.props.user.username === this.props.players[this.props.judgeIndex] ?
                     <div className='container'>
                         <h1 className='waiting'>WAITING ON PLAYERS</h1>
-                        <div class="dash uno"></div>
-                        <div class="dash dos"></div>
-                        <div class="dash tres"></div>
-                        <div class="dash cuatro"></div>
+                        <div className="dash uno"></div>
+                        <div className="dash dos"></div>
+                        <div className="dash tres"></div>
+                        <div className="dash cuatro"></div>
                     </div>
                     :
                     <div className='container'>
                         <h1 className='judge'>WAITING ON JUDGE</h1>
-                        <div class="dash uno"></div>
-                        <div class="dash dos"></div>
-                        <div class="dash tres"></div>
-                        <div class="dash cuatro"></div>
+                        <div className="dash uno"></div>
+                        <div className="dash dos"></div>
+                        <div className="dash tres"></div>
+                        <div className="dash cuatro"></div>
                     </div>}
             </div>
         )
