@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { user, guestUsername } from '../../dux/reducer';
+import { user } from '../../dux/reducer';
 import './Login.css';
 import axios from 'axios';
 
@@ -115,4 +115,4 @@ class Login extends Component {
 }
 
 
-export default connect(null, { user, guestUsername })(Login)
+export default connect(null, { user })(Login)

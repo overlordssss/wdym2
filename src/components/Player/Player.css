@@ -1,78 +1,97 @@
 .wallpaper{
     background-image: url('https://wallpapertag.com/wallpaper/middle/9/3/8/980684-meme-background-pictures-1920x1080-htc.jpg');
-    z-index: -10;
     height: 100vh;
     width: 100vw;
     background-size: cover;
-}
-.counter{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.counter{
     position: absolute;
-    float: right;
-    margin-top: 25px;
-    margin-left: 1352px;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 .spinner{
-    position: absolute;
-    align-self: auto;
+    /* position: absolute; */
     z-index: 2;
-    float: right;
-    margin-left: 1320px;
 }
+/* .timer-container{
+    align-self: flex-start;
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+}
+.counter{
+    margin-top: 50px;
+    z-index: 8;
+} */
 .meme{
+    align-self: center;
     height: 100vh;
+    width: 50vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    float: right;
-    margin-top: 100px;
-    align-items: center;
-    position: absolute;
-    margin-left: 480px;
 }
 .user-meme{
-    /* margin-top: 100px; */
+    position: relative;
+    z-index: 4;
     height: 500px;
-    width: 500px;
-    /* position: absolute; */
-    z-index: 1;
+    width: 600px;
     border-radius: 20px;
 }
-.input-top{
-    height: 200px;
-    color: white;
-    z-index: 5;
-    font-size: 40px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-shadow: 2px 2px black;
-    width: 500px;
-    word-wrap: break-word;
-    float: right;
-    /* padding-bottom: 300px; */
-}
-.input-bottom{
-    color: white;
-    z-index: 5;
-    font-size: 40px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-shadow: 2px 2px black;
-    width: 500px;
-    word-wrap: break-word;
+.spinner{
+    z-index: 2;
 }
 .le-meme{
+    height: 500px;
+    width: 600px;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    /* margin-top: 80px; */
+}
+.inputs-timer-container{
+    width: 50vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.meme-inputs{
+    position: absolute;
+    z-index: 5;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; */
+}
+.input-top{
+    margin-top: 10px;
+    color: white;
+    z-index: 6;
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px black;
+    width: 500px;
+    word-wrap: break-word;
+}
+.input-bottom{
+    position: absolute;
+    top: 420px;
+    color: white;
+    z-index: 6;
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px black;
+    width: 500px;
+    word-wrap: break-word;
 }
 .le-inputs{
     height: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
 }
