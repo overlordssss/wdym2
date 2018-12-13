@@ -5,9 +5,7 @@ import { RingLoader } from 'react-spinners';
 const override = css`
     display: block;
     margin: 0 auto;
-    border-color: red;
-    z-index: -1;
-    
+    z-index: 1;
 `;
 
 class Spinner extends React.Component {
