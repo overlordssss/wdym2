@@ -56,6 +56,7 @@ class Player extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className='wallpaper'>
                 <div className='meme'>

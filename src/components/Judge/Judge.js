@@ -17,11 +17,6 @@ class Judge extends Component {
     }
 
     componentDidMount(){
-        this.props.socket.on('get responses', (data) => {
-            this.setState({
-                playerData: data
-            })
-        })
         this.timer()
     }
 
