@@ -8,6 +8,20 @@ const initialState = {
     numberOfPlayers: 0,
     winningMeme: [],
     players: [],
+<<<<<<< HEAD
+}
+
+const USER = 'USER'
+const GUEST_USERNAME = 'GUEST_USERNAME'
+const ROUNDSTOWIN = 'ROUNDSTOWIN'
+const PLAYERS = 'PLAYERS'
+const IMAGES = 'IMAGES'
+const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
+const ROOM = 'ROOM'
+const USERLOGOUT = 'USERLOGOUT'
+const JUDGE_INDEX = 'JUDGE_INDEX'
+const WINNINGMEME = 'WINNINGMEME'
+=======
  }
  
  const USER = 'USER' 
@@ -20,43 +34,49 @@ const initialState = {
  const JUDGE_INDEX = 'JUDGE_INDEX'
  const WINNINGMEME = 'WINNINGMEME'
  const MEMES = 'MEMES'
+>>>>>>> master
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
 
         case USER:
-        return Object.assign({}, state, { user: action.payload })
+            return Object.assign({}, state, { user: action.payload })
 
         case ROUNDSTOWIN:
-        return Object.assign({}, state, { roundsToWin: action.payload })
+            return Object.assign({}, state, { roundsToWin: action.payload })
 
         case PLAYERS:
-        return Object.assign({}, state, { players: action.payload })
-
+            return Object.assign({}, state, { players: action.payload })
 
         case IMAGES:
-        return Object.assign({}, state, { customImages: action.payload })
+            return Object.assign({}, state, { customImages: action.payload })
 
         case NUMBEROFPLAYERS:
-        return Object.assign({}, state, { numberOfPlayers: action.payload })
+            return Object.assign({}, state, { numberOfPlayers: action.payload })
 
+<<<<<<< HEAD
+        case GUEST_USERNAME:
+            return Object.assign({}, state, { guestUsername: action.payload })
+
+=======
+>>>>>>> master
         case JUDGE_INDEX:
-        return Object.assign({}, state, { judgeIndex: action.payload })
+            return Object.assign({}, state, { judgeIndex: action.payload })
 
         case WINNINGMEME:
-        return Object.assign({}, state, { winningMeme: action.payload })
-        
+            return Object.assign({}, state, { winningMeme: action.payload })
+
         case ROOM:
-        return Object.assign({}, state, {room: action.payload})
+            return Object.assign({}, state, { room: action.payload })
 
         case MEMES:
         return Object.assign({}, state, {blankMemes: action.payload})
 
         case USERLOGOUT:
-        return initialState
+            return initialState
 
         default:
-        return state;
+            return state;
     }
 }
 
@@ -72,43 +92,54 @@ export function players(val) {
         type: PLAYERS,
         payload: val
     }
- }
+}
 
 
- export function user(user){
-    return{
+export function user(user) {
+    return {
         type: USER,
         payload: user
     }
- }
+}
 
-export function images(images){
-    return{
+export function images(images) {
+    return {
         type: IMAGES,
         payload: images
     }
 }
 
-export function numberOfPlayers(num){
-    return{
+export function numberOfPlayers(num) {
+    return {
         type: NUMBEROFPLAYERS,
         payload: num
     }
 }
 
+<<<<<<< HEAD
+export function guestUsername(guest) {
+    return {
+        type: GUEST_USERNAME,
+        payload: guest
+    }
+}
+
+export function judgeIndex(index) {
+=======
 export function judgeIndex(index){
+>>>>>>> master
     return {
         type: JUDGE_INDEX,
         payload: index
     }
 }
 
-export function winningMeme(winningMeme){
+export function winningMeme(winningMeme) {
     return {
         type: WINNINGMEME,
         payload: winningMeme
     }
-}        
+}
 
 export function room(val) {
     return {
@@ -117,6 +148,9 @@ export function room(val) {
     }
 }
 
+<<<<<<< HEAD
+export function userLogout() {
+=======
 export function memes(val) {
     return {
         type: MEMES, 
@@ -125,6 +159,7 @@ export function memes(val) {
 }
 
 export function userLogout(){
+>>>>>>> master
     return {
         type: USERLOGOUT,
         payload: initialState
