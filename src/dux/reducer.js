@@ -8,11 +8,9 @@ const initialState = {
     numberOfPlayers: 0,
     winningMeme: [],
     players: [],
-<<<<<<< HEAD
 }
 
 const USER = 'USER'
-const GUEST_USERNAME = 'GUEST_USERNAME'
 const ROUNDSTOWIN = 'ROUNDSTOWIN'
 const PLAYERS = 'PLAYERS'
 const IMAGES = 'IMAGES'
@@ -21,20 +19,7 @@ const ROOM = 'ROOM'
 const USERLOGOUT = 'USERLOGOUT'
 const JUDGE_INDEX = 'JUDGE_INDEX'
 const WINNINGMEME = 'WINNINGMEME'
-=======
- }
- 
- const USER = 'USER' 
- const ROUNDSTOWIN = 'ROUNDSTOWIN'
- const PLAYERS = 'PLAYERS'
- const IMAGES = 'IMAGES'
- const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
- const ROOM = 'ROOM'
- const USERLOGOUT = 'USERLOGOUT'
- const JUDGE_INDEX = 'JUDGE_INDEX'
- const WINNINGMEME = 'WINNINGMEME'
- const MEMES = 'MEMES'
->>>>>>> master
+const MEMES = 'MEMES'
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -54,12 +39,6 @@ export default function reducer(state = initialState, action) {
         case NUMBEROFPLAYERS:
             return Object.assign({}, state, { numberOfPlayers: action.payload })
 
-<<<<<<< HEAD
-        case GUEST_USERNAME:
-            return Object.assign({}, state, { guestUsername: action.payload })
-
-=======
->>>>>>> master
         case JUDGE_INDEX:
             return Object.assign({}, state, { judgeIndex: action.payload })
 
@@ -70,7 +49,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { room: action.payload })
 
         case MEMES:
-        return Object.assign({}, state, {blankMemes: action.payload})
+            return Object.assign({}, state, { blankMemes: action.payload })
 
         case USERLOGOUT:
             return initialState
@@ -116,18 +95,7 @@ export function numberOfPlayers(num) {
     }
 }
 
-<<<<<<< HEAD
-export function guestUsername(guest) {
-    return {
-        type: GUEST_USERNAME,
-        payload: guest
-    }
-}
-
 export function judgeIndex(index) {
-=======
-export function judgeIndex(index){
->>>>>>> master
     return {
         type: JUDGE_INDEX,
         payload: index
@@ -148,18 +116,14 @@ export function room(val) {
     }
 }
 
-<<<<<<< HEAD
-export function userLogout() {
-=======
 export function memes(val) {
     return {
-        type: MEMES, 
+        type: MEMES,
         payload: val
     }
 }
 
-export function userLogout(){
->>>>>>> master
+export function userLogout() {
     return {
         type: USERLOGOUT,
         payload: initialState

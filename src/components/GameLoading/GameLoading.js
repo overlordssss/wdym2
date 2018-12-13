@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { judgeIndex, players, roundsToWin } from '../../dux/reducer';
-=======
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {judgeIndex, players, roundsToWin, memes} from '../../dux/reducer';
->>>>>>> master
+import { judgeIndex, players, roundsToWin, memes } from '../../dux/reducer';
 import axios from 'axios';
 import './GameLoading.css'
 
@@ -52,28 +46,21 @@ class GameLoading extends Component {
             axios.put(`/game/updateMax/`, { currentNumPlayers, room })
         }
         let memes = []
-        let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
-        axios.get(`/game/memes/:${blankMemes}`).then( res => {
+        let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
+        axios.get(`/game/memes/:${blankMemes}`).then(res => {
             memes = res.data
         })
 
-<<<<<<< HEAD
         //generate a random index for the judge
-        let judge = Math.floor(Math.random * (this.state.players.length) - 1)
-=======
-         //generate a random index for the judge
-         let judge = Math.floor(Math.random()*currentNumPlayers - 1) +1
-         console.log('judge Index: ', judge)
->>>>>>> master
+        let judge = Math.floor(Math.random() * currentNumPlayers - 1) + 1
+        console.log('judge Index: ', judge)
 
         let { players, roundsToWin } = this.state
 
-<<<<<<< HEAD
         //send judge index, players and game start to sockets
-        this.props.socket.emit('start game', { judge, players, roundsToWin, room })
+        this.props.socket.emit('start game', { judge, players, roundsToWin, memes, room })
     }
     render() {
-        console.log('state: ', this.state)
         return (
             <div className='game-loading-background'>
                 <div className='game-loading-container'>
@@ -98,36 +85,6 @@ class GameLoading extends Component {
             </div>
         )
     }
-=======
-         //send judge index, players and game start to sockets
-        this.props.socket.emit('start game', {judge, players, roundsToWin, memes, room})
-     }
-    render(){
-    return(
-        <div className='game-loading-background'>
-            <div className='game-loading-container'>
-            <div >
-                <h1 className="room-code">Room code: {this.props.room}</h1>
-            </div>
-            <div className='display-list'>
-                <h1 className='rounds'>Rounds To Win: {this.state.roundsToWin}</h1>
-                <h1 className='le-players'>Players</h1>
-                <ul className='players'>
-                {this.state.players.map(username => {
-                    return <h1 key = {username} >{username}</h1>
-                })}
-                </ul>
-            </div>
-            {/* basic start button passing the socket players connected to the room to the game */}
-            {(this.state.creator === this.props.user.username && this.state.players.length >= 3) ?
-            <button onClick={this.handleClick}>START</button>
-            : null
-            }
-            </div>
-        </div>
-    )
-  }
->>>>>>> master
 }
 
 const mapStateToProps = state => {
@@ -139,8 +96,4 @@ const mapStateToProps = state => {
 }
 
 
-<<<<<<< HEAD
-export default connect(mapStateToProps, { judgeIndex, players, roundsToWin })(GameLoading)
-=======
-export default connect(mapStateToProps, {judgeIndex, players, roundsToWin, memes})(GameLoading)
->>>>>>> master
+export default connect(mapStateToProps, { judgeIndex, players, roundsToWin, memes })(GameLoading)

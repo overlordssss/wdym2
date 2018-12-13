@@ -51,11 +51,7 @@ class Login extends Component {
     guestLogin = () => {
 
         if (this.state.guest !== '') {
-<<<<<<< HEAD
             this.props.user({ username: this.state.guest })
-=======
-            this.props.user({username: this.state.guest})
->>>>>>> master
             this.props.history.push('/landing-page')
         } else {
             alert('Guest name must not be empty')
