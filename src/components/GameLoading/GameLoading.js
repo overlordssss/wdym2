@@ -4,32 +4,32 @@ import {judgeIndex, players, roundsToWin, memes} from '../../dux/reducer';
 import axios from 'axios';
 import './GameLoading.css'
 
- class GameLoading extends Component{
-     constructor(){
-         super();
+class GameLoading extends Component {
+    constructor() {
+        super();
 
-         this.state = {
+        this.state = {
             players: [],
-            roundsToWin:0,
+            roundsToWin: 0,
             maxPlayers: 0,
             creator: ''
-         }
-     }
-     componentDidMount=() => {
-         let {room} = this.props 
-         axios.get(`/game/roomInfo/${room}`)
-         .then( res => {
-             console.log('data from endpoint: ', res.data)
-             this.setState({
-                 roundsToWin: res.data[0].rounds_to_win,
-                 maxPlayers: res.data[0].number_of_players,
-                 creator: res.data[0].creator
-             })
-         })
-         this.props.socket.on('room joined', data => {
-             this.setState({players: data})
-         })
-         this.props.socket.on('game started', data => {
+        }
+    }
+    componentDidMount = () => {
+        let { room } = this.props
+        axios.get(`/game/roomInfo/${room}`)
+            .then(res => {
+                console.log('data from endpoint: ', res.data)
+                this.setState({
+                    roundsToWin: res.data[0].rounds_to_win,
+                    maxPlayers: res.data[0].number_of_players,
+                    creator: res.data[0].creator
+                })
+            })
+        this.props.socket.on('room joined', data => {
+            this.setState({ players: data })
+        })
+        this.props.socket.on('game started', data => {
             console.log('game has been started!')
             this.props.judgeIndex(data.judge)
             this.props.players(data.players)
@@ -37,13 +37,13 @@ import './GameLoading.css'
             this.props.memes(data.memes)
             this.props.history.push('/in-game')
         })
-     }
-     handleClick = () => {
+    }
+    handleClick = () => {
         //send amount of players to db to change max Players (if need be)
-         let currentNumPlayers = this.state.players.length
-         let {room} = this.props
+        let currentNumPlayers = this.state.players.length
+        let { room } = this.props
         if (currentNumPlayers !== this.state.maxPlayers) {
-            axios.put(`/game/updateMax/`,{currentNumPlayers, room})
+            axios.put(`/game/updateMax/`, { currentNumPlayers, room })
         }
         let memes = []
         let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
@@ -55,7 +55,7 @@ import './GameLoading.css'
          let judge = Math.floor(Math.random()*currentNumPlayers - 1) +1
          console.log('judge Index: ', judge)
 
-        let {players, roundsToWin} = this.state
+        let { players, roundsToWin } = this.state
 
          //send judge index, players and game start to sockets
         this.props.socket.emit('start game', {judge, players, roundsToWin, memes, room})

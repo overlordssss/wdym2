@@ -21,7 +21,7 @@ export default (socket) => (
         <Route path='/create-game' render={(props) => <CreateGame socket = {socket}{...props}/>}/>
         <Route path='/game-loading' render={(props) => <GameLoading socket = {socket}{...props}/>}/>
         <Route path='/player' render={(props) => <Player socket = {socket}{...props}/>}/>
-        <Route path='/judge' render={() => <Judge socket={socket}/>} />
+        <Route path='/judge' render={(props) => <Judge socket={socket}{...props}/>} />
         <Route path='/winner' render={() => <Winner socket={socket}/>}/>
         <Route path='/waiting-room' render={(props) => <JudgePlayerWaiting socket = {socket}{...props} />}/>
         <Route path='/in-game' render={(props) => <InGame socket= {socket}{...props}/>}/>
