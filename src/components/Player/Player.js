@@ -38,21 +38,23 @@ class Player extends Component{
         this.props.history.push('/waiting-room')
     }
 
-    timer = (val) => {
-        if(val > 0){
-            setTimeout(() => {
+    timer = () => {
+        setInterval(() => {
+                if(this.state.count > 0){
                 this.setState({
                     count: this.state.count - 1
                 })
-            }, 1000);
-        }
+            }}, 1000);
+    }
+
+    componentDidMount(){
+        this.timer()
     }
 
     render(){        
         return(
             <div className='wallpaper'>
                 <div className='timer-container'>
-                {this.timer(this.state.count)}
                 <h1 className='counter'>{this.state.count}</h1>
                 <div className='spinner'>
                 {this.state.count > 0 ? <Spinner/>
@@ -60,10 +62,16 @@ class Player extends Component{
                 </div>
                 </div>
                 <div className='meme'>
-                    <img src = 'https://quizizz.zendesk.com/hc/article_attachments/115002501069/1024x1024.jpg' alt='' className='user-meme'/>
-                    <h1>Text at Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput}/>
-                    <h1>Text at Bottom: </h1><input placeholder="Enter text here" className='inputs'onChange={this.bottomInput}/>
-                    <button className='btn' onClick={this.submitHandler}>Submit Meme</button>
+                    <div className='le-meme'>
+                        <img src = 'http://www.comicsandmemes.com/wp-content/uploads/2013/04/Success-baby.jpg' alt='' className='user-meme'/>
+                        <div className='input-top'>{this.state.inputTop}</div>
+                        <div className='input-bottom'>{this.state.inputBottom}</div>
+                    </div>
+                    <div className='le-inputs'>
+                        <h1>Text Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput}/>
+                        <h1>Text Bottom: </h1><input placeholder="Enter text here" className='inputs'onChange={this.bottomInput}/>
+                        <button className='btn' onClick={this.submitHandler}>Submit Meme</button>
+                    </div>
                 </div>
             </div>
         )

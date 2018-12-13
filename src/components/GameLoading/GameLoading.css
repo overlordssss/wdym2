@@ -1,9 +1,3 @@
-.game-loading-background{
-    background-image: linear-gradient(to bottom right, #e600e6, green);
-    z-index: -2;
-    min-width: 100vw;
-    min-height: 100vh;
-}
 .room-code{
     font-size: 80px;
 }

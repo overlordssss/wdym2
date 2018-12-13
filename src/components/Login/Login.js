@@ -51,7 +51,7 @@ class Login extends Component {
     guestLogin = () => {
 
         if (this.state.guest !== '') {
-            this.props.guestUsername(this.state.guest)
+            this.props.user({username: this.state.guest})
             this.props.history.push('/landing-page')
         } else {
             alert('Guest name must not be empty')
@@ -105,7 +105,7 @@ class Login extends Component {
                         className='inputs'
                     />
                     <button
-                        onClick={this.login}
+                        onClick={this.guestLogin}
                         className='go'
                     >GO!</button>
                 </div>
