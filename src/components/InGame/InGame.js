@@ -22,7 +22,8 @@ class InGame extends Component {
             judgeIndex: 0,
             fullResponse: false,
             memes: [],
-            memeIndex: 0
+            memeIndex: 0,
+            playerData: [],
         }
     }
     componentDidMount() {
