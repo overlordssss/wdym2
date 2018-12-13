@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {judgeIndex, players, roundsToWin, memes} from '../../dux/reducer';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { judgeIndex, players, roundsToWin, memes } from '../../dux/reducer';
 import axios from 'axios';
 import './GameLoading.css'
 
@@ -49,46 +49,51 @@ class GameLoading extends Component {
             .then(() => console.log('Max Players was updated'))
         }
         let memes = []
+<<<<<<< HEAD
+        let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
+        axios.get(`/game/memes/:${blankMemes}`).then(res => {
+=======
         let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
         axios.get(`/game/memes/${blankMemes}`).then( res => {
+>>>>>>> master
             memes = res.data
             console.log('Got the memes!')
         })
 
-         //generate a random index for the judge
-         let judge = Math.floor(Math.random()*currentNumPlayers - 1) +1
-         console.log('judge Index: ', judge)
+        //generate a random index for the judge
+        let judge = Math.floor(Math.random() * currentNumPlayers - 1) + 1
+        console.log('judge Index: ', judge)
 
         let { players, roundsToWin } = this.state
 
-         //send judge index, players and game start to sockets
-        this.props.socket.emit('start game', {judge, players, roundsToWin, memes, room})
-     }
-    render(){
-    return(
-        <div className='game-loading-background'>
-            <div className='game-loading-container'>
-            <div >
-                <h1 className="room-code">Room code: {this.props.room}</h1>
+        //send judge index, players and game start to sockets
+        this.props.socket.emit('start game', { judge, players, roundsToWin, memes, room })
+    }
+    render() {
+        return (
+            <div className='game-loading-background'>
+                <div className='game-loading-container'>
+                    <div >
+                        <h1 className="room-code">Room code: {this.props.room}</h1>
+                    </div>
+                    <div className='display-list'>
+                        <h1 className='rounds'>Rounds To Win: {this.state.roundsToWin}</h1>
+                        <h1 className='le-players'>Players</h1>
+                        <ul className='players'>
+                            {this.state.players.map(username => {
+                                return <h1 key={username} >{username}</h1>
+                            })}
+                        </ul>
+                    </div>
+                    {/* basic start button passing the socket players connected to the room to the game */}
+                    {(this.state.creator === this.props.user.username && this.state.players.length >= 3) ?
+                        <button onClick={this.handleClick}>START</button>
+                        : null
+                    }
+                </div>
             </div>
-            <div className='display-list'>
-                <h1 className='rounds'>Rounds To Win: {this.state.roundsToWin}</h1>
-                <h1 className='le-players'>Players</h1>
-                <ul className='players'>
-                {this.state.players.map(username => {
-                    return <h1 key = {username} >{username}</h1>
-                })}
-                </ul>
-            </div>
-            {/* basic start button passing the socket players connected to the room to the game */}
-            {(this.state.creator === this.props.user.username && this.state.players.length >= 3) ?
-            <button onClick={this.handleClick}>START</button>
-            : null
-            }
-            </div>
-        </div>
-    )
-  }
+        )
+    }
 }
 
 const mapStateToProps = state => {
@@ -100,4 +105,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {judgeIndex, players, roundsToWin, memes})(GameLoading)
+export default connect(mapStateToProps, { judgeIndex, players, roundsToWin, memes })(GameLoading)
