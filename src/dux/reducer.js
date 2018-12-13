@@ -8,7 +8,6 @@ const initialState = {
     numberOfPlayers: 0,
     winningMeme: [],
     players: [],
-<<<<<<< HEAD
 }
 
 const USER = 'USER'
@@ -21,20 +20,6 @@ const USERLOGOUT = 'USERLOGOUT'
 const JUDGE_INDEX = 'JUDGE_INDEX'
 const WINNINGMEME = 'WINNINGMEME'
 const MEMES = 'MEMES'
-=======
- }
- 
- const USER = 'USER' 
- const ROUNDSTOWIN = 'ROUNDSTOWIN'
- const PLAYERS = 'PLAYERS'
- const IMAGES = 'IMAGES'
- const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
- const ROOM = 'ROOM'
- const USERLOGOUT = 'USERLOGOUT'
- const JUDGE_INDEX = 'JUDGE_INDEX'
- const WINNINGMEME = 'WINNINGMEME'
- const MEMES = 'MEMES'
->>>>>>> master
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -110,11 +95,7 @@ export function numberOfPlayers(num) {
     }
 }
 
-<<<<<<< HEAD
 export function judgeIndex(index) {
-=======
-export function judgeIndex(index){
->>>>>>> master
     return {
         type: JUDGE_INDEX,
         payload: index
@@ -142,11 +123,7 @@ export function memes(val) {
     }
 }
 
-<<<<<<< HEAD
 export function userLogout() {
-=======
-export function userLogout(){
->>>>>>> master
     return {
         type: USERLOGOUT,
         payload: initialState
