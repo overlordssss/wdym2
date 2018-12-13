@@ -42,13 +42,22 @@ class GameLoading extends Component {
         //send amount of players to db to change max Players (if need be)
         let currentNumPlayers = this.state.players.length
         let { room } = this.props
+        console.log('current Players: ', currentNumPlayers)
+        console.log('maxplayers: ', this.state.maxPlayers)
         if (currentNumPlayers !== this.state.maxPlayers) {
             axios.put(`/game/updateMax/`, { currentNumPlayers, room })
+            .then(() => console.log('Max Players was updated'))
         }
         let memes = []
+<<<<<<< HEAD
         let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
         axios.get(`/game/memes/:${blankMemes}`).then(res => {
+=======
+        let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
+        axios.get(`/game/memes/${blankMemes}`).then( res => {
+>>>>>>> master
             memes = res.data
+            console.log('Got the memes!')
         })
 
         //generate a random index for the judge

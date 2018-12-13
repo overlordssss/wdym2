@@ -26,6 +26,11 @@ class InGame extends Component {
         }
     }
     componentDidMount() {
+        this.props.socket.on('get responses', (data) => {
+            this.setState({
+                playerData: data
+            })
+        })
         //get user info, change username in state 
         //missing endpoint
         this.setState({
@@ -50,20 +55,20 @@ class InGame extends Component {
                 {/* if someone has won */
                 console.log('props: ', this.props)}
                 {this.props.players === this.props.roundsToWin ?
-                    <Winner />
+                    <Winner socket={this.props.socket}/>
                 : null}
                 {this.state.winner ?
-                    <RoundWinner />
+                    <RoundWinner socket={this.props.socket}/>
                     //check to see if player is the judge
                 : this.props.user.username === this.props.players[this.props.judgeIndex] ?
                     //is the judge waiting for responses?
                     this.state.fullResponse ?
                     //if not, send to judge view
-                    <Judge />
+                    <Judge socket={this.props.socket}/>
                     //if still waiting, keep in waiting
-                    : <JudgePlayerWaiting />
+                    : <JudgePlayerWaiting socket={this.props.socket}/>
                         
-                : <Player history={this.props.history} />
+                : <Player socket={this.props.socket} history={this.props.history} />
                 }
             </div>
         )

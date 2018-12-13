@@ -30,7 +30,6 @@ module.exports = {
 
         } catch (error) {
             console.log("=======ERROR========", error)
-            res.send("sorry, you suck")
         }
     },
     roomInfo: async (req, res) => {
@@ -40,15 +39,17 @@ module.exports = {
         res.status(200).send(info)
     },
     updateMax: async (req, res) => {
+        console.log('update was hit')
         const db = req.app.get('db')
-        let { currentNumPlayers, room } = req.params.body
+        let { currentNumPlayers, room } = req.body
         await db.update_max(currentNumPlayers, room)
         res.sendStatus(200)
     },
-    memes: async (req, res) => {
+    blankMemes: async (req, res) => {
+        console.log('blankmemes was hit')
         const db = req.app.get('db')
         let {limit} = req.params
-        let memes = await db.get_memes(limit)
-        res.send(memes).status(200)
+        let blankMemes = await db.get_memes(limit)
+        res.send(blankMemes).status(200)
     }
 }
