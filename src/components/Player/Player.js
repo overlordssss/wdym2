@@ -40,12 +40,15 @@ class Player extends Component {
 
     timer = () => {
         setInterval(() => {
-            if (this.state.count > 0) {
+                if(this.state.count > 0){
                 this.setState({
                     count: this.state.count - 1
                 })
-            }
-        }, 1000);
+            }}, 1000);
+    }
+
+    componentDidMount(){
+        this.timer()
     }
 
     componentDidMount() {
