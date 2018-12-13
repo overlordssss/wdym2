@@ -76,14 +76,13 @@ class LandingPage extends Component {
     }
 
     render() {
-        // console.log(this.props)
         return (
             <div className='landing-page two'>
                 <div className='landing-page-inputs'>
                     {this.props.user.username ?
                         <h1 className='landing-text'>Welcome {this.props.user.username}! </h1>
                         : <h1 className='landing-text'>Welcome {this.props.guest}! </h1>}
-                    {this.props.user.username ?
+                    {this.props.user.user_id ?
                         <Link to='/create-game'><button className='btn'>Create new game</button></Link>
                         : <h3 className='landing-text'>Create an account to host your own games</h3>}
                     <h3 className='landing-text'>Enter Room code to join an existing game</h3>
