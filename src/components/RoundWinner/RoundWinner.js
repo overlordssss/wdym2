@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import './RoundWinner.css';
 
-function RoundWinner(props){
-    return (
-        <div className=''>
-            <h1>
-                {/* round winner will be a prop passed from the judge view */}
-                Round Winner is: {props.user.username}
-            </h1>
-            <div>
-                This is where the winning meme will display
-                {props.winningMeme}
+class RoundWinner extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+
+        }
+    }
+
+    render(){
+        return (
+            <div className='round-winner'>
+                <h1 className='winning-user'>
+                    {/* round winner will be a prop passed from the judge view */}
+                    Round Winner is: {this.props.user.username}
+                </h1>
+                <div className='round-winner'>
+                    This is where the winning meme will display
+                    {this.props.winningMeme}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const mapStateToProps = state => {
