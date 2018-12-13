@@ -44,5 +44,11 @@ module.exports = {
         let { currentNumPlayers, room } = req.params.body
         await db.update_max(currentNumPlayers, room)
         res.sendStatus(200)
+    },
+    memes: async (req, res) => {
+        const db = req.app.get('db')
+        let {limit} = req.params
+        let memes = await db.get_memes(limit)
+        res.send(memes).status(200)
     }
 }

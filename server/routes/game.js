@@ -10,7 +10,7 @@ GameRouter.post('/uploadimg');
 // gets user data to display upon logging in
 GameRouter.get('/userdata');
 // will pull images s3 for database storage
-GameRouter.get('/memes', gameController.getMemeImages);
+GameRouter.get('/memes:limit', gameController.getMemeImages);
 //will get all existing rooms from db
 GameRouter.get('/rooms', gameController.rooms);
 //will post a new room to db
