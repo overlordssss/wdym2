@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { user, guestUsername } from '../../dux/reducer';
+import { user } from '../../dux/reducer';
 import './Login.css';
 import axios from 'axios';
 
@@ -51,7 +51,7 @@ class Login extends Component {
     guestLogin = () => {
 
         if (this.state.guest !== '') {
-            this.props.guestUsername(this.state.guest)
+            this.props.user({username: this.state.guest})
             this.props.history.push('/landing-page')
         } else {
             alert('Guest name must not be empty')
@@ -105,7 +105,7 @@ class Login extends Component {
                         className='inputs'
                     />
                     <button
-                        onClick={this.login}
+                        onClick={this.guestLogin}
                         className='go'
                     >GO!</button>
                 </div>
@@ -115,4 +115,4 @@ class Login extends Component {
 }
 
 
-export default connect(null, { user, guestUsername })(Login)
+export default connect(null, { user })(Login)

@@ -19,14 +19,12 @@ class InGame extends Component {
             username: '',
             winner: false,
             count: 60,
-            judgeIndex: 0
+            judgeIndex: 0,
+            fullResponse: false,
+            memes: [],
+            memeIndex: 0
         }
     }
-    // componentDidMount(){
-    //     axios.get()
-
-    // }
-
     componentDidMount() {
         //get user info, change username in state 
         //missing endpoint
@@ -49,19 +47,24 @@ class InGame extends Component {
 
         return (
             <div>
-                {/* if someone has won */}
+                {/* if someone has won */
+                console.log('props: ', this.props)}
                 {this.props.players === this.props.roundsToWin ?
                     <Winner />
-                    : null}
+                : null}
                 {this.state.winner ?
                     <RoundWinner />
                     //check to see if player is the judge
-                    : this.props.user.username === this.props.players[this.props.judgeIndex] ?
-                        <JudgePlayerWaiting />
-                        //
-                        : <Player history={this.props.history} />
+                : this.props.user.username === this.props.players[this.props.judgeIndex] ?
+                    //is the judge waiting for responses?
+                    this.state.fullResponse ?
+                    //if not, send to judge view
+                    <Judge />
+                    //if still waiting, keep in waiting
+                    : <JudgePlayerWaiting />
+                        
+                : <Player history={this.props.history} />
                 }
-                {}
             </div>
         )
     }
@@ -72,7 +75,8 @@ const mapStateToProps = state => {
         players: state.players,
         roundsToWin: state.roundsToWin,
         judgeIndex: state.judgeIndex,
-        user: state.user
+        user: state.user,
+        memes: state.blankMemes
     }
 }
 

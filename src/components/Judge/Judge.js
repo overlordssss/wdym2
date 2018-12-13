@@ -61,7 +61,7 @@ class Judge extends Component {
                     <h1>{this.state.count}</h1>
                 </div>
                 <div className='spinner'>
-                    {this.state.count > 0 ? ''
+                    {this.state.count > 0 ? null
                         : this.props.history.push('/round-winner')}
                 </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}

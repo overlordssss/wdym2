@@ -73,10 +73,6 @@ io.on('connection', socket => {
         io.to(data.room).emit('game started', data)
     })
 
-    //disconnect
-    socket.on('disconnect', () => {
-        console.log('User Disconnected')
-    })
     //player submit handler
     socket.on('player submit', ({username, inputTop, inputBottom, room}) => {
         console.log('player submitted meme', username, inputTop, inputBottom, room)
@@ -85,6 +81,11 @@ io.on('connection', socket => {
         }
         responses[room].push({username, inputTop, inputBottom})
         io.to(room).emit('get responses', responses[room])
+    })
+    
+    //disconnect
+    socket.on('disconnect', () => {
+        console.log('User Disconnected')
     })
 })
 
