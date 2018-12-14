@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
 import { winningMeme, memes } from '../../dux/reducer';
-import Carousel from 'react-responsive-carousel';
+import './Judge.css';
 
 class Judge extends Component {
     constructor() {
@@ -10,7 +10,7 @@ class Judge extends Component {
 
         this.state = {
             meme_index: 0,
-            count: 60,
+            count: 10000,
             currentIndex: 0,
             playerData: []
         }
@@ -20,10 +20,15 @@ class Judge extends Component {
         this.timer()
     }
 
-    handleSwipeLeft = () => {
+    handleClickLeft = () => {
         let new_index = this.state.meme_index
         new_index++
         this.setState({ meme_index: new_index })
+    }
+
+    handleClickRight = () => {
+        let new_index = this.state.currentIndex
+
     }
 
     timer = () => {
@@ -62,20 +67,16 @@ class Judge extends Component {
                     {this.state.count > 0 ? <Spinner />
                         : this.props.history.push('/round-winner')}
                 </div>
+                <div className='arrow-container'>
+                <div className="arrow-left" onClick={this.handleClickLeft}></div>
+                <div className="arrow-right" onClick={this.handleClickRight}></div>
+                </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
-                <Carousel
-                    showArrows={true}
-                    infiniteLoop={true}
-                    swipable={true}
-                >
-                    {playerMemes}
-
-                </Carousel>
+                {playerMemes}
                 <button onClick={this.memeSelect}>Select</button>
-                {}
             </div >
         )
     }
@@ -83,10 +84,12 @@ class Judge extends Component {
 
 const mapStateToProps = state => {
     return {
-        players: state.players
+        players: state.players,
+        memes: state.memes,
+        playerData: state.playerData
     }
 }
 
 
 
-export default connect(mapStateToProps, { winningMeme, memes })(Judge)
+export default connect(mapStateToProps, { winningMeme })(Judge)
