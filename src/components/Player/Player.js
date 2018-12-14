@@ -11,7 +11,7 @@ class Player extends Component {
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
 
         this.state = {
-            count: 60,
+            count: 10000,
             inputTop: '',
             inputBottom: ''
         }
@@ -40,14 +40,15 @@ class Player extends Component {
 
     timer = () => {
         setInterval(() => {
-                if(this.state.count > 0){
+            if (this.state.count > 0) {
                 this.setState({
                     count: this.state.count - 1
                 })
-            }}, 1000);
+            }
+        }, 1000);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.timer()
     }
 
@@ -70,8 +71,8 @@ class Player extends Component {
                     </div>
                     <div className='inputs-timer-container'>
                         <div className='le-inputs'>
-                            <h1>Text Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput} />
-                            <h1>Text Bottom: </h1><input placeholder="Enter text here" className='inputs' onChange={this.bottomInput} />
+                            <h1 className='texts-inputs'>Text Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput} />
+                            <h1 className='texts-inputs'>Text Bottom: </h1><input placeholder="Enter text here" className='inputs' onChange={this.bottomInput} />
                             <button className='btn' onClick={this.submitHandler}>Submit Meme</button>
                         </div>
                         <div className='timer-container'>

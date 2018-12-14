@@ -46,16 +46,11 @@ class GameLoading extends Component {
         console.log('maxplayers: ', this.state.maxPlayers)
         if (currentNumPlayers !== this.state.maxPlayers) {
             axios.put(`/game/updateMax/`, { currentNumPlayers, room })
-            .then(() => console.log('Max Players was updated'))
+                .then(() => console.log('Max Players was updated'))
         }
         let memes = []
-<<<<<<< HEAD
         let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
-        axios.get(`/game/memes/:${blankMemes}`).then(res => {
-=======
-        let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
-        axios.get(`/game/memes/${blankMemes}`).then( res => {
->>>>>>> master
+        axios.get(`/game/memes/${blankMemes}`).then(res => {
             memes = res.data
             console.log('Got the memes!')
         })
