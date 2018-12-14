@@ -11,7 +11,7 @@ class Player extends Component {
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
 
         this.state = {
-            count: 60,
+            count: 10000,
             inputTop: '',
             inputBottom: ''
         }
@@ -40,20 +40,18 @@ class Player extends Component {
 
     timer = () => {
         setInterval(() => {
-                if(this.state.count > 0){
+            if (this.state.count > 0) {
                 this.setState({
                     count: this.state.count - 1
                 })
-            }}, 1000);
-    }
-
-    componentDidMount(){
-        this.timer()
+            }
+        }, 1000);
     }
 
     componentDidMount() {
         this.timer()
     }
+
 
     render() {
         console.log(this.props)
@@ -62,7 +60,7 @@ class Player extends Component {
                 <div className='meme'>
                     <div className='le-meme'>
                         <div></div>
-                        <img src='https://www.lovequotesmessages.com/wp-content/uploads/2018/04/agent_skeleton_still_waiting_meme1.jpg' alt='' className='user-meme' />
+                        <img src={`${this.props.memes[this.props.round].url}`} alt='' className='user-meme' />
                         <div className='meme-inputs'>
                             <p className='input-top'>{this.state.inputTop}</p>
                             <p className='input-bottom'>{this.state.inputBottom}</p>
@@ -70,8 +68,8 @@ class Player extends Component {
                     </div>
                     <div className='inputs-timer-container'>
                         <div className='le-inputs'>
-                            <h1>Text Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput} />
-                            <h1>Text Bottom: </h1><input placeholder="Enter text here" className='inputs' onChange={this.bottomInput} />
+                            <h1 className='texts-inputs'>Text Top: </h1><input placeholder="Enter text here" className='inputs' onChange={this.topInput} />
+                            <h1 className='texts-inputs'>Text Bottom: </h1><input placeholder="Enter text here" className='inputs' onChange={this.bottomInput} />
                             <button className='btn' onClick={this.submitHandler}>Submit Meme</button>
                         </div>
                         <div className='timer-container'>
