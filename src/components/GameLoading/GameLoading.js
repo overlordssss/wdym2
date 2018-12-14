@@ -19,7 +19,6 @@ class GameLoading extends Component {
         let { room } = this.props
         axios.get(`/game/roomInfo/${room}`)
             .then(res => {
-                console.log('data from endpoint: ', res.data)
                 this.setState({
                     roundsToWin: res.data[0].rounds_to_win,
                     maxPlayers: res.data[0].number_of_players,
@@ -27,7 +26,9 @@ class GameLoading extends Component {
                 })
             })
         this.props.socket.on('room joined', data => {
-            this.setState({ players: data })
+            console.log('players data: ', data)
+            let playersInRoom = data.map(person => person.username)
+            this.setState({ players: playersInRoom })
         })
         this.props.socket.on('game started', data => {
             console.log('game has been started!')
@@ -43,24 +44,20 @@ class GameLoading extends Component {
         //send amount of players to db to change max Players (if need be)
         let currentNumPlayers = this.state.players.length
         let { room } = this.props
-        console.log('current Players: ', currentNumPlayers)
-        console.log('maxplayers: ', this.state.maxPlayers)
         if (currentNumPlayers !== this.state.maxPlayers) {
             axios.put(`/game/updateMax/`, { currentNumPlayers, room })
                 .then(() => console.log('Max Players was updated'))
         }
         let memes = []
-        let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
-        axios.get(`/game/memes/${blankMemes}`).then( res => {
+        let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
+        axios.get(`/game/memes/${blankMemes}`).then(res => {
             memes = res.data
 
             //generate a random index for the judge
             let judge = Math.floor(Math.random() * currentNumPlayers - 1) + 1
-            console.log('judge Index: ', judge)
 
             let { players, roundsToWin } = this.state
 
-            console.log('sending to sockets: ', judge, players, roundsToWin, memes, room)
             //send judge index, players and game start to sockets
             this.props.socket.emit('start game', { judge, players, roundsToWin, memes, room })
         })

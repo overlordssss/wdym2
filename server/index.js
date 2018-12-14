@@ -47,7 +47,7 @@ io.on('connection', socket => {
     socket.on('create room', data => {
         socket.join(data.newRoom);
         io.to(data.newRoom).emit('room created')
-        currentGames[data.newRoom] = [data.username]
+        currentGames[data.newRoom] = [{username: data.username, rounds_won: 0}]
         console.log('room created')
         console.log(currentGames)
     })
@@ -65,7 +65,7 @@ io.on('connection', socket => {
     socket.on('join room', data => {
         let room = data.room
         socket.join(room);
-        currentGames[room].push(data.username)
+        currentGames[room].push({username: data.username, rounds_won:0})
         io.to(room).emit('room joined', currentGames[room])
         console.log(currentGames)
     })
@@ -102,3 +102,14 @@ app.get('/api/usernames/:room', (req, res) => {
     res.send(currentGames[req.params.room])
 })
 
+app.put('/api/add_point', (req, res) => {
+    let {room, username} = req.body
+    let index = 0
+    for (let i =0; i< currentGames[room].length; i++) {
+        if(currentGames[room][i].username === username) {
+            index = i
+        }
+    }
+    currentGames[room][index].rounds_won += 1
+    res.send(currentGames[room][index]).status(200)
+})

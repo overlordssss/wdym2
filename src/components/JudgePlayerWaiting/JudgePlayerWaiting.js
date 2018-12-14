@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
-import {playerData, winningMeme} from '../../dux/reducer';
-
+import { playerData, winningMeme } from '../../dux/reducer'
 
 const image = 'theonetrueuser'
 const particleOpt = {
@@ -95,11 +94,13 @@ class JudgePlayerWaiting extends Component {
     componentDidMount() {
         this.props.socket.on('get responses', (data) => {
             this.setState({ playerData: data })
-            if (this.state.playerData.length === this.props.players.length -1) {
-                this.setState({fullResponse: true})
+            if (this.state.playerData.length === this.props.players.length - 1) {
+                this.setState({ fullResponse: true })
             }
         })
         this.props.socket.on('round winner', data => {
+            console.log('data: ', data)
+            console.log('roundWinner: ', data.roundWinner)
             this.props.winningMeme(data.roundWinner)
             this.props.history.push('/round-winner')
         })
@@ -115,16 +116,16 @@ class JudgePlayerWaiting extends Component {
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
                 {this.props.user.username === this.props.players[this.props.judgeIndex] ?
                     this.state.fullResponse ?
-                    this.handleJudge()
+                        this.handleJudge()
+                        :
+                        <div className='container'>
+                            <h1 className='waiting'>WAITING ON PLAYERS</h1>
+                            <div className="dash uno"></div>
+                            <div className="dash dos"></div>
+                            <div className="dash tres"></div>
+                            <div className="dash cuatro"></div>
+                        </div>
                     :
-                    <div className='container'>
-                        <h1 className='waiting'>WAITING ON PLAYERS</h1>
-                        <div className="dash uno"></div>
-                        <div className="dash dos"></div>
-                        <div className="dash tres"></div>
-                        <div className="dash cuatro"></div>
-                    </div>
-                :
                     <div className='container'>
                         <h1 className='judge'>WAITING ON JUDGE</h1>
                         <div className="dash uno"></div>
@@ -146,4 +147,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {playerData, winningMeme})(JudgePlayerWaiting)
+export default connect(mapStateToProps, { playerData, winningMeme })(JudgePlayerWaiting)
