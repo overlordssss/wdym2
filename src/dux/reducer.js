@@ -1,7 +1,6 @@
 const initialState = {
     user: {},
     roundsToWin: 0,
-    customImages: [],
     judgeIndex: 0,
     memes: [],
     room: 0,
@@ -140,7 +139,7 @@ export function playerData(val) {
     }
 }
 
-export function round(val) {
+export function roundNum(val) {
     return {
         type: ROUND,
         payload: val
