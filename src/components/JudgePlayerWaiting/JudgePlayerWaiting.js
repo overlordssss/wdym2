@@ -91,7 +91,6 @@ class JudgePlayerWaiting extends Component {
             playerData: []
         }
     }
-
     componentDidMount() {
         this.props.socket.on('get responses', (data) => {
             this.setState({ playerData: data })
@@ -106,7 +105,6 @@ class JudgePlayerWaiting extends Component {
             this.props.history.push('/round-winner')
         })
     }
-
     handleJudge = () => {
         this.props.playerData(this.state.playerData)
         this.props.history.push('/judge')

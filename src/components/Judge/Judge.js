@@ -1,59 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-import { winningMeme, judgeIndex } from '../../dux/reducer';
+import { winningMeme, judgeIndex, roundNum } from '../../dux/reducer';
 import './Judge.css';
 
 class Judge extends Component {
-    constructor() {
-        super();
+   constructor() {
+       super();
 
-        this.state = {
-            meme_index: 0,
-            memes: [],
-            count: 10000,
-            playerData: []
-        }
-    }
+       this.state = {
+           meme_index: 0,
+           memes: [],
+           count: 10000,
+           playerData: []
+       }
+   }
 
-    componentDidMount() {
-        this.timer()
+   componentDidMount() {
+       this.timer()
 
-        this.props.socket.on('round winner', data => {
-            this.props.winningMeme(data.roundWinner)
-            this.props.history.push('/round-winner')
-        })
-    }
+       this.props.socket.on('round winner', data => {
+           this.props.winningMeme(data.roundWinner)
+           this.props.history.push('/round-winner')
+       })
+   }
 
-    handleClickLeft = () => {
-        let new_index = 0
-        if (this.state.meme_index === 0) {
-            new_index = this.props.playerData.length - 1
-        } else {
-            new_index = this.state.meme_index - 1
-        }
-        this.setState({ meme_index: new_index })
-    }
+   handleClickLeft = () => {
+       let new_index = 0
+       if (this.state.meme_index === 0) {
+           new_index = this.props.playerData.length - 1
+       } else {
+           new_index = this.state.meme_index - 1
+       }
+       this.setState({ meme_index: new_index })
+   }
 
-    handleClickRight = () => {
-        let new_index = 0
-        if (this.state.meme_index === this.props.playerData.length - 1) {
-            new_index = 0
-        } else {
-            new_index = this.state.meme_index + 1
-        }
-        this.setState({ meme_index: new_index })
-    }
+   handleClickRight = () => {
+       let new_index = 0
+       if (this.state.meme_index === this.props.playerData.length -1) {
+           new_index = 0
+       } else {
+           new_index = this.state.meme_index + 1
+       }
+       this.setState({ meme_index: new_index })
+   }
 
-    timer = () => {
-        setInterval(() => {
-            if (this.state.count > 0) {
-                this.setState({
-                    count: this.state.count - 1
-                })
-            }
-        }, 1000);
-    }
+   timer = () => {
+       setInterval(() => {
+           if (this.state.count > 0) {
+               this.setState({
+                   count: this.state.count - 1
+               })
+           }
+       }, 1000);
+   }
 
     memeSelect = () => {
         if (this.props.judgeIndex === this.props.players.length - 1) {
@@ -101,15 +101,15 @@ class Judge extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        players: state.players,
-        playerData: state.playerData,
-        room: state.room,
-        memes: state.memes,
-        round: state.round
-    }
+   return {
+       players: state.players,
+       playerData: state.playerData,
+       room: state.room,
+       memes: state.memes,
+       round: state.round
+   }
 }
 
 
 
-export default connect(mapStateToProps, { winningMeme, judgeIndex })(Judge)
+export default connect(mapStateToProps, { winningMeme, judgeIndex, roundNum })(Judge)

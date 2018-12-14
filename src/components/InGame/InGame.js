@@ -62,7 +62,7 @@ class InGame extends Component {
                     <Winner socket={this.props.socket} />
                     : null}
                 {this.state.winner ?
-                    <RoundWinner socket={this.props.socket} />
+                    <RoundWinner socket={this.props.socket} history={this.props.history}/>
                     //check to see if player is the judge
                     : this.props.user.username === this.props.players[this.props.judgeIndex] ?
                         //is the judge waiting for responses?
