@@ -51,9 +51,6 @@ class Player extends Component {
         this.timer()
     }
 
-    componentDidMount() {
-        this.timer()
-    }
 
     render() {
         console.log(this.props)
@@ -62,7 +59,7 @@ class Player extends Component {
                 <div className='meme'>
                     <div className='le-meme'>
                         <div></div>
-                        <img src='https://www.lovequotesmessages.com/wp-content/uploads/2018/04/agent_skeleton_still_waiting_meme1.jpg' alt='' className='user-meme' />
+                        <img src='' alt='' className='user-meme' />
                         <div className='meme-inputs'>
                             <p className='input-top'>{this.state.inputTop}</p>
                             <p className='input-bottom'>{this.state.inputBottom}</p>

@@ -22,7 +22,8 @@ class InGame extends Component {
             judgeIndex: 0,
             fullResponse: false,
             memes: [],
-            memeIndex: 0
+            memeIndex: 0,
+            playerData: [],
         }
     }
     componentDidMount() {
@@ -64,7 +65,7 @@ class InGame extends Component {
                     //is the judge waiting for responses?
                     this.state.fullResponse ?
                     //if not, send to judge view
-                    <Judge socket={this.props.socket}/>
+                    <Judge socket={this.props.socket} playerData={this.state.playerData}/>
                     //if still waiting, keep in waiting
                     : <JudgePlayerWaiting socket={this.props.socket}/>
                         

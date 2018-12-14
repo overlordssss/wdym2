@@ -11,7 +11,6 @@ class Judge extends Component {
         this.state = {
             meme_index: 0,
             count: 60,
-            playerData: [],
             currentIndex: 0
         }
     }
@@ -60,8 +59,8 @@ class Judge extends Component {
                     swipable={true}
                 >
                     <div>
-                        <p>{this.state.playerData[this.state.currentIndex].inputTop}</p>
-                        <p>{this.state.playerData[this.state.currentIndex].inputBottom}</p>
+                        <p>{this.props.playerData[this.state.currentIndex].inputTop}</p>
+                        <p>{this.props.playerData[this.state.currentIndex].inputBottom}</p>
                     </div>
 
                 </Carousel>

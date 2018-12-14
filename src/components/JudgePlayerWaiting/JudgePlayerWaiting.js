@@ -116,9 +116,7 @@ class JudgePlayerWaiting extends Component {
                         <div className="dash dos"></div>
                         <div className="dash tres"></div>
                         <div className="dash cuatro"></div>
-                    </div>
-
-                }
+                    </div>}
             </div>
         )
     }

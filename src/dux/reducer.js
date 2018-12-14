@@ -3,10 +3,10 @@ const initialState = {
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
-    blankMemes: [],
+    memes: [],
     room: 0,
     numberOfPlayers: 0,
-    winningMeme: [],
+    winningMeme: {},
     players: [],
 }
 
@@ -49,7 +49,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { room: action.payload })
 
         case MEMES:
-            return Object.assign({}, state, { blankMemes: action.payload })
+            return Object.assign({}, state, { memes: action.payload })
 
         case USERLOGOUT:
             return initialState
