@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RoundWinner.css';
-import { roundNum, playerData, winningMeme } from '../../dux/reducer'
+import { roundNum, playerData, winningMeme, newJudge } from '../../dux/reducer'
 import axios from 'axios'
 
 class RoundWinner extends Component {
@@ -15,13 +15,22 @@ class RoundWinner extends Component {
     }
 
     componentDidMount() {
-        //add one point to round winner
-        let { room } = this.props
-        let { username } = this.props.winningMeme
-        axios.put(`/api/add_point/`, { room, username })
-            .then(res => {
-                this.setState({ winner: res.data })
-            })
+        this.props.socket.on('end game', () => {
+            this.props.history.push('/winner')
+        })
+        this.props.socket.on('new stats', data => {
+            console.log('new stats data', data)
+            this.props.roundNum(data.newRound)
+            this.props.newJudge(data.newJudgeIndex)
+        })
+        if(this.props.user.username === this.props.players[this.props.judgeIndex]) {
+            console.log('this was hit')
+            let { room } = this.props
+            //add one point to round winner
+            let newRound = this.props.round +1
+            let newJudgeIndex = this.props.judgeIndex +1
+            this.props.socket.emit('new round', {room, newRound, newJudgeIndex})
+        }
         this.timer()
     }
 
@@ -36,17 +45,24 @@ class RoundWinner extends Component {
     }
 
     handleNextRound = () => {
-        //check if total winner
-        if (this.state.winner.rounds_won === this.props.roundsToWin) {
-            this.props.history.push('/winner')
-        } else {
-            //reset everything for new round
-            let { round } = this.props
-            this.props.roundNum(round + 1)
-            this.props.playerData([])
-            this.props.winningMeme([])
-            this.props.history.push('/in-game')
+        if(this.props.username === this.props.players[this.props.judgeIndex]) {
+            
+            let { room } = this.props
+            let { username } = this.props.winningMeme
+            axios.put(`/api/add_point/`, { room, username })
+            .then(res => {
+                //check if total winner
+                console.log('rounds won: ', res.data.rounds_won)
+                console.log('rounds to win: ', this.props.roundsToWin)
+                if(res.data.rounds_won === this.props.roundsToWin) {
+                    this.props.socket.emit('Game winner', {room})
+                } 
+            })
         }
+        //reset everything for new round
+        this.props.playerData([])
+        this.props.winningMeme([])
+        this.props.history.push('/in-game')
     }
 
     render() {
@@ -80,8 +96,10 @@ const mapStateToProps = state => {
         memes: state.memes,
         round: state.round,
         room: state.room,
-        roundsToWin: state.roundsToWin
+        roundsToWin: state.roundsToWin,
+        players: state.players,
+        judgeIndex: state.judgeIndex
     }
 }
 
-export default connect(mapStateToProps, { roundNum, playerData, winningMeme })(RoundWinner)
+export default connect(mapStateToProps, { roundNum, playerData, winningMeme, newJudge })(RoundWinner)

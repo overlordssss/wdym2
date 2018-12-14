@@ -8,7 +8,7 @@ function Winner(){
         <div>
             <h1>
             {/* the h1 tag will take in the winner as a prop and display after the dash */}
-                THE WINNER IS - {this.props.winningMeme.user}
+                THE WINNER IS - {this.props.winningMeme.username}
             </h1>
             {/* the REPLAY WITH SAME PLAYERS BUTTON will take you straight into a new game passing along the other users as props on redux */}
             {/* <Link to='/in-game'><button>REPLAY WITH SAME PLAYERS</button></Link> */}
