@@ -8,6 +8,7 @@ import JudgePlayerWaiting from '../JudgePlayerWaiting/JudgePlayerWaiting';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
 import axios from 'axios';
+import {roundNum, newJudge} from '../../dux/reducer'
 
 
 class InGame extends Component {
@@ -27,6 +28,9 @@ class InGame extends Component {
         }
     }
     componentDidMount() {
+        this.props.socket.on('end game', () => {
+            this.props.history.push('/winner')
+        })
         // this.responses()
         //get user info, change username in state 
         //missing endpoint
@@ -89,4 +93,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(InGame)
+export default connect(mapStateToProps,{roundNum, newJudge})(InGame)

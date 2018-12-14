@@ -102,9 +102,9 @@ export default function reducer(state = initialState, action) {
         type: NUMBEROFPLAYERS,
         payload: num
     }
- }
- 
- export function judgeIndex(index) {
+}
+
+export function newJudge(index) {
     return {
         type: JUDGE_INDEX,
         payload: index

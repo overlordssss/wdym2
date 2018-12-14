@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
+<<<<<<< HEAD
+import { winningMeme } from '../../dux/reducer';
+=======
 import { winningMeme, judgeIndex, roundNum } from '../../dux/reducer';
+>>>>>>> master
 import './Judge.css';
 
 class Judge extends Component {
@@ -19,11 +23,12 @@ class Judge extends Component {
    componentDidMount() {
        this.timer()
 
-       this.props.socket.on('round winner', data => {
-           this.props.winningMeme(data.roundWinner)
-           this.props.history.push('/round-winner')
-       })
-   }
+        this.props.socket.on('round winner', data => {
+            this.props.winningMeme(data.roundWinner)
+            this.props.history.push('/round-winner')
+        })
+        
+    }
 
    handleClickLeft = () => {
        let new_index = 0
@@ -56,13 +61,6 @@ class Judge extends Component {
    }
 
     memeSelect = () => {
-        if (this.props.judgeIndex === this.props.players.length - 1) {
-            this.props.judgeIndex(0)
-        } else {
-            let { judgeIndex } = this.props
-            this.props.judgeIndex(judgeIndex - 1)
-        }
-
         //send winning meme and username to sockets
         let roundWinner = this.props.playerData[this.state.meme_index]
         let { room } = this.props
@@ -112,4 +110,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { winningMeme, judgeIndex, roundNum })(Judge)
+export default connect(mapStateToProps, { winningMeme })(Judge)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { judgeIndex, players, roundsToWin, memes } from '../../dux/reducer';
+import { newJudge, players, roundsToWin, memes } from '../../dux/reducer';
 import axios from 'axios';
 import './GameLoading.css'
 
@@ -32,7 +32,7 @@ class GameLoading extends Component {
         })
         this.props.socket.on('game started', data => {
             console.log('game has been started!')
-            this.props.judgeIndex(data.judge)
+            this.props.newJudge(data.judge)
             this.props.players(data.players)
             this.props.roundsToWin(data.roundsToWin)
             console.log('memes from socket: ', data.memes)
@@ -98,4 +98,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { judgeIndex, players, roundsToWin, memes })(GameLoading)
+export default connect(mapStateToProps, { newJudge, players, roundsToWin, memes })(GameLoading)

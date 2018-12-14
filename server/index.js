@@ -90,6 +90,16 @@ io.on('connection', socket => {
         io.to(data.room).emit('round winner', data)
     })
 
+    //for game winner
+    socket.on('Game winner', data => {
+        io.to(data.room).emit('end game')
+    })
+
+    socket.on('new round', data => {
+        console.log('new room was hit')
+        io.to(data.room).emit('new stats', data)
+    })
+
     //disconnect
     socket.on('disconnect', () => {
         console.log('User Disconnected')
