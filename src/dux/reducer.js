@@ -140,7 +140,7 @@ export function playerData(val) {
     }
 }
 
-export function round(val) {
+export function roundNum(val) {
     return {
         type: ROUND,
         payload: val

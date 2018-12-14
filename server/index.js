@@ -9,6 +9,8 @@ const helmet = require('helmet');
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 const { SERVER_PORT, CONNECTION_STRING, SECRET } = process.env;
 
 
@@ -85,7 +87,7 @@ io.on('connection', socket => {
     
     //judge selected a winning meme
     socket.on('judge select', data => {
-        io.to(data.room).emit('round winner', data.roundWinner)
+        io.to(data.room).emit('round winner', data)
     })
 
     //disconnect
