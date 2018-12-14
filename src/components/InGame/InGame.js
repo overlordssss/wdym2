@@ -27,27 +27,30 @@ class InGame extends Component {
         }
     }
     componentDidMount() {
-        this.props.socket.on('get responses', (data) => {
-            this.setState({
-                playerData: data
-            })
-        })
+        // this.responses()
         //get user info, change username in state 
         //missing endpoint
         this.setState({
             username: this.props.user.username,
             judgeIndex: this.props.judgeIndex,
+
         })
         //find user in players array and change index
         //check if anyone has won(compared with reducer rounds to win)
         this.props.players.map(player => {
             if (player.rounds_won === this.props.roundsToWin) {
                 this.setState({ winner: true })
-
             }
         })
     }
-
+    // responses = () => {
+    //     this.props.socket.on('get responses', (data) => {
+    //         this.setState({ playerData: data })
+    //         if (this.state.playerData.Length === this.props.players) {
+    //             this.setState({fullResponse: true})
+    //         }
+    //     })
+    // }
 
     render() {
 
@@ -67,7 +70,7 @@ class InGame extends Component {
                     //if not, send to judge view
                     <Judge socket={this.props.socket} playerData={this.state.playerData}/>
                     //if still waiting, keep in waiting
-                    : <JudgePlayerWaiting socket={this.props.socket}/>
+                    : <JudgePlayerWaiting socket={this.props.socket} history={this.props.history}/>
                         
                 : <Player socket={this.props.socket} history={this.props.history} />
                 }
@@ -82,7 +85,7 @@ const mapStateToProps = state => {
         roundsToWin: state.roundsToWin,
         judgeIndex: state.judgeIndex,
         user: state.user,
-        memes: state.blankMemes
+        memes: state.memes
     }
 }
 

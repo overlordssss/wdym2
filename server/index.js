@@ -83,6 +83,11 @@ io.on('connection', socket => {
         io.to(room).emit('get responses', responses[room])
     })
     
+    //judge selected a winning meme
+    socket.on('judge select', data => {
+        io.to(data.room).emit('round winner', data.roundWinner)
+    })
+
     //disconnect
     socket.on('disconnect', () => {
         console.log('User Disconnected')
@@ -94,3 +99,4 @@ app.get('/api/usernames/:room', (req, res) => {
     console.log('params: ', req.params)
     res.send(currentGames[req.params.room])
 })
+
