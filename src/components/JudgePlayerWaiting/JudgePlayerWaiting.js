@@ -105,6 +105,10 @@ class JudgePlayerWaiting extends Component {
                 this.setState({fullResponse: true})
             }
         })
+        this.props.socket.on('round winner', data => {
+            this.props.winningMeme(data.roundWinner)
+            this.props.history.push('/round-winner')
+        })
     }
 
     handleJudge = () => {
