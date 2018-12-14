@@ -9,6 +9,8 @@ const helmet = require('helmet');
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 const { SERVER_PORT, CONNECTION_STRING, SECRET } = process.env;
 
 

@@ -11,7 +11,7 @@ class Player extends Component {
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
         
         this.state = {
-            count: 10000,
+            count: 60,
             inputTop: '',
             inputBottom: ''
         }

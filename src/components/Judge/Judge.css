@@ -1,13 +1,44 @@
+.judge-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.judge-timer-container{
+  height: 100px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.judge-timer{
+  margin-left: -5px;
+  margin-top: 5px;
+  position: absolute;
+  z-index: 1;
+}
+.judge-spinner{
+  
+  z-index: -1;
+}
+.arrow-container{
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+}
 .arrow-right {
-    width: 50; 
-    height: 0; 
-    border-top: 60px solid transparent;
-    border-bottom: 60px solid transparent;
-    
-    border-left: 60px solid green;
-    z-index: 5;
+  margin-top: 200px;
+  width: 50; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+  z-index: 5;
   }
   .arrow-left {
+    margin-top: 200px;
     width: 0; 
     height: 0; 
     border-top: 60px solid transparent;
@@ -16,7 +47,53 @@
     border-right:60px solid green; 
     z-index: 5;
   }
-  .arrow-container{
+  @media (max-width: 450px) {
+    .judge-container{
+      width: 100vw;
+      height: 100vh;
       display: flex;
-      justify-content: space-between
-  }
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .judge-timer-container{
+      height: 100px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .judge-timer{
+      margin-left: -5px;
+      margin-top: 5px;
+      position: absolute;
+      z-index: 1;
+    }
+    .judge-spinner{
+      z-index: -1;
+    }
+    .user-meme{
+      position: relative;
+      margin-left: 23px;
+    }
+        .arrow-container{
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    .arrow-right {
+      margin-top: 20px;
+        border-top: 30px solid transparent;
+        border-bottom: 30px solid transparent;
+        border-left: 30px solid green;
+        /* z-index: 5; */
+      }
+      .arrow-left {
+        margin-top: 20px;
+        border-top: 30px solid transparent;
+        border-bottom: 30px solid transparent; 
+        border-right:30px solid green; 
+        /* z-index: 5; */
+      }
+}
