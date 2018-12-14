@@ -11,8 +11,12 @@ class Judge extends Component {
         this.state = {
             meme_index: 0,
             count: 60,
+<<<<<<< HEAD
             currentIndex: 0,
             playerData: []
+=======
+            currentIndex: 0
+>>>>>>> master
         }
     }
 
@@ -71,7 +75,14 @@ class Judge extends Component {
                     infiniteLoop={true}
                     swipable={true}
                 >
+<<<<<<< HEAD
                     {playerMemes}
+=======
+                    <div>
+                        <p>{this.props.playerData[this.state.currentIndex].inputTop}</p>
+                        <p>{this.props.playerData[this.state.currentIndex].inputBottom}</p>
+                    </div>
+>>>>>>> master
 
                 </Carousel>
                 <button onClick={this.memeSelect}>Select</button>

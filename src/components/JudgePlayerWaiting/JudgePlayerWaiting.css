@@ -1,6 +1,6 @@
 canvas {
     text-align: center;
-    background-image: linear-gradient(to bottom right, #e600e6, #000000CC, green);
+    /* background-image: linear-gradient(to bottom right, #e600e6, #000000CC, green); */
     position: fixed;
     top: 0;
     left: 0;
@@ -16,6 +16,8 @@ canvas {
     position: relative;
     margin-top: 33px;
     padding: 10px 30px 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px #ffffff
   }
   .judge{
     color: black;
@@ -24,6 +26,8 @@ canvas {
     position: relative;
     margin-top: 33px;
     padding: 10px 30px 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px #ffffff;
   }
 
   .container {
@@ -35,7 +39,7 @@ canvas {
     flex-direction: row;
     justify-content: space-evenly;
     border: 2px solid black;
-    background: #ffffff80;
+    background: lightgray;
     padding: 10px 30px 30px;
     border-radius: 20px;
   }
@@ -46,7 +50,7 @@ canvas {
     height: 15px;
     border-radius: 8px;
     background: #ffffff;
-    box-shadow: 0 0 10px 0 #FECDFF;
+    box-shadow: 0 0 10px 0 #000000;
     margin-top: 50px;
   }
   
@@ -184,6 +188,7 @@ canvas {
       position: relative;
       margin-top: 33px;
       padding: 10px 30px 30px;
+      text-shadow: 2px 2px white;
     }
     .judge{
       color: black;
@@ -192,6 +197,7 @@ canvas {
       position: relative;
       margin-top: 33px;
       padding: 10px 30px 30px;
+      text-shadow: 2px 2px white;
     }
   
     .container {
@@ -203,7 +209,7 @@ canvas {
       flex-direction: row;
       justify-content: space-evenly;
       border: 2px solid black;
-      background: #ffffff80;
+      background: lightgray;
       padding: 10px 30px 30px;
     }
     
@@ -213,7 +219,7 @@ canvas {
       height: 15px;
       border-radius: 8px;
       background: #ffffff;
-      box-shadow: 0 0 10px 0 #FECDFF;
+      box-shadow: 0 0 10px 0 #000000;
       margin-top: 70px;
     }
     .uno {
@@ -252,6 +258,7 @@ canvas {
     position: relative;
     margin-top: 33px;
     padding: 10px 30px 30px;
+    text-shadow: 2px 2px white;
   }
   .judge{
     color: black;
@@ -260,6 +267,7 @@ canvas {
     position: relative;
     margin-top: 33px;
     padding: 10px 30px 30px;
+    text-shadow: 2px 2px white;
   }
 
   .container {
@@ -271,7 +279,7 @@ canvas {
     flex-direction: row;
     justify-content: space-evenly;
     border: 2px solid black;
-    background: #ffffff80;
+    background: lightgray;
     padding: 10px 30px 30px;
   }
   
@@ -281,7 +289,7 @@ canvas {
     height: 15px;
     border-radius: 8px;
     background: #ffffff;
-    box-shadow: 0 0 10px 0 #FECDFF;
+    box-shadow: 0 0 10px 0  black;
     margin-top: 70px;
   }
   .uno {

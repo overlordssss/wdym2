@@ -6,7 +6,7 @@ const initialState = {
     memes: [],
     room: 0,
     numberOfPlayers: 0,
-    winningMeme: [],
+    winningMeme: {},
     players: [],
 }
 
