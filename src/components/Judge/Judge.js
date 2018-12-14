@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-import { winningMeme } from '../../dux/reducer';
-import Carousel from 'react-responsive-carousel';
+import { winningMeme, memes } from '../../dux/reducer';
+import './Judge.css';
 
 class Judge extends Component {
     constructor() {
@@ -11,12 +11,12 @@ class Judge extends Component {
         this.state = {
             meme_index: 0,
             memes: [],
-            count: 60,
-            currentIndex: 0
+            count: 10000,
+            playerData: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.timer()
 
         this.props.socket.on('round winner', data => {
@@ -25,19 +25,25 @@ class Judge extends Component {
         })
     }
 
-    handleSwipeLeft = () => {
+    handleClickLeft = () => {
         let new_index = this.state.meme_index
         new_index++
         this.setState({ meme_index: new_index })
     }
 
+    handleClickRight = () => {
+        let new_index = this.state.currentIndex
+
+    }
+
     timer = () => {
         setInterval(() => {
-                if(this.state.count > 0){
+            if (this.state.count > 0) {
                 this.setState({
                     count: this.state.count - 1
                 })
-            }}, 1000);
+            }
+        }, 1000);
     }
 
     memeSelect = () => {
@@ -67,21 +73,19 @@ class Judge extends Component {
                     {this.state.count > 0 ? <Spinner />
                         : this.memeSelect()}
                 </div>
+                <div className='arrow-container'>
+                <div className="arrow-left" onClick={this.handleClickLeft}></div>
+                <div className="arrow-right" onClick={this.handleClickRight}></div>
+                </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
-                <Carousel
-                    showArrows={true}
-                    infiniteLoop={true}
-                    swipable={true}
-                >
+                    <img src={`${this.props.memes[this.props.round].url}`} alt=''/>
                     <div>
-                        <p>{this.props.playerData[this.state.currentIndex].inputTop}</p>
-                        <p>{this.props.playerData[this.state.currentIndex].inputBottom}</p>
+                        <p>{this.props.playerData[this.state.meme_index].inputTop}</p>
+                        <p>{this.props.playerData[this.state.meme_index].inputBottom}</p>
                     </div>
-
-                </Carousel>
                 <button onClick={this.memeSelect}>Select</button>
             </div>
         )
@@ -92,7 +96,9 @@ const mapStateToProps = state => {
     return {
         players: state.players,
         playerData: state.playerData,
-        room: state.room
+        room: state.room,
+        memes: state.memes,
+        round: state.round
     }
 }
 

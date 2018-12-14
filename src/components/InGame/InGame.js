@@ -23,7 +23,7 @@ class InGame extends Component {
             fullResponse: false,
             memes: [],
             memeIndex: 0,
-            playerData: []
+            playerData: [],
         }
     }
     componentDidMount() {
@@ -57,15 +57,21 @@ class InGame extends Component {
         return (
             <div>
                 {/* if someone has won */
-                console.log('props: ', this.props)}
+                    console.log('props: ', this.props)}
                 {this.props.players === this.props.roundsToWin ?
-                    <Winner socket={this.props.socket}/>
-                : null}
+                    <Winner socket={this.props.socket} />
+                    : null}
                 {this.state.winner ?
-                    <RoundWinner socket={this.props.socket}/>
+                    <RoundWinner socket={this.props.socket} />
                     //check to see if player is the judge
                 : this.props.user.username === this.props.players[this.props.judgeIndex] ?
-                    <JudgePlayerWaiting socket={this.props.socket} history= {this.props.history}/> 
+                    //is the judge waiting for responses?
+                    this.state.fullResponse ?
+                    //if not, send to judge view
+                    <Judge socket={this.props.socket} playerData={this.state.playerData}/>
+                    //if still waiting, keep in waiting
+                    : <JudgePlayerWaiting socket={this.props.socket} history={this.props.history}/>
+                        
                 : <Player socket={this.props.socket} history={this.props.history} />
                 }
             </div>
