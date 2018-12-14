@@ -23,11 +23,7 @@ const JUDGE_INDEX = 'JUDGE_INDEX'
 const WINNINGMEME = 'WINNINGMEME'
 const MEMES = 'MEMES'
 const PLAYERDATA = 'PLAYERDATA'
-<<<<<<< HEAD
 const ROUND = 'ROUND'
-=======
-const ROUND ='ROUND'
->>>>>>> master
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -60,17 +56,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { memes: action.payload })
 
         case PLAYERDATA:
-<<<<<<< HEAD
             return Object.assign({}, state, { playerData: action.payload })
 
         case ROUND:
             return Object.assign({}, state, { round: action.payload })
-=======
-            return Object.assign({}, state, {playerData: action.payload})
-
-        case ROUND:
-            return Object.assign({}, state, {round: action.payload})
->>>>>>> master
 
         case USERLOGOUT:
             return initialState
