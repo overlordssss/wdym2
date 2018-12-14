@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-import { winningMeme, memes } from '../../dux/reducer';
+import { winningMeme, judgeIndex, round } from '../../dux/reducer';
 import './Judge.css';
 
 class Judge extends Component {
@@ -26,14 +26,23 @@ class Judge extends Component {
     }
 
     handleClickLeft = () => {
-        let new_index = this.state.meme_index
-        new_index++
+        let new_index = 0
+        if (this.state.meme_index === 0) {
+            new_index = this.props.playerData.length - 1
+        } else {
+            new_index = this.state.meme_index - 1
+        }
         this.setState({ meme_index: new_index })
     }
 
     handleClickRight = () => {
-        let new_index = this.state.currentIndex
-
+        let new_index = 0
+        if (this.state.meme_index === this.props.playerData.length -1) {
+            new_index = 0
+        } else {
+            new_index = this.state.meme_index + 1
+        }
+        this.setState({ meme_index: new_index })
     }
 
     timer = () => {
@@ -104,4 +113,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { winningMeme })(Judge)
+export default connect(mapStateToProps, { winningMeme, judgeIndex, round })(Judge)
