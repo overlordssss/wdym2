@@ -11,7 +11,6 @@ class Judge extends Component {
         this.state = {
             meme_index: 0,
             count: 10000,
-            currentIndex: 0,
             playerData: []
         }
     }
@@ -22,13 +21,22 @@ class Judge extends Component {
 
     handleClickLeft = () => {
         let new_index = this.state.meme_index
-        new_index++
         this.setState({ meme_index: new_index })
+        if (this.state.meme_index === 0) {
+            new_index = this.state.playerData.length - 1
+        } else {
+            new_index--
+        }
     }
 
     handleClickRight = () => {
-        let new_index = this.state.currentIndex
-
+        let new_index = this.state.meme_index
+        this.setState({ meme_index: new_index })
+        if (this.state.meme_index === this.state.playerData.length) {
+            new_index = this.state.playerData[0]
+        } else {
+            new_index++
+        }
     }
 
     timer = () => {
@@ -68,8 +76,8 @@ class Judge extends Component {
                         : this.props.history.push('/round-winner')}
                 </div>
                 <div className='arrow-container'>
-                <div className="arrow-left" onClick={this.handleClickLeft}></div>
-                <div className="arrow-right" onClick={this.handleClickRight}></div>
+                    <div className="arrow-left" onClick={this.handleClickLeft}></div>
+                    <div className="arrow-right" onClick={this.handleClickRight}></div>
                 </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
