@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import CreateGame from './components/CreateGame/CreateGame';
@@ -14,18 +14,17 @@ import RoundWinner from './components/RoundWinner/RoundWinner';
 
 export default (socket) => (
     <Switch>
-        
-        <Route path='/landing-page' render = {(props) => <LandingPage socket = {socket}{...props} />}/>
-        <Route exact path='/' component={Login}/>
-        <Route path='/register' component={Register}/>
-        <Route path='/create-game' render={(props) => <CreateGame socket = {socket}{...props}/>}/>
-        <Route path='/game-loading' render={(props) => <GameLoading socket = {socket}{...props}/>}/>
-        <Route path='/player' render={(props) => <Player socket = {socket}{...props}/>}/>
-        <Route path='/judge' render={(props) => <Judge socket={socket}{...props}/>} />
-        <Route path='/winner' render={() => <Winner socket={socket}/>}/>
-        <Route path='/waiting-room' render={(props) => <JudgePlayerWaiting socket = {socket}{...props} />}/>
-        <Route path='/in-game' render={(props) => <InGame socket= {socket}{...props}/>}/>
-        <Route path='/round-winner' component={RoundWinner}/>
+        <Route path='/landing-page' render={(props) => <LandingPage socket={socket}{...props} />} />
+        <Route exact path='/' component={Login} />
+        <Route path='/register' component={Register} />
+        <Route path='/create-game' render={(props) => <CreateGame socket={socket}{...props} />} />
+        <Route path='/game-loading' render={(props) => <GameLoading socket={socket}{...props} />} />
+        <Route path='/player' render={(props) => <Player socket={socket}{...props} />} />
+        <Route path='/judge' render={(props) => <Judge socket={socket}{...props} />} />
+        <Route path='/winner' render={() => <Winner socket={socket} />} />
+        <Route path='/waiting-room' render={(props) => <JudgePlayerWaiting socket={socket}{...props} />} />
+        <Route path='/in-game' render={(props) => <InGame socket={socket}{...props} />} />
+        <Route path='/round-winner' component={RoundWinner} />
     </Switch>
 )
 //path= render ={props => {Component socket = {socket} {...props} } }

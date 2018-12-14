@@ -16,16 +16,7 @@
     /* position: absolute; */
     z-index: 2;
 }
-/* .timer-container{
-    align-self: flex-start;
-    height: 200px;
-    width: 200px;
-    border: 1px solid black;
-}
-.counter{
-    margin-top: 50px;
-    z-index: 8;
-} */
+
 .meme{
     align-self: center;
     height: 100vh;
@@ -85,7 +76,7 @@
     font-size: 40px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-shadow: 2px 2px black;
-    width: 500px;
+    width: 530px;
     word-wrap: break-word;
 }
 .le-inputs{
@@ -94,4 +85,91 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+@media (max-width: 450px) {
+    .wallpaper{
+        background-image: url('https://wallpapertag.com/wallpaper/middle/9/3/8/980684-meme-background-pictures-1920x1080-htc.jpg');
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .meme{
+        align-self: center;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .user-meme{
+        margin-right: 25px;
+        position: relative;
+        z-index: 4;
+        height: 350px;
+        width: 375px;
+        border-radius: 20px;
+    }
+    .spinner{
+        z-index: 2;
+    }
+    .texts-inputs{
+        font-size: 30px;
+    }
+    .le-meme{
+        height: 350px;
+        width: 375px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .inputs-timer-container{
+        width: 50vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .meme-inputs{
+        position: absolute;
+        z-index: 5;
+        /* display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center; */
+    }
+    .input-top{
+        margin-top: 10px;
+        margin-right: 25px;
+        color: white;
+        z-index: 6;
+        font-size: 25px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-shadow: 2px 2px black;
+        width: 350px;
+        word-wrap: break-word;
+    }
+    .input-bottom{
+        position: absolute;
+        top: 295px;
+        right: 10px;
+        color: white;
+        z-index: 6;
+        font-size: 25px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-shadow: 2px 2px black;
+        width: 375px;
+        word-wrap: break-word;
+    }
+    .le-inputs{
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
 }
