@@ -34,6 +34,7 @@ class GameLoading extends Component {
             this.props.judgeIndex(data.judge)
             this.props.players(data.players)
             this.props.roundsToWin(data.roundsToWin)
+            console.log('memes from socket: ', data.memes)
             this.props.memes(data.memes)
             this.props.history.push('/in-game')
         })
@@ -52,17 +53,17 @@ class GameLoading extends Component {
         let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
         axios.get(`/game/memes/${blankMemes}`).then( res => {
             memes = res.data
-            console.log('Got the memes!')
+
+            //generate a random index for the judge
+            let judge = Math.floor(Math.random() * currentNumPlayers - 1) + 1
+            console.log('judge Index: ', judge)
+
+            let { players, roundsToWin } = this.state
+
+            console.log('sending to sockets: ', judge, players, roundsToWin, memes, room)
+            //send judge index, players and game start to sockets
+            this.props.socket.emit('start game', { judge, players, roundsToWin, memes, room })
         })
-
-        //generate a random index for the judge
-        let judge = Math.floor(Math.random() * currentNumPlayers - 1) + 1
-        console.log('judge Index: ', judge)
-
-        let { players, roundsToWin } = this.state
-
-        //send judge index, players and game start to sockets
-        this.props.socket.emit('start game', { judge, players, roundsToWin, memes, room })
     }
     render() {
         return (

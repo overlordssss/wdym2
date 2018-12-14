@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
+import {playerData} from '../../dux/reducer'
 
 const image = 'theonetrueuser'
 const particleOpt = {
@@ -92,8 +93,23 @@ class JudgePlayerWaiting extends Component {
         super();
 
         this.state = {
-
+            fullResponse: false,
+            playerData: []
         }
+    }
+
+    componentDidMount() {
+        this.props.socket.on('get responses', (data) => {
+            this.setState({ playerData: data })
+            if (this.state.playerData.length === this.props.players.length -1) {
+                this.setState({fullResponse: true})
+            }
+        })
+    }
+
+    handleJudge = () => {
+        this.props.playerData(this.state.playerData)
+        this.props.history.push('/judge')
     }
 
     render() {
@@ -102,6 +118,9 @@ class JudgePlayerWaiting extends Component {
                 <Particles params={particleOpt} />
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
                 {this.props.user.username === this.props.players[this.props.judgeIndex] ?
+                    this.state.fullResponse ?
+                    this.handleJudge()
+                    :
                     <div className='container'>
                         <h1 className='waiting'>WAITING ON PLAYERS</h1>
                         <div className="dash uno"></div>
@@ -109,7 +128,7 @@ class JudgePlayerWaiting extends Component {
                         <div className="dash tres"></div>
                         <div className="dash cuatro"></div>
                     </div>
-                    :
+                :
                     <div className='container'>
                         <h1 className='judge'>WAITING ON JUDGE</h1>
                         <div className="dash uno"></div>
@@ -133,4 +152,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(JudgePlayerWaiting)
+export default connect(mapStateToProps, {playerData})(JudgePlayerWaiting)
