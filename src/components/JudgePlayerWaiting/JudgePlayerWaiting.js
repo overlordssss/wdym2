@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { playerData, winningMeme } from '../../dux/reducer'
+=======
+import {playerData, winningMeme} from '../../dux/reducer'
+>>>>>>> master
 
 const image = 'theonetrueuser'
 const particleOpt = {
@@ -100,6 +104,8 @@ class JudgePlayerWaiting extends Component {
             }
         })
         this.props.socket.on('round winner', data => {
+            console.log('data: ', data)
+            console.log('roundWinner: ', data.roundWinner)
             this.props.winningMeme(data.roundWinner)
             this.props.history.push('/round-winner')
         })
@@ -147,4 +153,8 @@ const mapStateToProps = state => {
 }
 
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, { playerData, winningMeme })(JudgePlayerWaiting)
+=======
+export default connect(mapStateToProps, {playerData, winningMeme})(JudgePlayerWaiting)
+>>>>>>> master

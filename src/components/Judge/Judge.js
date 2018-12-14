@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
+<<<<<<< HEAD
 import { winningMeme, judgeIndex, roundNum } from '../../dux/reducer';
+=======
+import { winningMeme, judgeIndex } from '../../dux/reducer';
+>>>>>>> master
 import './Judge.css';
 
 class Judge extends Component {
@@ -62,6 +66,7 @@ class Judge extends Component {
             let { judgeIndex } = this.props
             this.props.judgeIndex(judgeIndex - 1)
         }
+<<<<<<< HEAD
         let { round } = this.props
         this.props.roundNum(round + 1)
 
@@ -69,6 +74,14 @@ class Judge extends Component {
         let roundWinner = this.props.playerData[this.currentIndex]
         let { room } = this.props
         this.props.socket.emit('judge select', { roundWinner, room })
+=======
+
+        //send winning meme and username to sockets
+        let roundWinner = this.props.playerData[this.state.meme_index]
+        let {room} = this.props
+        console.log('roundWinner: ', roundWinner)
+        this.props.socket.emit('judge select', {roundWinner, room})
+>>>>>>> master
     }
 
     render() {
@@ -113,4 +126,8 @@ const mapStateToProps = state => {
 
 
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, { winningMeme, judgeIndex, roundNum })(Judge)
+=======
+export default connect(mapStateToProps, { winningMeme, judgeIndex })(Judge)
+>>>>>>> master
