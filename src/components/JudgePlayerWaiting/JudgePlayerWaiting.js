@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
-import { playerData } from '../../dux/reducer'
+import { playerData, winningMeme } from '../../dux/reducer'
 
 const image = 'theonetrueuser'
 const particleOpt = {
@@ -147,4 +147,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { playerData })(JudgePlayerWaiting)
+export default connect(mapStateToProps, { playerData, winningMeme })(JudgePlayerWaiting)

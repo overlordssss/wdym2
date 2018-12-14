@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-import { winningMeme, judgeIndex, round } from '../../dux/reducer';
+import { winningMeme, judgeIndex, roundNum } from '../../dux/reducer';
 import './Judge.css';
 
 class Judge extends Component {
@@ -33,11 +33,6 @@ class Judge extends Component {
             new_index = this.state.meme_index - 1
         }
         this.setState({ meme_index: new_index })
-        if (this.state.meme_index === 0) {
-            new_index = this.state.playerData.length - 1
-        } else {
-            new_index--
-        }
     }
 
     handleClickRight = () => {
@@ -68,7 +63,7 @@ class Judge extends Component {
             this.props.judgeIndex(judgeIndex - 1)
         }
         let { round } = this.props
-        this.props.round(round + 1)
+        this.props.roundNum(round + 1)
 
         //send winning meme and username to sockets
         let roundWinner = this.props.playerData[this.currentIndex]
@@ -79,28 +74,28 @@ class Judge extends Component {
     render() {
         console.log('playerdata: ', this.props.playerData)
         return (
-            <div>
-                <div className='counter'>
-                    <h1>{this.state.count}</h1>
-                </div>
-                <div className='spinner'>
-                    {this.state.count > 0 ? <Spinner />
-                        : this.memeSelect()}
+            <div className='judge-container'>
+                <div className='judge-timer-container'>
+                    <div className='judge-timer'>
+                        <h1>{this.state.count}</h1>
+                    </div>
+                    <div className='judge-spinner'>
+                        {this.state.count > 0 ? <Spinner />
+                            : this.memeSelect()}
+                    </div>
                 </div>
                 <div className='arrow-container'>
                     <div className="arrow-left" onClick={this.handleClickLeft}></div>
+                    <div className='le-meme'>
+                        <img src={`${this.props.memes[this.props.round].url}`} alt='' className='user-meme' />
+                        <div className='meme-inputs'>
+                            <p className='input-top'>{this.props.playerData[this.state.meme_index].inputTop}</p>
+                            <p className='input-bottom'>{this.props.playerData[this.state.meme_index].inputBottom}</p>
+                        </div>
+                    </div>
                     <div className="arrow-right" onClick={this.handleClickRight}></div>
                 </div>
-                {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
-                {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
-                {/* <img src ={} /> */}
-                {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
-                <img src={`${this.props.memes[this.props.round].url}`} alt='' />
-                <div>
-                    <p>{this.props.playerData[this.state.meme_index].inputTop}</p>
-                    <p>{this.props.playerData[this.state.meme_index].inputBottom}</p>
-                </div>
-                <button onClick={this.memeSelect}>Select</button>
+                <button className='btn' onClick={this.memeSelect}>Select</button>
             </div>
         )
     }
@@ -118,4 +113,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { winningMeme, judgeIndex, round })(Judge)
+export default connect(mapStateToProps, { winningMeme, judgeIndex, roundNum })(Judge)
