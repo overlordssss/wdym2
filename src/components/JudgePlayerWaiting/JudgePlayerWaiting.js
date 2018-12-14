@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { playerData } from '../../dux/reducer'
+=======
+import {playerData} from '../../dux/reducer'
+
+>>>>>>> master
 const image = 'theonetrueuser'
 const particleOpt = {
     particles: {
@@ -90,6 +95,7 @@ class JudgePlayerWaiting extends Component {
             playerData: []
         }
     }
+<<<<<<< HEAD
     componentDidMount() {
         this.props.socket.on('get responses', (data) => {
             this.setState({ playerData: data })
@@ -98,10 +104,26 @@ class JudgePlayerWaiting extends Component {
             }
         })
     }
+=======
+
+    componentDidMount() {
+        this.props.socket.on('get responses', (data) => {
+            this.setState({ playerData: data })
+            if (this.state.playerData.length === this.props.players.length -1) {
+                this.setState({fullResponse: true})
+            }
+        })
+    }
+
+>>>>>>> master
     handleJudge = () => {
         this.props.playerData(this.state.playerData)
         this.props.history.push('/judge')
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     render() {
         return (
             <div>
@@ -109,6 +131,7 @@ class JudgePlayerWaiting extends Component {
                 {/* these h3's are subject to change with time. I'm not sure how we want these to conditionally render but we will figure that out later */}
                 {this.props.user.username === this.props.players[this.props.judgeIndex] ?
                     this.state.fullResponse ?
+<<<<<<< HEAD
                         this.handleJudge()
                         :
                         <div className='container'>
@@ -119,6 +142,18 @@ class JudgePlayerWaiting extends Component {
                             <div className="dash cuatro"></div>
                         </div>
                     :
+=======
+                    this.handleJudge()
+                    :
+                    <div className='container'>
+                        <h1 className='waiting'>WAITING ON PLAYERS</h1>
+                        <div className="dash uno"></div>
+                        <div className="dash dos"></div>
+                        <div className="dash tres"></div>
+                        <div className="dash cuatro"></div>
+                    </div>
+                :
+>>>>>>> master
                     <div className='container'>
                         <h1 className='judge'>WAITING ON JUDGE</h1>
                         <div className="dash uno"></div>
@@ -138,4 +173,10 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
+<<<<<<< HEAD
 export default connect(mapStateToProps, { playerData })(JudgePlayerWaiting)
+=======
+
+
+export default connect(mapStateToProps, {playerData})(JudgePlayerWaiting)
+>>>>>>> master

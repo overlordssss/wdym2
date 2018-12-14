@@ -10,6 +10,7 @@ class Judge extends Component {
 
         this.state = {
             meme_index: 0,
+            memes: [],
             count: 10000,
             playerData: []
         }
@@ -17,6 +18,11 @@ class Judge extends Component {
 
     componentDidMount() {
         this.timer()
+
+        this.props.socket.on('round winner', data => {
+            this.props.winningMeme(data.roundWinner)
+            this.props.history.push('/round-winner')
+        })
     }
 
     handleClickLeft = () => {
@@ -49,23 +55,24 @@ class Judge extends Component {
         }, 1000);
     }
 
-    memeSelect = (val) => {
-        this.props.winningMeme(val)
+    memeSelect = () => {
+        if(this.props.judgeIndex === this.props.players.length -1) {
+            this.props.judgeIndex(0)
+        } else {
+            let {judgeIndex} = this.props
+            this.props.judgeIndex(judgeIndex -1)
+        }
+        let {round} = this.props
+        this.props.round(round + 1)
+
+        //send winning meme and username to sockets
+        let roundWinner = this.props.playerData[this.currentIndex]
+        let {room} = this.props
+        this.props.socket.emit('judge select', {roundWinner, room})
     }
 
     render() {
-        console.log('playerdata: ', this.state.playerData)
-        let playerMemes = this.state.playerData.map((player, i) => {
-            let top = this.state.playerData[i].inputTop;
-            let bottom = this.state.playerData[i].inputBottom;
-
-            return (
-                <div>
-                    <p>{top}</p>
-                    <p>{bottom}</p>
-                </div>
-            )
-        })
+        console.log('playerdata: ', this.props.playerData)
         return (
             <div>
                 <div className='counter'>
@@ -73,7 +80,7 @@ class Judge extends Component {
                 </div>
                 <div className='spinner'>
                     {this.state.count > 0 ? <Spinner />
-                        : this.props.history.push('/round-winner')}
+                        : this.memeSelect()}
                 </div>
                 <div className='arrow-container'>
                     <div className="arrow-left" onClick={this.handleClickLeft}></div>
@@ -83,9 +90,13 @@ class Judge extends Component {
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
                 {/* <img src ={} /> */}
                 {/* <p>{this.props.players[this.state.meme_index].input_bottom}</p> */}
-                {playerMemes}
+                    <img src={`${this.props.memes[this.props.round].url}`} alt=''/>
+                    <div>
+                        <p>{this.props.playerData[this.state.meme_index].inputTop}</p>
+                        <p>{this.props.playerData[this.state.meme_index].inputBottom}</p>
+                    </div>
                 <button onClick={this.memeSelect}>Select</button>
-            </div >
+            </div>
         )
     }
 }
@@ -93,8 +104,10 @@ class Judge extends Component {
 const mapStateToProps = state => {
     return {
         players: state.players,
+        playerData: state.playerData,
+        room: state.room,
         memes: state.memes,
-        playerData: state.playerData
+        round: state.round
     }
 }
 
