@@ -10,22 +10,22 @@ const initialState = {
     players: [],
     playerData: [],
     round: 0,
- }
- 
- const USER = 'USER'
- const ROUNDSTOWIN = 'ROUNDSTOWIN'
- const PLAYERS = 'PLAYERS'
- const IMAGES = 'IMAGES'
- const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
- const ROOM = 'ROOM'
- const USERLOGOUT = 'USERLOGOUT'
- const JUDGE_INDEX = 'JUDGE_INDEX'
- const WINNINGMEME = 'WINNINGMEME'
- const MEMES = 'MEMES'
- const PLAYERDATA = 'PLAYERDATA'
- const ROUND ='ROUND'
- 
- export default function reducer(state = initialState, action) {
+}
+
+const USER = 'USER'
+const ROUNDSTOWIN = 'ROUNDSTOWIN'
+const PLAYERS = 'PLAYERS'
+const IMAGES = 'IMAGES'
+const NUMBEROFPLAYERS = 'NUMBEROFPLAYERS'
+const ROOM = 'ROOM'
+const USERLOGOUT = 'USERLOGOUT'
+const JUDGE_INDEX = 'JUDGE_INDEX'
+const WINNINGMEME = 'WINNINGMEME'
+const MEMES = 'MEMES'
+const PLAYERDATA = 'PLAYERDATA'
+const ROUND ='ROUND'
+
+export default function reducer(state = initialState, action) {
     switch (action.type) {
  
         case USER:
@@ -54,13 +54,13 @@ const initialState = {
  
         case MEMES:
             return Object.assign({}, state, { memes: action.payload })
- 
+
         case PLAYERDATA:
             return Object.assign({}, state, {playerData: action.payload})
- 
+
         case ROUND:
             return Object.assign({}, state, {round: action.payload})
- 
+
         case USERLOGOUT:
             return initialState
  
@@ -131,23 +131,23 @@ const initialState = {
         type: MEMES,
         payload: val
     }
- }
- 
- export function playerData(val) {
+}
+
+export function playerData(val) {
     return {
         type: PLAYERDATA,
         payload: val
     }
- }
- 
- export function round(val) {
+}
+
+export function round(val) {
     return {
         type: ROUND,
         payload: val
     }
- }
- 
- export function userLogout() {
+}
+
+export function userLogout() {
     return {
         type: USERLOGOUT,
         payload: initialState

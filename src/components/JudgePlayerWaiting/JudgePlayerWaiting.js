@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import './JudgePlayerWaiting.css';
 import { connect } from 'react-redux';
-import {playerData} from '../../dux/reducer'
+import {playerData} from '../../dux/reducer';
+
+
 const image = 'theonetrueuser'
 const particleOpt = {
     particles: {
@@ -138,4 +140,6 @@ const mapStateToProps = state => {
         user: state.user
     }
 }
+
+
 export default connect(mapStateToProps, {playerData})(JudgePlayerWaiting)

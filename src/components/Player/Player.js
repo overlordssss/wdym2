@@ -9,12 +9,16 @@ class Player extends Component {
     constructor(props) {
         super(props);
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
-
+        
         this.state = {
             count: 10000,
             inputTop: '',
             inputBottom: ''
         }
+    }
+
+    componentDidMount(){
+        this.timer()
     }
 
     topInput = (e) => {
@@ -44,22 +48,15 @@ class Player extends Component {
                 this.setState({
                     count: this.state.count - 1
                 })
-            }
-        }, 1000);
+            }}, 1000);
     }
-
-    componentDidMount() {
-        this.timer()
-    }
-
 
     render() {
-        console.log(this.props)
+        console.log('props: ', this.props)
         return (
             <div className='wallpaper'>
                 <div className='meme'>
                     <div className='le-meme'>
-                        <div></div>
                         <img src={`${this.props.memes[this.props.round].url}`} alt='' className='user-meme' />
                         <div className='meme-inputs'>
                             <p className='input-top'>{this.state.inputTop}</p>
@@ -76,7 +73,8 @@ class Player extends Component {
                             <h1 className='counter'>{this.state.count}</h1>
                             <div className='spinner'>
                                 {this.state.count > 0 ? <Spinner />
-                                    : this.props.history.push('/waiting-room')}
+                                    : this.submitHandler()
+                                }
                             </div>
                         </div>
 
@@ -91,7 +89,9 @@ const mapStateToProps = state => {
     return {
         players: state.players,
         user: state.user,
-        room: state.room
+        room: state.room,
+        memes: state.memes,
+        round:state.round
     }
 }
 
