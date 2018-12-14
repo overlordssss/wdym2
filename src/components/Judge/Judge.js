@@ -10,8 +10,8 @@ class Judge extends Component {
 
         this.state = {
             meme_index: 0,
+            memes: [],
             count: 60,
-            playerData: [],
             currentIndex: 0
         }
     }
@@ -40,7 +40,7 @@ class Judge extends Component {
     }
 
     render() {
-        console.log('playerdata: ', this.state.playerData)
+        console.log('playerdata: ', this.props.playerData)
         return (
             <div>
                 <div className='counter'>

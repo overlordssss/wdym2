@@ -3,11 +3,13 @@ const initialState = {
     roundsToWin: 0,
     customImages: [],
     judgeIndex: 0,
-    blankMemes: [],
+    memes: [],
     room: 0,
     numberOfPlayers: 0,
     winningMeme: [],
     players: [],
+    playerData: [],
+    round: 0,
 }
 
 const USER = 'USER'
@@ -20,6 +22,8 @@ const USERLOGOUT = 'USERLOGOUT'
 const JUDGE_INDEX = 'JUDGE_INDEX'
 const WINNINGMEME = 'WINNINGMEME'
 const MEMES = 'MEMES'
+const PLAYERDATA = 'PLAYERDATA'
+const ROUND ='ROUND'
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -49,7 +53,13 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { room: action.payload })
 
         case MEMES:
-            return Object.assign({}, state, { blankMemes: action.payload })
+            return Object.assign({}, state, { memes: action.payload })
+
+        case PLAYERDATA:
+            return Object.assign({}, state, {playerData: action.payload})
+
+        case ROUND:
+            return Object.assign({}, state, {round: action.payload})
 
         case USERLOGOUT:
             return initialState
@@ -119,6 +129,20 @@ export function room(val) {
 export function memes(val) {
     return {
         type: MEMES,
+        payload: val
+    }
+}
+
+export function playerData(val) {
+    return {
+        type: PLAYERDATA,
+        payload: val
+    }
+}
+
+export function round(val) {
+    return {
+        type: ROUND,
         payload: val
     }
 }

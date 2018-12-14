@@ -9,12 +9,16 @@ class Player extends Component {
     constructor(props) {
         super(props);
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
-
+        
         this.state = {
             count: 60,
             inputTop: '',
             inputBottom: ''
         }
+    }
+
+    componentDidMount(){
+        this.timer()
     }
 
     topInput = (e) => {
@@ -47,22 +51,14 @@ class Player extends Component {
             }}, 1000);
     }
 
-    componentDidMount(){
-        this.timer()
-    }
-
-    componentDidMount() {
-        this.timer()
-    }
-
     render() {
-        console.log(this.props)
+        console.log('props: ', this.props)
+        console.log('url: ',this.props.memes[this.props.round].url)
         return (
             <div className='wallpaper'>
                 <div className='meme'>
                     <div className='le-meme'>
-                        <div></div>
-                        <img src='https://www.lovequotesmessages.com/wp-content/uploads/2018/04/agent_skeleton_still_waiting_meme1.jpg' alt='' className='user-meme' />
+                        <img src={`https://wdym2.s3.amazonaws.com/None+of+my+business.png`} alt='' className='user-meme' />
                         <div className='meme-inputs'>
                             <p className='input-top'>{this.state.inputTop}</p>
                             <p className='input-bottom'>{this.state.inputBottom}</p>
@@ -78,7 +74,8 @@ class Player extends Component {
                             <h1 className='counter'>{this.state.count}</h1>
                             <div className='spinner'>
                                 {this.state.count > 0 ? <Spinner />
-                                    : this.props.history.push('/waiting-room')}
+                                    : this.submitHandler()
+                                }
                             </div>
                         </div>
 
@@ -93,7 +90,9 @@ const mapStateToProps = state => {
     return {
         players: state.players,
         user: state.user,
-        room: state.room
+        room: state.room,
+        memes: state.memes,
+        round:state.round
     }
 }
 
