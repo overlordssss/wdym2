@@ -27,7 +27,7 @@ class InGame extends Component {
         }
     }
     componentDidMount() {
-        this.responses()
+        // this.responses()
         //get user info, change username in state 
         //missing endpoint
         this.setState({
@@ -43,14 +43,14 @@ class InGame extends Component {
             }
         })
     }
-    responses = () => {
-        this.props.socket.on('get responses', (data) => {
-            this.setState({ playerData: data })
-            if (this.state.playerData.Length === this.props.players) {
-                this.setState({fullResponse: true})
-            }
-        })
-    }
+    // responses = () => {
+    //     this.props.socket.on('get responses', (data) => {
+    //         this.setState({ playerData: data })
+    //         if (this.state.playerData.Length === this.props.players) {
+    //             this.setState({fullResponse: true})
+    //         }
+    //     })
+    // }
 
     render() {
 

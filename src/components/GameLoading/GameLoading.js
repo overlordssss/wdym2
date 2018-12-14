@@ -50,8 +50,8 @@ class GameLoading extends Component {
                 .then(() => console.log('Max Players was updated'))
         }
         let memes = []
-        let blankMemes = currentNumPlayers * (this.state.roundsToWin - 1) + 1
-        axios.get(`/game/memes/${blankMemes}`).then(res => {
+        let blankMemes = currentNumPlayers*(this.state.roundsToWin - 1) +1
+        axios.get(`/game/memes/${blankMemes}`).then( res => {
             memes = res.data
 
             //generate a random index for the judge

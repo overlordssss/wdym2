@@ -53,12 +53,11 @@ class Player extends Component {
 
     render() {
         console.log('props: ', this.props)
-        console.log('url: ',this.props.memes[this.props.round].url)
         return (
             <div className='wallpaper'>
                 <div className='meme'>
                     <div className='le-meme'>
-                        <img src={`https://wdym2.s3.amazonaws.com/None+of+my+business.png`} alt='' className='user-meme' />
+                        <img src={`${this.props.memes[this.props.round].url}`} alt='' className='user-meme' />
                         <div className='meme-inputs'>
                             <p className='input-top'>{this.state.inputTop}</p>
                             <p className='input-bottom'>{this.state.inputBottom}</p>

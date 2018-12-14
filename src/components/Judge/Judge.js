@@ -18,6 +18,11 @@ class Judge extends Component {
 
     componentDidMount(){
         this.timer()
+
+        this.props.socket.on('round winner', data => {
+            this.props.winningMeme(data.roundWinner)
+            this.props.history.push('/round-winner')
+        })
     }
 
     handleSwipeLeft = () => {
@@ -35,8 +40,20 @@ class Judge extends Component {
             }}, 1000);
     }
 
-    memeSelect = (val) => {
-        this.props.winningMeme(val)
+    memeSelect = () => {
+        if(this.props.judgeIndex === this.props.players.length -1) {
+            this.props.judgeIndex(0)
+        } else {
+            let {judgeIndex} = this.props
+            this.props.judgeIndex(judgeIndex -1)
+        }
+        let {round} = this.props
+        this.props.round(round + 1)
+
+        //send winning meme and username to sockets
+        let roundWinner = this.props.playerData[this.currentIndex]
+        let {room} = this.props
+        this.props.socket.emit('judge select', {roundWinner, room})
     }
 
     render() {
@@ -48,7 +65,7 @@ class Judge extends Component {
                 </div>
                 <div className='spinner'>
                     {this.state.count > 0 ? <Spinner />
-                        : this.props.history.push('/round-winner')}
+                        : this.memeSelect()}
                 </div>
                 {/* shows only one players text at a time, and swipe will increment or decrement meme_index */}
                 {/* <p>{this.props.players[this.state.meme_index].input_top}</p> */}
@@ -60,13 +77,12 @@ class Judge extends Component {
                     swipable={true}
                 >
                     <div>
-                        <p>{this.state.playerData[this.state.currentIndex].inputTop}</p>
-                        <p>{this.state.playerData[this.state.currentIndex].inputBottom}</p>
+                        <p>{this.props.playerData[this.state.currentIndex].inputTop}</p>
+                        <p>{this.props.playerData[this.state.currentIndex].inputBottom}</p>
                     </div>
 
                 </Carousel>
                 <button onClick={this.memeSelect}>Select</button>
-                {}
             </div>
         )
     }
@@ -74,7 +90,9 @@ class Judge extends Component {
 
 const mapStateToProps = state => {
     return {
-        players: state.players
+        players: state.players,
+        playerData: state.playerData,
+        room: state.room
     }
 }
 
