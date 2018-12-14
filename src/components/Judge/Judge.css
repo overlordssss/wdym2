@@ -1,15 +1,22 @@
-/* .counter{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    float: right;
-    margin-right: 56px
-}
-.spinner{
-    position: absolute;
-    align-self: auto;
-    z-index: -2;
-    float: right;
-    margin-left: 1320px;
-} */
+.arrow-right {
+    width: 50; 
+    height: 0; 
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    
+    border-left: 60px solid green;
+    z-index: 5;
+  }
+  .arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent; 
+    
+    border-right:60px solid green; 
+    z-index: 5;
+  }
+  .arrow-container{
+      display: flex;
+      justify-content: space-between
+  }
