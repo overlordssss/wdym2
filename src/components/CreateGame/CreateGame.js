@@ -74,6 +74,8 @@ class CreateGame extends Component {
         })
     }
     render() {
+        console.log('rounds to win: ', this.state.roundsForWin)
+        console.log(typeof this.state.roundsForWin)
         return (
             <div className='create-game'>
                 <div className='createGameContainer'>

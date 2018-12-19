@@ -5,7 +5,7 @@ const initialState = {
     memes: [],
     room: 0,
     numberOfPlayers: 0,
-    winningMeme: [],
+    winningMeme: {},
     players: [],
     playerData: [],
     round: 0,
@@ -111,7 +111,7 @@ export function newJudge(index) {
     }
  }
  
- export function winningMeme(winningMeme) {
+ export function memeWinner(winningMeme) {
     return {
         type: WINNINGMEME,
         payload: winningMeme

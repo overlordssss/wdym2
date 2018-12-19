@@ -69,9 +69,11 @@ class GameLoading extends Component {
                     <div >
                         <h1 className="room-code">Room code: {this.props.room}</h1>
                     </div>
-                    <div className='display-list'>
+                    <div>
                         <h1 className='rounds'>Rounds To Win: {this.state.roundsToWin}</h1>
-                        <h1 className='le-players'>Players</h1>
+                    </div>
+                    <div className='display-list'>
+                        <h1 className='le-players'>Players:</h1>
                         <ul className='players'>
                             {this.state.players.map(username => {
                                 return <h1 key={username} >{username}</h1>
@@ -80,7 +82,7 @@ class GameLoading extends Component {
                     </div>
                     {/* basic start button passing the socket players connected to the room to the game */}
                     {(this.state.creator === this.props.user.username && this.state.players.length >= 3) ?
-                        <button onClick={this.handleClick}>START</button>
+                        <button onClick={this.handleClick} className='startGameButton'>START</button>
                         : null
                     }
                 </div>

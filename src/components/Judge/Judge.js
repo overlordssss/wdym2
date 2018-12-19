@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../SpinnerComponent/Spinner';
-<<<<<<< HEAD
-import { winningMeme } from '../../dux/reducer';
-=======
-import { winningMeme, judgeIndex, roundNum } from '../../dux/reducer';
->>>>>>> master
+import { memeWinner } from '../../dux/reducer';
 import './Judge.css';
 
 class Judge extends Component {
@@ -24,7 +20,7 @@ class Judge extends Component {
        this.timer()
 
         this.props.socket.on('round winner', data => {
-            this.props.winningMeme(data.roundWinner)
+            this.props.memeWinner(data.roundWinner)
             this.props.history.push('/round-winner')
         })
         
@@ -110,4 +106,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { winningMeme })(Judge)
+export default connect(mapStateToProps, { memeWinner })(Judge)

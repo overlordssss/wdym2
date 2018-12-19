@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RoundWinner.css';
-import { roundNum, playerData, winningMeme, newJudge } from '../../dux/reducer'
+import { roundNum, playerData, memeWinner, newJudge } from '../../dux/reducer'
 import axios from 'axios'
 
 class RoundWinner extends Component {
@@ -10,11 +10,16 @@ class RoundWinner extends Component {
 
         this.state = {
             winner: {},
-            count: 7
+            count: 7,
+            round: 0
         }
     }
 
     componentDidMount() {
+        this.setState({
+            winner: this.props.winningMeme,
+            round: this.props.round
+        })
         this.props.socket.on('end game', () => {
             this.props.history.push('/winner')
         })
@@ -29,7 +34,9 @@ class RoundWinner extends Component {
             //add one point to round winner
             let newRound = this.props.round +1
             let newJudgeIndex = this.props.judgeIndex +1
-            this.props.socket.emit('new round', {room, newRound, newJudgeIndex})
+            setTimeout(() => {
+                this.props.socket.emit('new round', {room, newRound, newJudgeIndex})
+            }, 2000)
         }
         this.timer()
     }
@@ -61,7 +68,7 @@ class RoundWinner extends Component {
         }
         //reset everything for new round
         this.props.playerData([])
-        this.props.winningMeme([])
+        this.props.memeWinner([])
         this.props.history.push('/in-game')
     }
 
@@ -76,7 +83,7 @@ class RoundWinner extends Component {
                         </h1>
                         {this.state.count}
                         <div className='round-winner'>
-                            <img src={`${this.props.memes[this.props.round].url}`} alt='' />
+                            <img src={`${this.props.memes[this.state.round].url}`} alt='' />
                             <div>
                                 <p>{this.props.winningMeme.inputTop}</p>
                                 <p>{this.props.winningMeme.inputBottom}</p>
@@ -102,4 +109,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { roundNum, playerData, winningMeme, newJudge })(RoundWinner)
+export default connect(mapStateToProps, { roundNum, playerData, memeWinner, newJudge })(RoundWinner)

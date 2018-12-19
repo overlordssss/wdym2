@@ -109,7 +109,7 @@ io.on('connection', socket => {
 
 app.get('/api/usernames/:room', (req, res) => {
     console.log('params: ', req.params)
-    res.send(currentGames[req.params.room])
+    res.send(currentGames[req.params.room]).status(200)
 })
 
 app.put('/api/add_point', (req, res) => {
