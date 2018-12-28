@@ -82,11 +82,11 @@ class RoundWinner extends Component {
                             Round Winner is: {this.props.winningMeme.username}
                         </h1>
                         {this.state.count}
-                        <div className='round-winner'>
-                            <img src={`${this.props.memes[this.state.round].url}`} alt='' />
-                            <div>
-                                <p>{this.props.winningMeme.inputTop}</p>
-                                <p>{this.props.winningMeme.inputBottom}</p>
+                        <div className='le-meme'>
+                            <img src={`${this.props.memes[this.state.round].url}`} alt='' className='user-meme'/>
+                            <div className='meme-inputs'>
+                                <p className='input-top'>{this.props.winningMeme.inputTop}</p>
+                                <p className='input-bottom'>{this.props.winningMeme.inputBottom}</p>
                             </div>
                         </div>
                     </div>
