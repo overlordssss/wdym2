@@ -19,7 +19,6 @@ class LandingPage extends Component {
         }
     }
     componentDidMount() {
-        axios.get('/game/rooms').then(res => this.setState({ rooms: res.data }))
     }
     // skeleton method for loging out. will just route the user to the login page and destroy the session
     logout = () => {
@@ -38,27 +37,29 @@ class LandingPage extends Component {
         let exists = false
         let full = true
         let roomIndex = -1
-        this.state.rooms.map((room, i) => {
-            if (room.room_number == this.state.roomCode) {
-                exists = true
-                roomIndex = i
-            }
-        })
-        if (exists) {
-            let usernames = []
-            axios.get(`/api/usernames/${this.state.roomCode}`)
+        axios.get('/game/rooms').then(res => {
+            let rooms = res.data
+            rooms.map((room, i) => {
+                if (room.room_number == this.state.roomCode) {
+                    exists = true
+                    roomIndex = i
+                }
+            })
+            if (exists) {
+                let usernames = []
+                axios.get(`/api/usernames/${this.state.roomCode}`)
                 .then(res => {
                     usernames = res.data
                     console.log('usernames: ', this.state.usernames)
                     //error with this filter, as this.state.usernames does not contain users within room. reamians an empty array. 
-                    if (usernames.length < this.state.rooms[roomIndex].number_of_players) {
+                    if (usernames.length < rooms[roomIndex].number_of_players) {
                         full = false
                     }
                     if (full === false) {
                         //set up sockets for existing room
                         let { username } = this.props.user
                         let room = Number(this.state.roomCode)
-
+                        
                         //send username to socket with room number
                         this.props.socket.emit('join room', { room, username })
                         //when specified socket is joined
@@ -71,9 +72,10 @@ class LandingPage extends Component {
                         alert("Unfortunately that game already has the max number of players. Please create a new game or join a different one.")
                     }
                 })
-        } else {
-            alert("Unfortunately we were not able to find that room. Please check the room number and try again.")
-        }
+            } else {
+                alert("Unfortunately we were not able to find that room. Please check the room number and try again.")
+            }
+        })
     }
 
     render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RoundWinner.css';
-import { roundNum, playerData, memeWinner, newJudge } from '../../dux/reducer'
+import { roundNum, playerData, memeWinner, newJudge, roundWon } from '../../dux/reducer'
 import axios from 'axios'
 
 class RoundWinner extends Component {
@@ -20,6 +20,10 @@ class RoundWinner extends Component {
             winner: this.props.winningMeme,
             round: this.props.round
         })
+        if(this.props.user.username === this.props.winningMeme.username) {
+            let num = this.props.rounds_won +1
+            this.props.roundWon(num)
+        }
         this.props.socket.on('end game', () => {      
             this.props.history.push('/winner')
         })
@@ -106,8 +110,9 @@ const mapStateToProps = state => {
         room: state.room,
         roundsToWin: state.roundsToWin,
         players: state.players,
-        judgeIndex: state.judgeIndex
+        judgeIndex: state.judgeIndex,
+        rounds_won: state.rounds_won
     }
 }
 
-export default connect(mapStateToProps, { roundNum, playerData, memeWinner, newJudge })(RoundWinner)
+export default connect(mapStateToProps, { roundNum, playerData, memeWinner, newJudge, roundWon })(RoundWinner)
