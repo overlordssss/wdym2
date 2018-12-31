@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-function Winner(){
+function Winner(props){
     return(
         
         <div>
             <h1>
             {/* the h1 tag will take in the winner as a prop and display after the dash */}
-                THE WINNER IS - {this.props.winningMeme.username}
+                THE WINNER IS - {props.winningMeme.username}
             </h1>
             {/* the REPLAY WITH SAME PLAYERS BUTTON will take you straight into a new game passing along the other users as props on redux */}
             {/* <Link to='/in-game'><button>REPLAY WITH SAME PLAYERS</button></Link> */}

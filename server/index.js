@@ -54,8 +54,6 @@ io.on('connection', socket => {
 
     //checking if a room has hit max capacity
     socket.on('check room', data => {
-        console.log('data coming in: ', data)
-        console.log('game info: ', currentGames[data.room])
         let { roomIndex } = data
         let usernames = currentGames[data.room]
         io.to().emit('room info', { usernames, roomIndex })
@@ -92,11 +90,12 @@ io.on('connection', socket => {
 
     //for game winner
     socket.on('Game winner', data => {
-        io.to(data.room).emit('end game')
+        io.to(data.room).emit('end game', data.username)
     })
 
     socket.on('new round', data => {
-        console.log('new room was hit')
+        console.log('new round was hit', data)
+        responses[data.room] = []
         io.to(data.room).emit('new stats', data)
     })
 
@@ -108,7 +107,6 @@ io.on('connection', socket => {
 
 
 app.get('/api/usernames/:room', (req, res) => {
-    console.log('params: ', req.params)
     res.send(currentGames[req.params.room]).status(200)
 })
 
