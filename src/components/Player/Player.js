@@ -9,7 +9,7 @@ class Player extends Component {
     constructor(props) {
         super(props);
         //players array should contain objects containing the username, rounds_won, input_top, input_bottom, and role
-        
+
         this.state = {
             count: 60,
             inputTop: '',
@@ -17,7 +17,7 @@ class Player extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.timer()
     }
 
@@ -48,13 +48,18 @@ class Player extends Component {
                 this.setState({
                     count: this.state.count - 1
                 })
-            }}, 1000);
+            }
+        }, 1000);
     }
 
     render() {
         console.log('props: ', this.props)
         return (
             <div className='wallpaper'>
+                <div className='playerDisplay'>
+                    <h5>Judge of this round: {this.props.players[this.props.judgeIndex]}</h5>
+                    <h6>Rounds Won: {this.props.rounds_won}</h6>
+                </div>
                 <div className='meme'>
                     <div className='le-meme'>
                         <img src={`${this.props.memes[this.props.round].url}`} alt='' className='user-meme' />
@@ -80,6 +85,7 @@ class Player extends Component {
 
                     </div>
                 </div>
+                <div className = 'filler'></div>
             </div>
         )
     }
@@ -91,7 +97,9 @@ const mapStateToProps = state => {
         user: state.user,
         room: state.room,
         memes: state.memes,
-        round:state.round
+        round: state.round,
+        rounds_won: state.rounds_won,
+        judgeIndex: state.judgeIndex
     }
 }
 

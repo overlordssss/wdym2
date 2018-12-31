@@ -9,8 +9,10 @@ const initialState = {
     players: [],
     playerData: [],
     round: 0,
+    rounds_won: 0,
 }
 
+const ROUNDS_WON = "ROUNDS_WON"
 const USER = 'USER'
 const ROUNDSTOWIN = 'ROUNDSTOWIN'
 const PLAYERS = 'PLAYERS'
@@ -62,10 +64,20 @@ export default function reducer(state = initialState, action) {
 
         case USERLOGOUT:
             return initialState
+
+        case ROUNDS_WON:
+        return Object.assign({}, state, {rounds_won: action.payload})
  
         default:
             return state;
     }
+ }
+
+ export function roundWon(val) {
+     return {
+         type: ROUNDS_WON,
+         payload: val
+     }
  }
  
  export function roundsToWin(val) {
