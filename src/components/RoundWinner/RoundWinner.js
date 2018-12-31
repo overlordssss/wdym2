@@ -20,7 +20,7 @@ class RoundWinner extends Component {
             winner: this.props.winningMeme,
             round: this.props.round
         })
-        this.props.socket.on('end game', () => {
+        this.props.socket.on('end game', () => {      
             this.props.history.push('/winner')
         })
         this.props.socket.on('new stats', data => {
@@ -33,10 +33,25 @@ class RoundWinner extends Component {
             let { room } = this.props
             //add one point to round winner
             let newRound = this.props.round +1
-            let newJudgeIndex = this.props.judgeIndex +1
+            let newJudgeIndex = 0
+            if(this.props.judgeIndex !== this.props.players.length - 1) {
+                newJudgeIndex = this.props.judgeIndex +1
+            }
             setTimeout(() => {
-                this.props.socket.emit('new round', {room, newRound, newJudgeIndex})
-            }, 2000)
+                //check to see if someone has won
+                let { username } = this.props.winningMeme
+                axios.put(`/api/add_point/`, { room, username })
+                .then(res => {
+                    console.log('rounds won: ', res.data.rounds_won)
+                    console.log('rounds to win: ', this.props.roundsToWin)
+                    if(res.data.rounds_won === this.props.roundsToWin) {
+                        this.props.socket.emit('Game winner', {room, username})
+                    } else {
+                        //set up next round
+                        this.props.socket.emit('new round', {room, newRound, newJudgeIndex})
+                    }
+                })
+            }, 5000)
         }
         this.timer()
     }
@@ -52,20 +67,6 @@ class RoundWinner extends Component {
     }
 
     handleNextRound = () => {
-        if(this.props.username === this.props.players[this.props.judgeIndex]) {
-            
-            let { room } = this.props
-            let { username } = this.props.winningMeme
-            axios.put(`/api/add_point/`, { room, username })
-            .then(res => {
-                //check if total winner
-                console.log('rounds won: ', res.data.rounds_won)
-                console.log('rounds to win: ', this.props.roundsToWin)
-                if(res.data.rounds_won === this.props.roundsToWin) {
-                    this.props.socket.emit('Game winner', {room})
-                } 
-            })
-        }
         //reset everything for new round
         this.props.playerData([])
         this.props.memeWinner([])
